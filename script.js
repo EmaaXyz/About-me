@@ -1,109 +1,126 @@
-const canvas = document.getElementById('network');
-const ctx = canvas.getContext('2d');
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
+document.addEventListener('DOMContentLoaded', () => {
+    // ------------------------------------
+    // 1. LOGICA DEL BACKGROUND (NETWORK)
+    // ------------------------------------
+    const canvas = document.getElementById('network');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    const maxParticles = 50;
 
-const points = [];
-const POINTS_COUNT = 600;
-const MAX_DISTANCE = 120;
-
-for(let i = 0; i < POINTS_COUNT; i++){
-    let speed = Math.random() * 2 + 2;
-    points.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        radius: ((Math.random() * 2 + 1) * 2) * 2/3
-    });
-}
-
-function update() {
-    ctx.clearRect(0, 0, width, height);
-
-    for(let i = 0; i < POINTS_COUNT; i++){
-        let p = points[i];
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if(p.x < 0) { p.x = 0; p.vx *= -1; }
-        if(p.x > width) { p.x = width; p.vx *= -1; }
-        if(p.y < 0) { p.y = 0; p.vy *= -1; }
-        if(p.y > height) { p.y = height; p.vy *= -1; }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
-        // RIPRISTINO: Colore dei punti in grigio
-        ctx.fillStyle = '#888';
-        ctx.fill();
+    function resizeCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     }
 
-    for(let i = 0; i < POINTS_COUNT; i++){
-        for(let j = i+1; j < POINTS_COUNT; j++){
-            let p1 = points[i];
-            let p2 = points[j];
-            let dx = p1.x - p2.x;
-            let dy = p1.y - p2.y;
-            let dist = Math.sqrt(dx*dx + dy*dy);
-            if(dist < MAX_DISTANCE){
-                ctx.beginPath();
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p2.x, p2.y);
-                // RIPRISTINO: Colore delle linee di sfondo in grigio con opacità
-                ctx.strokeStyle = `rgba(200,200,200,${1 - dist / MAX_DISTANCE})`; 
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.5 + 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+
+        draw() {
+            ctx.fillStyle = 'rgba(100, 100, 100, 0.8)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function createParticles() {
+        for (let i = 0; i < maxParticles; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function drawLines() {
+        const threshold = 100;
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < threshold) {
+                    const opacity = 1 - (distance / threshold);
+                    ctx.strokeStyle = `rgba(100, 100, 100, ${opacity * 0.2})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
             }
         }
     }
 
-    requestAnimationFrame(update);
-}
-
-update();
-
-window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-});
-
-// LOGICA CONTROLLI MUSICA
-const audio = document.getElementById('background-music');
-const toggleButton = document.getElementById('toggle-music');
-const volumeSlider = document.getElementById('volume-slider');
-
-// Imposta lo stato iniziale 
-toggleButton.classList.add('paused');
-toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>'; 
-audio.volume = volumeSlider.value; // Sincronizza il volume iniziale (ora 0.05)
-
-toggleButton.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play().catch(error => {
-            console.log("Autoplay bloccato:", error);
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, width, height);
+        
+        drawLines();
+        particles.forEach(p => {
+            p.update();
+            p.draw();
         });
-        toggleButton.classList.remove('paused');
-        toggleButton.innerHTML = (audio.volume == 0) ? '<i class="fas fa-volume-off"></i>' : '<i class="fas fa-volume-up"></i>';
-    } else {
-        audio.pause();
-        toggleButton.classList.add('paused');
-        toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
     }
-});
 
-volumeSlider.addEventListener('input', () => {
-    audio.volume = volumeSlider.value;
-    // Aggiorna l'icona del volume in base al livello e allo stato
-    if (audio.volume == 0) {
-        toggleButton.innerHTML = '<i class="fas fa-volume-off"></i>';
-        if (!audio.paused) audio.pause(); 
-        toggleButton.classList.add('paused');
-    } else if (audio.paused) {
-        toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-    } 
-    else {
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    createParticles();
+    animate();
+
+
+    // ------------------------------------
+    // 2. LOGICA CONTROLLI MUSICA
+    // ------------------------------------
+    const music = document.getElementById('background-music');
+    const toggleButton = document.getElementById('toggle-music');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    // Imposta il volume iniziale basso
+    music.volume = parseFloat(volumeSlider.value);
+
+    // Gestisce play/pause
+    toggleButton.addEventListener('click', () => {
+        if (music.paused) {
+            music.play().catch(e => console.log("User interaction required to play audio."));
+            toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+            toggleButton.classList.remove('paused');
+        } else {
+            music.pause();
+            toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            toggleButton.classList.add('paused');
+        }
+    });
+
+    // Gestisce il cambio di volume
+    volumeSlider.addEventListener('input', (e) => {
+        music.volume = parseFloat(e.target.value);
+    });
+
+    // Aggiusta il pulsante se la musica parte automaticamente
+    music.addEventListener('play', () => {
         toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-        if (audio.paused) audio.play(); 
         toggleButton.classList.remove('paused');
-    }
+    });
+
+    // Aggiusta il pulsante se la musica non parte automaticamente (per restrizioni browser)
+    music.addEventListener('pause', () => {
+        // Controlla se è stata l'azione di pausa dell'utente o una restrizione del browser
+        if (!toggleButton.classList.contains('paused')) {
+             toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        }
+    });
 });
