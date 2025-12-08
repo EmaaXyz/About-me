@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const maxParticles = 50;
+    
+    // MODIFICA: Imposta il numero massimo di particelle a 600
+    const maxParticles = 600;
 
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
@@ -19,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
             this.y = Math.random() * height;
             this.vx = (Math.random() - 0.5) * 0.5;
             this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = Math.random() * 1.5 + 1;
+            
+            // MODIFICA: Imposta il raggio piccolo (tra 1 e 2.5 pixel)
+            this.radius = Math.random() * 1.5 + 1; 
         }
 
         update() {
@@ -45,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawLines() {
+        // La soglia di 100 pixel è buona per 600 particelle piccole
         const threshold = 100;
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -54,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (distance < threshold) {
                     const opacity = 1 - (distance / threshold);
-                    ctx.strokeStyle = `rgba(100, 100, 100, ${opacity * 0.2})`;
+                    ctx.strokeStyle = `rgba(100, 100, 100, ${opacity * 0.1})`; // Resa ancora più sottile e discreta
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
