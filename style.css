@@ -51,7 +51,8 @@ body {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #888;
+    /* RIPRISTINO: Bordo della foto in grigio */
+    border: 3px solid #888; 
     z-index: 2;
     position: relative;
 }
@@ -69,6 +70,7 @@ body {
 /* Buttons */
 .btn {
     padding: 12px 25px;
+    /* RIPRISTINO: Colore principale del bottone in grigio scuro */
     background: #333;
     color: #fff;
     border-radius: 5px;
@@ -76,10 +78,11 @@ body {
     display: inline-block;
     margin-top: 10px;
     transition: background 0.3s;
+    font-weight: normal;
 }
 
 .btn:hover {
-    background: #555;
+    background: #555; /* Grigio più chiaro all'hover */
 }
 
 /* Sections */
@@ -107,11 +110,15 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    /* RIPRISTINO: Bordo leggero */
+    border: none; 
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
-    background: #1a1a1a;
+    /* RIPRISTINO: Colore all'hover */
+    background: #1a1a1a; 
+    border-color: #1a1a1a;
 }
 
 .skill-name {
@@ -123,7 +130,8 @@ body {
 
 .skill-icon {
     font-size: 36px;
-    color: #888;
+    /* RIPRISTINO: Colore icona in grigio */
+    color: #888; 
 }
 
 /* Projects grid */
@@ -143,12 +151,16 @@ body {
 
 .project-card:hover {
     transform: translateY(-5px);
-    background: #0e0e0e;
+    /* RIPRISTINO: Colore all'hover */
+    background: #0e0e0e; 
+    border: none;
 }
 
+/* RIPRISTINO: Colore link progetto in grigio */
 .project-card a {
     color: #888;
     text-decoration: none;
+    font-weight: normal;
 }
 
 /* MUSIC CONTROLS STYLE */
@@ -164,11 +176,13 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    /* RIPRISTINO: Bordo del pop-up in grigio */
     border: 1px solid #333;
 }
 
 #toggle-music {
-    background: #333;
+    /* RIPRISTINO: Bottone in grigio scuro */
+    background: #333; 
     color: #fff;
     border: none;
     padding: 10px;
@@ -179,16 +193,17 @@ body {
 }
 
 #toggle-music:hover {
-    background: #555;
+    background: #555; /* Grigio all'hover */
+    color: #fff;
 }
 
 #volume-slider {
     width: 80px;
     cursor: pointer;
-    /* Custom styling per un look dark */
     -webkit-appearance: none;
     appearance: none;
     height: 4px;
+    /* RIPRISTINO: Colore traccia slider in grigio */
     background: #555;
     border-radius: 2px;
 }
@@ -199,13 +214,15 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #fff; /* Pollice bianco sulla traccia scura */
+    /* RIPRISTINO: Pollice slider in bianco */
+    background: #fff; 
 }
 
 /* Stile quando la musica è in pausa */
 #toggle-music.paused {
     background: #444; 
 }
+/* RIPRISTINO: Colore mute/pausa icona */
 #toggle-music.paused .fas {
     color: #ccc; 
 }
