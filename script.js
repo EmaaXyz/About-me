@@ -73,7 +73,7 @@ const volumeSlider = document.getElementById('volume-slider');
 // Imposta lo stato iniziale (mutato, perché l'autoplay è spesso bloccato)
 toggleButton.classList.add('paused');
 toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>'; 
-audio.volume = volumeSlider.value; // Sincronizza il volume iniziale
+audio.volume = volumeSlider.value; // Sincronizza il volume iniziale (ora 0.4)
 
 toggleButton.addEventListener('click', () => {
     if (audio.paused) {
