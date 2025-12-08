@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
     let particles = [];
     
-    // Numero di particelle (600 come da richiesta)
+    // Numero di particelle (600)
     const maxParticles = 600;
 
     function resizeCanvas() {
@@ -20,12 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
             
-            // MODIFICA 1: Velocità media (circa 0.4)
+            // Velocità media (0.4)
             this.vx = (Math.random() - 0.5) * 0.4; 
             this.vy = (Math.random() - 0.5) * 0.4;
             
-            // MODIFICA 2: Grandezza media (tra 1.5 e 3 pixel)
-            this.radius = Math.random() * 1.5 + 1.5; 
+            // MODIFICA 1: Grandezza triplicata (Era: * 1.5 + 1.5)
+            // Ora: * 4.5 + 4.5 (Raggio tra 4.5 e 9 pixel)
+            this.radius = Math.random() * 4.5 + 4.5; 
         }
 
         update() {
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         draw() {
             ctx.fillStyle = 'rgba(100, 100, 100, 0.8)';
             ctx.beginPath();
+            this.radius = Math.random() * 1.5 + 1.5;
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fill();
         }
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawLines() {
-        // MODIFICA 3: Soglia di connessione a 125 pixel
+        // Soglia di connessione (125)
         const threshold = 125; 
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -61,9 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (distance < threshold) {
                     const opacity = 1 - (distance / threshold);
-                    // Aumentiamo leggermente l'opacità delle linee (0.15)
                     ctx.strokeStyle = `rgba(100, 100, 100, ${opacity * 0.15})`; 
-                    ctx.lineWidth = 1;
+                    
+                    // MODIFICA 2: Spessore linea triplicato (Era: 1)
+                    ctx.lineWidth = 3; 
+                    
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
