@@ -64,3 +64,45 @@ window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
 });
+
+// LOGICA CONTROLLI MUSICA
+const audio = document.getElementById('background-music');
+const toggleButton = document.getElementById('toggle-music');
+const volumeSlider = document.getElementById('volume-slider');
+
+// Imposta lo stato iniziale (mutato, perché l'autoplay è spesso bloccato)
+toggleButton.classList.add('paused');
+toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>'; 
+audio.volume = volumeSlider.value; // Sincronizza il volume iniziale
+
+toggleButton.addEventListener('click', () => {
+    if (audio.paused) {
+        // Tenta di riprodurre
+        audio.play().catch(error => {
+            console.log("Autoplay bloccato:", error);
+        });
+        toggleButton.classList.remove('paused');
+        toggleButton.innerHTML = (audio.volume == 0) ? '<i class="fas fa-volume-off"></i>' : '<i class="fas fa-volume-up"></i>';
+    } else {
+        audio.pause();
+        toggleButton.classList.add('paused');
+        toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    }
+});
+
+volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+    // Aggiorna l'icona del volume in base al livello e allo stato
+    if (audio.volume == 0) {
+        toggleButton.innerHTML = '<i class="fas fa-volume-off"></i>';
+        if (!audio.paused) audio.pause(); // Metti in pausa se il volume è zero
+        toggleButton.classList.add('paused');
+    } else if (audio.paused) {
+        toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } 
+    else {
+        toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+        if (audio.paused) audio.play(); // Fai ripartire se si alza il volume da 0
+        toggleButton.classList.remove('paused');
+    }
+});
