@@ -150,3 +150,62 @@ body {
     color: #888;
     text-decoration: none;
 }
+
+/* MUSIC CONTROLS STYLE */
+#music-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1a1a1a; /* Scuro */
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #333;
+}
+
+#toggle-music {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 16px;
+}
+
+#toggle-music:hover {
+    background: #555;
+}
+
+#volume-slider {
+    width: 80px;
+    cursor: pointer;
+    /* Custom styling per un look dark */
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: #555;
+    border-radius: 2px;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff; /* Pollice bianco sulla traccia scura */
+}
+
+/* Stile quando la musica è in pausa */
+#toggle-music.paused {
+    background: #444; 
+}
+#toggle-music.paused .fas {
+    color: #ccc; 
+}
