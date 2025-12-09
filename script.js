@@ -1,129 +1,195 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('network');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let particles = [];
-    
-    const maxParticles = 600;
+/* RESET E FONDAMENTALI */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Sfondo nero per il network */
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-    function resizeCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
+/* 1. STILE CANVA DI SFONDO (NETWORK) */
+#network {
+    position: fixed; /* Lo fissa come sfondo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Deve stare dietro a tutto il contenuto */
+}
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            
-            // VELOCITÀ VARIABILE (da 0.5 a 2)
-            const speedMultiplier = Math.random() * 1.5 + 0.5;
-            // VELOCITÀ AUMENTATA (0.8 max)
-            this.vx = (Math.random() - 0.5) * 0.8; 
-            this.vy = (Math.random() - 0.5) * 0.8;
-            
-            // GRANDEZZA MEDIA/GRANDE (da 1.5 a 5 pixel di raggio)
-            this.radius = Math.random() * 3.5 + 1.5; 
-        }
+/* SEZIONI PRINCIPALI E LAYOUT */
+.section {
+    position: relative;
+    z-index: 10; /* Il contenuto sta sopra il network */
+    padding: 40px 10%;
+    max-width: 900px;
+    margin: 0 auto;
+}
 
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    color: #fff;
+}
 
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-        }
+/* HERO SECTION (Sezione di apertura) */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
 
-        draw() {
-            // PUNTINI LUMINOSI (Bianco con opacità 0.9)
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
 
-    function createParticles() {
-        for (let i = 0; i < maxParticles; i++) {
-            particles.push(new Particle());
-        }
-    }
+.hero-name {
+    font-size: 3em;
+    margin: 5px 0;
+}
 
-    function drawLines() {
-        // LUNGHEZZA DI ATTACCO AUMENTATA (90 pixel)
-        const threshold = 90; 
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+.hero-subtitle {
+    font-size: 1.2em;
+    color: #ccc;
+    margin-bottom: 30px;
+}
 
-                if (distance < threshold) {
-                    // LINEE LUMINOSE E SFUMATE
-                    const opacity = 1 - (distance / threshold);
-                    
-                    // Bianco (255, 255, 255) con alta opacità da vicino
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`; 
-                    
-                    // SPESSORE SOTTILISSIMO (0.25 pixel)
-                    ctx.lineWidth = 0.25; 
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-    function animate() {
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, width, height);
-        
-        drawLines();
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-    }
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    createParticles();
-    animate();
+/* SEZIONE SKILLS */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
 
+.skill-card {
+    background-color: #111;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: background-color 0.3s, border-color 0.3s;
+}
 
-    const music = document.getElementById('background-music');
-    const toggleButton = document.getElementById('toggle-music');
-    const volumeSlider = document.getElementById('volume-slider');
+.skill-card:hover {
+    background-color: #222;
+    border-color: #555;
+}
 
-    music.volume = parseFloat(volumeSlider.value);
+.skill-icon {
+    font-size: 2em;
+    color: #aaa;
+    margin-bottom: 5px;
+}
 
-    toggleButton.addEventListener('click', () => {
-        if (music.paused) {
-            music.play().catch(e => console.log("User interaction required to play audio."));
-            toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-            toggleButton.classList.remove('paused');
-        } else {
-            music.pause();
-            toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            toggleButton.classList.add('paused');
-        }
-    });
+/* SEZIONE PROGETTI */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
 
-    volumeSlider.addEventListener('input', (e) => {
-        music.volume = parseFloat(e.target.value);
-    });
+.project-card {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
 
-    music.addEventListener('play', () => {
-        toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-        toggleButton.classList.remove('paused');
-    });
+.project-card h4 {
+    margin-top: 0;
+    color: #fff;
+}
 
-    music.addEventListener('pause', () => {
-        if (!toggleButton.classList.contains('paused')) {
-             toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        }
-    });
-});
+.project-card a {
+    display: block;
+    margin-top: 15px;
+    color: #00bcd4; /* Colore link di progetto */
+    text-decoration: none;
+}
+
+/* CONTROLLI MUSICA */
+#music-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+#toggle-music {
+    background: none;
+    border: 2px solid #ccc;
+    color: #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#volume-slider {
+    width: 80px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid #111;
+    font-size: 0.9em;
+    color: #555;
+}
