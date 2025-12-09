@@ -1,253 +1,98 @@
-/* Reset */
-* {
+/* Stili Generali e Reset */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #080808;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Sfondo scuro per il contrasto con i puntini bianchi */
     color: #fff;
-    /* AGGIUNTO: Scorrimento fluido per l'animazione */
-    scroll-behavior: smooth; 
-    position: relative;
-    min-height: 100vh;
+    overflow-x: hidden; /* Evita scroll orizzontale */
 }
 
-/* Canvas background */
+/* Stile per l'Animazione Canvas */
 #network {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    background: #080808;
+    z-index: 1; /* Il canvas sta dietro */
 }
 
-/* HERO section */
-.hero {
-    height: 100vh;
+/* Stile per la Sezione Principale (Contenuto sopra il Canvas) */
+.hero-section {
+    position: relative;
+    z-index: 10; /* Il contenuto deve stare sopra il canvas */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh; /* Centra verticalmente */
+    padding-top: 50px;
+}
+
+.content {
     text-align: center;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 150px; /* Spazio prima della sezione Skills */
 }
 
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+h1 {
+    font-size: 3em;
+    margin: 10px 0;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+.project-button {
+    background-color: transparent;
+    border: 2px solid #fff;
     color: #fff;
-    z-index: 2;
+    padding: 10px 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.profile-pic {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #888; 
-    z-index: 2;
-    position: relative;
+.project-button:hover {
+    background-color: #fff;
+    color: #000;
 }
 
-.hero-name {
-    font-size: 3rem;
-    margin: 0;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-/* Buttons */
-.btn {
-    padding: 12px 25px;
-    background: #333;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-    transition: background 0.3s;
-    font-weight: normal;
-}
-
-.btn:hover {
-    background: #555; 
-}
-
-/* Sections */
-.section {
-    /* AGGIORNATO: Aumento del padding verticale */
-    padding: 120px 40px; 
-    text-align: center;
-}
-
-/* AGGIORNATO: Aumento dimensione dei titoli delle sezioni */
-.section h3 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #fff;
-}
-/* AGGIORNATO: Aumento dimensione del testo About Me */
-#about p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
+.skills-preview h2 {
+    font-size: 2em;
+    margin-bottom: 50px;
+    border-bottom: 2px solid #555;
+    padding-bottom: 10px;
 }
 
 
-/* Skills grid */
-.skills-section .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-    justify-items: center;
-}
-
-.skill-card {
-    background: #111;
-    padding: 20px 25px;
-    border-radius: 8px;
-    transition: transform 0.3s, background 0.3s;
-    cursor: default;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    border: none; 
-}
-
-.skill-card:hover {
-    transform: translateY(-5px);
-    background: #1a1a1a; 
-    border-color: #1a1a1a;
-}
-
-.skill-name {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-}
-
-.skill-icon {
-    font-size: 40px;
-    color: #888; 
-}
-
-/* Projects grid */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.project-card {
-    background: #111;
-    padding: 30px;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-.project-card h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-.project-card p {
-    font-size: 1rem;
-    margin-bottom: 15px;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    background: #0e0e0e; 
-    border: none;
-}
-
-.project-card a {
-    color: #888;
-    text-decoration: none;
-    font-weight: normal;
-    display: block;
-    margin-top: 10px;
-}
-
-/* MUSIC CONTROLS STYLE (invariato) */
+/* Stile Controlli Musica */
 #music-controls {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #1a1a1a; 
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     z-index: 100;
     display: flex;
     align-items: center;
-    gap: 10px;
-    border: 1px solid #333;
 }
 
 #toggle-music {
-    background: #333; 
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
+    background: none;
+    border: 2px solid #ccc;
+    color: #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    transition: background 0.3s;
-    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
 }
 
 #toggle-music:hover {
-    background: #555; 
+    border-color: #fff;
     color: #fff;
-}
-
-#volume-slider {
-    width: 80px;
-    cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 4px;
-    background: #555;
-    border-radius: 2px;
-}
-
-#volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #fff; 
-}
-
-#toggle-music.paused {
-    background: #444; 
-}
-#toggle-music.paused .fas {
-    color: #ccc; 
-}
-
-/* AGGIORNATO: Footer Style (piccolo) */
-.footer {
-    padding: 10px 0; 
-    text-align: center;
-    background: #000;
-    color: #555; 
-    font-size: 0.8rem; /* Molto piccolo */
-    border-top: 1px solid #111;
 }
