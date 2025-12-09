@@ -1,100 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Emanuele – About Me</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emanuele - About Me</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <audio id="background-music" loop autoplay>
-        <source src="the path was never meant to be easy.mp3" type="audio/mpeg">
-        Il tuo browser non supporta l'elemento audio.
-    </audio>
     <canvas id="network"></canvas>
 
-    <section class="hero">
-        <div class="hero-content">
-            <img src="profile.jpg" alt="Emanuele Profile Picture" class="profile-pic">
-            <h1 class="hero-name">Emanuele</h1>
-            <p class="hero-subtitle">Developer & Security Analyst</p>
-            <a href="#projects" class="btn">View My Projects</a>
+    <section class="hero-section">
+        <div class="content">
+            <div class="avatar">
+                <img src="avatar.png" alt="Avatar Robot" style="width: 120px; height: 120px; border-radius: 50%;">
+            </div>
+            <h1>Emanuele</h1>
+            <p>Developer & Security Analyst</p>
+            <button class="project-button">View My Projects</button>
+        </div>
+        
+        <div class="skills-preview">
+            <h2>Skills</h2>
         </div>
     </section>
 
-    <section id="skills" class="section skills-section">
-        <h3>Skills</h3>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fas fa-code skill-icon"></i>
-                <span class="skill-name">C++</span>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-terminal skill-icon"></i>
-                <span class="skill-name">C</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-java skill-icon"></i>
-                <span class="skill-name">Java</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-js skill-icon"></i>
-                <span class="skill-name">JavaScript</span>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-cogs skill-icon"></i>
-                <span class="skill-name">C#</span>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-python skill-icon"></i>
-                <span class="skill-name">Python</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section">
-        <h3>About Me</h3>
-        <p>I'm Emanuele, a **Security Analyst** and Developer. I hope this site helps you understand more about my skills and competencies. Below, you can see the projects I am currently working on.</p>
-    </section>
-
-    <section id="projects" class="section">
-        <h3>Projects</h3>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h4>Scuk</h4>
-                <p>A text-based Python adventure game.</p>
-                <a href="https://github.com/Mark3syt/Scuk" target="_blank">View Project</a>
-            </div>
-            <div class="project-card">
-                <h4>Crypto-Tool CLI</h4>
-                <p>A Python CLI for file hashing (SHA256) and AES encryption/decryption (Fernet).</p>
-                <a href="https://github.com/Mark3syt/crypto-tool" target="_blank">View Project</a>
-            </div>
-            <div class="project-card">
-                <h4>PicoEngine 2D</h4>
-                <p>A small 2D game engine prototype in C# using the Entity-Component System (ECS) pattern.</p>
-                <a href="https://github.com/Mark3syt/csharp-2d-engine" target="_blank">View Project</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <h3>Contact</h3>
-        <p>Want to collaborate? Join my Discord server!</p>
-        <a href="https://discord.gg/k6jJcMK26C" class="btn" target="_blank">Join on Discord</a>
-    </section>
-    
     <div id="music-controls">
-        <button id="toggle-music" title="Attiva/Disattiva Musica">
-            <i class="fas fa-volume-up"></i>
+        <button id="toggle-music" class="paused">
+             <i class="fas fa-volume-mute"></i>
         </button>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.05" title="Volume">
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.2">
     </div>
-    <footer class="footer">
-        <p>&reg; Emanuele</p>
-    </footer>
+    <audio id="background-music" loop>
+        <source src="path/to/your/music.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="script.js"></script>
 </body>
