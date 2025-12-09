@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
             
-            // Velocità aumentata (0.6)
-            this.vx = (Math.random() - 0.5) * 0.6; 
-            this.vy = (Math.random() - 0.5) * 0.6;
+            // ✅ AUMENTO VELOCITÀ (0.8)
+            this.vx = (Math.random() - 0.5) * 0.8; 
+            this.vy = (Math.random() - 0.5) * 0.8;
             
             this.radius = Math.random() * 3.5 + 1.5; 
         }
@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawLines() {
-        // ✅ DIMEZZA LUNGHEZZA DI ATTACCO (30 pixel)
-        const threshold = 30; 
+        // ✅ AUMENTO LUNGHEZZA DI ATTACCO (90 pixel)
+        const threshold = 90; 
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     ctx.strokeStyle = `rgba(180, 180, 180, ${opacity * 0.3})`; 
                     
-                    // ✅ DIMEZZA SPESSORE LINEE (0.25 pixel)
+                    // Spessore linea sottilissimo (0.25 pixel)
                     ctx.lineWidth = 0.25; 
                     
                     ctx.beginPath();
