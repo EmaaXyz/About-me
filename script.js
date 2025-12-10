@@ -1,195 +1,138 @@
-/* RESET E FONDAMENTALI */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #000; /* Sfondo nero per il network */
-    color: #fff;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // ------------------------------------
+    // 1. LOGICA DEL BACKGROUND (NETWORK)
+    // ------------------------------------
+    const canvas = document.getElementById('network');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    
+    const maxParticles = 600;
 
-/* 1. STILE CANVA DI SFONDO (NETWORK) */
-#network {
-    position: fixed; /* Lo fissa come sfondo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Deve stare dietro a tutto il contenuto */
-}
+    function resizeCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
 
-/* SEZIONI PRINCIPALI E LAYOUT */
-.section {
-    position: relative;
-    z-index: 10; /* Il contenuto sta sopra il network */
-    padding: 40px 10%;
-    max-width: 900px;
-    margin: 0 auto;
-}
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            
+            // VELOCITÀ AUMENTATA (0.8 max)
+            this.vx = (Math.random() - 0.5) * 0.8; 
+            this.vy = (Math.random() - 0.5) * 0.8;
+            
+            // GRANDEZZA MEDIA/GRANDE (da 1.5 a 5 pixel di raggio)
+            this.radius = Math.random() * 3.5 + 1.5; 
+        }
 
-h3 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-    color: #fff;
-}
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
 
-/* HERO SECTION (Sezione di apertura) */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
 
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    margin-bottom: 20px;
-    object-fit: cover;
-}
+        draw() {
+            // PUNTINI LUMINOSI (Bianco con opacità 0.9)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
 
-.hero-name {
-    font-size: 3em;
-    margin: 5px 0;
-}
+    function createParticles() {
+        for (let i = 0; i < maxParticles; i++) {
+            particles.push(new Particle());
+        }
+    }
 
-.hero-subtitle {
-    font-size: 1.2em;
-    color: #ccc;
-    margin-bottom: 30px;
-}
+    function drawLines() {
+        // LUNGHEZZA DI ATTACCO (90 pixel)
+        const threshold = 90; 
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
-.btn {
-    display: inline-block;
-    background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 10px 25px;
-    text-decoration: none;
-    font-size: 1em;
-    transition: background-color 0.3s, color 0.3s;
-}
+                if (distance < threshold) {
+                    // LINEE LUMINOSE E SFUMATE (opacità cala con la distanza)
+                    const opacity = 1 - (distance / threshold);
+                    
+                    // Bianco (255, 255, 255) con opacità massima 0.5
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`; 
+                    
+                    // Spessore sottilissimo (0.25 pixel)
+                    ctx.lineWidth = 0.25; 
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
 
-.btn:hover {
-    background-color: #fff;
-    color: #000;
-}
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, width, height);
+        
+        drawLines();
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+    }
 
-/* SEZIONE SKILLS */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
-    text-align: center;
-}
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    createParticles();
+    animate();
 
-.skill-card {
-    background-color: #111;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: background-color 0.3s, border-color 0.3s;
-}
+    // ------------------------------------
+    // 2. LOGICA CONTROLLI MUSICA
+    // ------------------------------------
+    const music = document.getElementById('background-music');
+    const toggleButton = document.getElementById('toggle-music');
+    const volumeSlider = document.getElementById('volume-slider');
 
-.skill-card:hover {
-    background-color: #222;
-    border-color: #555;
-}
+    // Imposta il volume iniziale
+    music.volume = parseFloat(volumeSlider.value);
 
-.skill-icon {
-    font-size: 2em;
-    color: #aaa;
-    margin-bottom: 5px;
-}
+    // Gestisce play/pause
+    toggleButton.addEventListener('click', () => {
+        if (music.paused) {
+            music.play().catch(e => console.log("User interaction required to play audio."));
+            toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+        } else {
+            music.pause();
+            toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        }
+    });
 
-/* SEZIONE PROGETTI */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
+    // Gestisce il cambio di volume
+    volumeSlider.addEventListener('input', (e) => {
+        music.volume = parseFloat(e.target.value);
+        if (music.volume > 0 && music.paused) {
+            // Se l'utente alza il volume, assicurati che il pulsante sia corretto
+            toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+        } else if (music.volume === 0) {
+            toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        }
+    });
 
-.project-card {
-    background-color: #111;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #333;
-}
+    // Aggiorna l'icona quando la musica parte (per l'autoplay)
+    music.addEventListener('play', () => {
+        toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+    });
 
-.project-card h4 {
-    margin-top: 0;
-    color: #fff;
-}
-
-.project-card a {
-    display: block;
-    margin-top: 15px;
-    color: #00bcd4; /* Colore link di progetto */
-    text-decoration: none;
-}
-
-/* CONTROLLI MUSICA */
-#music-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-}
-
-#toggle-music {
-    background: none;
-    border: 2px solid #ccc;
-    color: #ccc;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#volume-slider {
-    width: 80px;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 5px;
-    background: #555;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity .2s;
-}
-
-#volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-}
-
-/* FOOTER */
-.footer {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    border-top: 1px solid #111;
-    font-size: 0.9em;
-    color: #555;
-}
+    // Aggiorna l'icona quando la musica si ferma
+    music.addEventListener('pause', () => {
+        toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    });
+});
