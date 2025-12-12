@@ -9,14 +9,15 @@ body {
     overflow-x: hidden;
 }
 
-/* 1. STILE CANVA DI SFONDO (NETWORK) */
-#network {
+/* 1. STILE PER PARTICLES.JS (SFONDO ANIMATO) */
+#particles-js {
     position: fixed; /* Lo fissa come sfondo */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 1; /* Deve stare dietro a tutto il contenuto */
+    background-color: #000; /* Assicurati che il contenitore sia nero */
 }
 
 /* SEZIONI PRINCIPALI E LAYOUT */
@@ -47,7 +48,7 @@ h3 {
     z-index: 10;
 }
 
-/* ✅ IMMAGINE INGRANDITA */
+/* IMMAGINE INGRANDITA */
 .profile-pic {
     width: 220px;
     height: 220px;
@@ -57,13 +58,13 @@ h3 {
     object-fit: cover;
 }
 
-/* ✅ NOME INGRANDITO */
+/* NOME INGRANDITO */
 .hero-name {
     font-size: 4.5em; 
     margin: 5px 0;
 }
 
-/* ✅ SOTTOTITOLO INGRANDITO */
+/* SOTTOTITOLO INGRANDITO */
 .hero-subtitle {
     font-size: 1.8em; 
     color: #ccc;
@@ -196,4 +197,3 @@ h3 {
     font-size: 0.9em;
     color: #555;
 }
-/* d */
