@@ -17,7 +17,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Deve stare dietro il contenuto */
+    z-index: 1; 
     background-color: #000;
 }
 
@@ -26,13 +26,13 @@ body {
     position: fixed;
     top: 0;
     left: 0; 
-    width: 100%; /* LARGHEZZA TOTALE */
+    width: 100%; 
     z-index: 100;
     padding: 15px 40px; 
     background: rgba(0, 0, 0, 0.9); 
     backdrop-filter: blur(5px);
     display: flex; 
-    justify-content: space-between; /* Mette il LOGO a sinistra e i LINK a destra */
+    justify-content: space-between; 
     align-items: center;
     box-sizing: border-box; 
 }
@@ -160,33 +160,27 @@ h3 {
 }
 
 
-/* ICON COLORS */
+/* ICON COLORS (AGGIORNATI) */
 .cpp-color { color: #00599c !important; } 
-.c-color { color: #888888 !important; } 
+/* C eliminato */
+.css-color { color: #264de4 !important; } /* NUOVO COLORE CSS */
 .java-color { color: #ea2d2e !important; }
 .js-color { color: #f7df1e !important; }
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
-/* SKILLS SECTION: Layout a riga singola (occupa tutto lo spazio) */
+/* SKILLS SECTION: GRIGLIA ADATTIVA (FILL/WRAP) - NUOVE DIMENSIONI */
 .skills-grid {
-    display: flex; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
     gap: 30px; 
-    max-width: 100%; 
-    overflow-x: auto; 
-    padding-bottom: 20px; 
+    max-width: 1200px; 
     margin: 0 auto 30px auto; 
-    flex-wrap: nowrap; 
-    align-items: stretch;
-    justify-content: flex-start; 
 }
 
 .skill-card {
-    flex: 1; 
-    min-width: 120px; 
-
     background-color: #111; 
-    padding: 40px 15px; 
+    padding: 30px 15px; 
     border-radius: 8px; 
     border: 1px solid #444; 
     transition: transform 0.3s, box-shadow 0.3s;
@@ -198,10 +192,11 @@ h3 {
 }
 
 .skill-card:hover {
-    transform: translateY(-8px); /* ANIMAZIONE: SOLLEVAMENTO */
+    transform: translateY(-8px); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
 }
 
+/* La dimensione del logo assicura l'autenticità visiva */
 .skill-icon {
     font-size: 3em; 
     margin-bottom: 5px;
@@ -214,7 +209,7 @@ h3 {
 }
 
 
-/* PROJECTS SECTION: Layout a riga singola (occupa tutto lo spazio) */
+/* PROJECTS SECTION: Layout a riga singola (mantenuto) */
 .projects-grid {
     display: flex; 
     gap: 30px; 
@@ -244,7 +239,7 @@ h3 {
 }
 
 .project-card:hover {
-    transform: translateY(-8px); /* ANIMAZIONE: SOLLEVAMENTO */
+    transform: translateY(-8px); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
