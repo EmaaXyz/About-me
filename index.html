@@ -16,13 +16,19 @@
         <source src="the path was never meant to be easy.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    
+    <header class="navbar">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </header>
 
     <section class="hero">
         <div class="hero-content">
             <img src="profile.jpg" alt="Emanuele Profile Picture" class="profile-pic">
             <h1 class="hero-name">Emanuele</h1>
             <p class="hero-subtitle">Developer & Security Analyst</p>
-            <a href="#projects" class="btn large-btn">View My Projects</a>
+            <a href="#projects" class="btn large-btn scroll-link">View My Projects</a>
         </div>
     </section>
 
@@ -110,14 +116,14 @@
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 150, /* Più particelle per l'effetto rete */
+                    "value": 80, /* Circa 80 pallini */
                     "density": {
                         "enable": true,
-                        "value_area": 1000
+                        "value_area": 800 
                     }
                 },
                 "color": {
-                    "value": "#cccccc" /* Bianco/Grigio tenue */
+                    "value": "#cccccc" /* Grigio chiaro */
                 },
                 "shape": {
                     "type": "circle",
@@ -130,14 +136,14 @@
                     }
                 },
                 "opacity": {
-                    "value": 0.5, /* Bassa opacità */
-                    "random": true, 
+                    "value": 0.8, 
+                    "random": false,
                     "anim": {
                         "enable": false
                     }
                 },
                 "size": {
-                    "value": 2, /* Punti molto piccoli */
+                    "value": 6, /* 2 * 3 = 6 (Dimensione pallini 3x) */
                     "random": true,
                     "anim": {
                         "enable": false
@@ -145,14 +151,14 @@
                 },
                 "line_linked": {
                     "enable": true,
-                    "distance": 180, /* Distanza media tra i punti */
-                    "color": "#999999", /* Linee grigie */
-                    "opacity": 0.2, /* Linee molto trasparenti */
-                    "width": 1 /* Linee sottili */
+                    "distance": 540, /* 180 * 3 = 540 (Distanza linee 3x) */
+                    "color": "#555555", /* Linee grigio scuro */
+                    "opacity": 0.3, 
+                    "width": 1.5 /* 0.5 * 3 = 1.5 (Linee più spesse) */
                 },
                 "move": {
                     "enable": true,
-                    "speed": 1.5, /* Movimento lento */
+                    "speed": 2, /* Lento e costante */
                     "direction": "none",
                     "random": true,
                     "straight": false,
@@ -177,9 +183,9 @@
                 },
                 "modes": {
                     "grab": {
-                        "distance": 150, 
+                        "distance": 450, /* 150 * 3 = 450 (Area interattiva 3x) */
                         "line_linked": {
-                            "opacity": 0.5
+                            "opacity": 0.8
                         }
                     }
                 }
