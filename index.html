@@ -113,87 +113,89 @@
     <script src="particles.js"></script> 
     
     <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 80, /* Circa 80 pallini */
-                    "density": {
-                        "enable": true,
-                        "value_area": 800 
-                    }
-                },
-                "color": {
-                    "value": "#cccccc" /* Grigio chiaro */
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.8, 
-                    "random": false,
-                    "anim": {
-                        "enable": false
-                    }
-                },
-                "size": {
-                    "value": 6, /* 2 * 3 = 6 (Dimensione pallini 3x) */
-                    "random": true,
-                    "anim": {
-                        "enable": false
-                    }
-                },
-                "line_linked": {
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 80, 
+                "density": {
                     "enable": true,
-                    "distance": 540, /* 180 * 3 = 540 (Distanza linee 3x) */
-                    "color": "#555555", /* Linee grigio scuro */
-                    "opacity": 0.3, 
-                    "width": 1.5 /* 0.5 * 3 = 1.5 (Linee più spesse) */
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 2, /* Lento e costante */
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false
-                    }
-                },
+                    "value_area": 800 
+                }
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-                    "onclick": {
-                        "enable": false
-                    },
-                    "resize": true
+            "color": {
+                "value": "#cccccc"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
                 },
-                "modes": {
-                    "grab": {
-                        "distance": 450, /* 150 * 3 = 450 (Area interattiva 3x) */
-                        "line_linked": {
-                            "opacity": 0.8
-                        }
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.8, 
+                "random": false,
+                "anim": {
+                    "enable": false
+                }
+            },
+            "size": {
+                "value": 6, 
+                "random": true,
+                "anim": {
+                    "enable": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 270, /* 540 / 2 = 270 (Distanza dimezzata) */
+                "color": "#555555",
+                "opacity": 0.3, 
+                "width": 1.5
+            },
+            "move": {
+                "enable": true,
+                "speed": 1.65, /* Velocità media (tra 0.3 e 3) */
+                "direction": "none",
+                "random": true, /* Abilita la casualità per la velocità variabile */
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false
+                }
+            },
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "grab"
+                },
+                "onclick": {
+                    "enable": false
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 450, 
+                    "line_linked": {
+                        "opacity": 0.8
                     }
                 }
             },
-            "retina_detect": true
-        });
-    </script>
+            /* AGGIUNTA LOGICA PER VELOCITÀ VARIABILE (particles.js usa random=true per variare la velocità) */
+        },
+        "retina_detect": true
+    });
+</script>
     
     <script src="script.js"></script>
 </body>
 </html>
+
