@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000; /* Deep black background */
+    background-color: #000; /* Sfondo Nero Profondo */
     color: #fff;
     line-height: 2; 
     overflow-x: hidden;
@@ -59,7 +59,7 @@ body {
 h3 {
     font-size: 2.5em; 
     margin-bottom: 30px;
-    border-bottom: 4px solid #fff; /* Bianco/Grigio accento */
+    border-bottom: 4px solid #fff; /* Accento Bianco */
     padding-bottom: 15px;
     display: inline-block;
     letter-spacing: 1px;
@@ -117,14 +117,19 @@ h3 {
     font-weight: bold;
 }
 
+.large-btn {
+    padding: 20px 50px; 
+    font-size: 1.5em;
+}
+
 .large-btn:hover {
-    background-color: #fff; /* Sfondo bianco al posto dell'azzurro */
+    background-color: #fff; 
     color: #000;
     border-color: #fff;
 }
 
 .discord-btn {
-    background-color: #5865f2; /* Mantenuto per l'identità Discord */
+    background-color: #5865f2; 
     border-color: #5865f2;
 }
 
@@ -135,9 +140,7 @@ h3 {
 }
 
 
-/* SKILLS SECTION: COLORS AND SIZES */
-
-/* I colori delle icone restano, ma l'accento generale è bianco/nero */
+/* ICON COLORS (MANTENUTI PER LA RICONOSCIBILITÀ) */
 .cpp-color { color: #00599c !important; } 
 .c-color { color: #888888 !important; } 
 .java-color { color: #ea2d2e !important; }
@@ -145,13 +148,14 @@ h3 {
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
+/* SKILLS SECTION: Layout a griglia come da esempio */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
     gap: 40px;
     text-align: center;
-    max-width: 1200px; /* Limita la griglia centrale */
-    margin: 0 auto;
+    max-width: 1200px; 
+    margin: 0 auto 50px auto; 
 }
 
 .skill-card {
@@ -160,6 +164,11 @@ h3 {
     border-radius: 15px;
     border: 1px solid #444; 
     transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .skill-card:hover {
@@ -179,48 +188,62 @@ h3 {
 }
 
 
-/* PROJECTS SECTION */
+/* PROJECTS SECTION: Layout a griglia come da esempio */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Riquadri più stretti e fitti */
+    gap: 20px; 
     margin-top: 40px;
-    max-width: 1200px; /* Limita la griglia centrale */
+    max-width: 1200px; 
     margin: 40px auto 0 auto;
 }
 
 .project-card {
     background-color: #111;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 20px; 
+    border-radius: 8px; 
     border: 1px solid #444;
     text-align: left;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
 }
 
 .project-card h4 {
     margin-top: 0;
-    color: #fff; /* Bianco al posto dell'azzurro */
-    font-size: 1.8em; 
-    margin-bottom: 15px;
+    color: #fff;
+    font-size: 1.2em; 
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.project-card p {
+    font-size: 0.9em; 
+    color: #bbb;
+    line-height: 1.5;
+    margin-bottom: 10px;
 }
 
 .project-link {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
     color: #000;
-    background-color: #fff; /* Bianco al posto dell'azzurro */
-    padding: 10px 25px;
+    background-color: #fff; 
+    padding: 5px 10px; 
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 3px;
     transition: background-color 0.3s;
     font-weight: bold;
+    font-size: 0.8em;
+    align-self: flex-start; 
 }
 
 .project-link:hover {
     background-color: #ccc;
 }
 
-/* MUSIC CONTROLS (Non toccati) */
+/* MUSIC CONTROLS */
 #music-controls {
     position: fixed;
     bottom: 30px;
@@ -232,7 +255,7 @@ h3 {
 
 #toggle-music {
     background: #111;
-    border: 3px solid #fff; /* Bianco al posto dell'azzurro */
+    border: 3px solid #fff; /* Bianco */
     color: #fff;
     border-radius: 50%;
     width: 60px; 
@@ -244,6 +267,27 @@ h3 {
     align-items: center;
     justify-content: center;
     font-size: 1.5em;
+}
+
+#volume-slider {
+    width: 120px; 
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px; 
+    background: #555;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .2s;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px; 
+    height: 22px;
+    border-radius: 50%;
+    background: #fff; /* Bianco */
+    cursor: pointer;
 }
 
 /* FOOTER */
