@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Emanuele – About Me</title>
-    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 
     <audio id="background-music" loop autoplay>
         <source src="the path was never meant to be easy.mp3" type="audio/mpeg">
-        Il tuo browser non supporta l'elemento audio.
+        Your browser does not support the audio element.
     </audio>
 
     <section class="hero">
@@ -27,7 +27,7 @@
     </section>
 
     <section id="skills" class="section skills-section">
-        <h3>⚡️ Competenze Tecniche</h3>
+        <h3>⚡️ Technical Skills</h3>
         <div class="skills-grid">
             <div class="skill-card">
                 <i class="devicon-cplusplus-plain skill-icon cpp-color"></i>
@@ -57,45 +57,45 @@
     </section>
 
     <section id="about" class="section">
-        <h3>ℹ️ Chi Sono</h3>
-        <p class="large-text">Sono Emanuele, un **Security Analyst** e Developer. Spero che questo sito ti aiuti a capire meglio le mie competenze. Qui sotto, puoi vedere i progetti a cui sto lavorando attualmente.</p>
+        <h3>ℹ️ About Me</h3>
+        <p class="large-text">I'm Emanuele, a **Security Analyst** and Developer. I hope this site helps you understand more about my skills and competencies. Below, you can see the projects I am currently working on.</p>
     </section>
 
     <section id="projects" class="section">
-        <h3>📂 Progetti Recenti</h3>
+        <h3>📂 Recent Projects</h3>
         <div class="projects-grid">
             <div class="project-card">
                 <h4>EasyLink (C++)</h4>
-                <p>Un programma C++ per accorciare gli URL utilizzando un server personale (progettato per Windows).</p>
-                <a href="https://github.com/Mark3syt/EasyLink" target="_blank" class="project-link">Vedi Progetto</a>
+                <p>A C++ program for shortening URLs using a personal server (designed for Windows).</p>
+                <a href="https://github.com/Mark3syt/EasyLink" target="_blank" class="project-link">View Project</a>
             </div>
             
             <div class="project-card">
                 <h4>Scuk (Python)</h4>
-                <p>Un gioco d'avventura testuale (CLI) sviluppato in Python.</p>
-                <a href="https://github.com/Mark3syt/Scuk" target="_blank" class="project-link">Vedi Progetto</a>
+                <p>A text-based Python adventure game (CLI).</p>
+                <a href="https://github.com/Mark3syt/Scuk" target="_blank" class="project-link">View Project</a>
             </div>
             <div class="project-card">
                 <h4>Crypto-Tool CLI (Python)</h4>
-                <p>Una CLI Python per hashing di file (SHA256) e crittografia/decrittografia AES (Fernet), focalizzata sulla sicurezza.</p>
-                <a href="https://github.com/Mark3syt/crypto-tool" target="_blank" class="project-link">Vedi Progetto</a>
+                <p>A Python CLI for file hashing (SHA256) and AES encryption/decryption (Fernet), focused on security.</p>
+                <a href="https://github.com/Mark3syt/crypto-tool" target="_blank" class="project-link">View Project</a>
             </div>
             <div class="project-card">
                 <h4>PicoEngine 2D (C#)</h4>
-                <p>Un piccolo prototipo di motore di gioco 2D in C# che utilizza il pattern Entity-Component System (ECS).</p>
-                <a href="https://github.com/Mark3syt/csharp-2d-engine" target="_blank" class="project-link">Vedi Progetto</a>
+                <p>A small 2D game engine prototype in C# using the Entity-Component System (ECS) pattern.</p>
+                <a href="https://github.com/Mark3syt/csharp-2d-engine" target="_blank" class="project-link">View Project</a>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section">
-        <h3>📧 Contatti</h3>
-        <p class="large-text">Vuoi collaborare o fare domande? Unisciti al mio server Discord!</p>
+        <h3>📧 Contact</h3>
+        <p class="large-text">Want to collaborate? Join my Discord server!</p>
         <a href="https://discord.gg/k6jJcMK26C" class="btn large-btn discord-btn" target="_blank">Join on Discord</a>
     </section>
     
     <div id="music-controls">
-        <button id="toggle-music" title="Attiva/Disattiva Musica">
+        <button id="toggle-music" title="Toggle Music">
             <i class="fas fa-volume-up"></i>
         </button>
         <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.05" title="Volume">
@@ -105,6 +105,101 @@
     </footer>
 
     <script src="particles.js"></script> 
+    
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80, 
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#fff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.8, /* Leggera trasparenza per look più scuro */
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 2,
+                        "opacity_min": 0,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4, /* Leggermente più piccolo */
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#888888", /* Colore link grigio scuro */
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 4, 
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                },
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+    
     <script src="script.js"></script>
 </body>
 </html>
