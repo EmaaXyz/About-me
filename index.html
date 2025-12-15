@@ -106,91 +106,88 @@
 
     <script src="particles.js"></script> 
     
-   <script>
-    particlesJS('particles-js', {
-        "particles": {
-            "number": {
-                "value": 150, /* Aumentata la quantità per l'effetto rete */
-                "density": {
-                    "enable": true,
-                    "value_area": 1000 /* Area più ampia per la densità */
-                }
-            },
-            "color": {
-                "value": "#cccccc" /* Bianco/Grigio tenue */
-            },
-            "shape": {
-                "type": "circle",
-                "stroke": {
-                    "width": 0,
-                    "color": "#000000"
-                },
-                "polygon": {
-                    "nb_sides": 5
-                }
-            },
-            "opacity": {
-                "value": 0.5, /* Opacità bassa per i punti */
-                "random": true, /* Opacità variabile per un effetto più naturale */
-                "anim": {
-                    "enable": false
-                }
-            },
-            "size": {
-                "value": 2, /* Punti molto piccoli */
-                "random": true,
-                "anim": {
-                    "enable": false
-                }
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 180, /* Distanza media per un look a rete */
-                "color": "#999999", /* Colore linea grigio scuro */
-                "opacity": 0.2, /* Linee molto trasparenti */
-                "width": 1 /* Linee sottili */
-            },
-            "move": {
-                "enable": true,
-                "speed": 1.5, /* Movimento lento e sottile */
-                "direction": "none",
-                "random": true,
-                "straight": false,
-                "out_mode": "out",
-                "bounce": false,
-                "attract": {
-                    "enable": false
-                }
-            },
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": "grab" /* L'effetto grab sembra essere quello predefinito */
-                },
-                "onclick": {
-                    "enable": false
-                },
-                "resize": true
-            },
-            "modes": {
-                "grab": {
-                    "distance": 150, /* Raggio d'azione ridotto per un effetto più locale */
-                    "line_linked": {
-                        "opacity": 0.5
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 150, /* Più particelle per l'effetto rete */
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
                     }
                 },
-                // Rimosse le modalità bubble e repulse per semplicità
-            }
-        },
-        "retina_detect": true
-    });
-</script>
+                "color": {
+                    "value": "#cccccc" /* Bianco/Grigio tenue */
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5, /* Bassa opacità */
+                    "random": true, 
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "size": {
+                    "value": 2, /* Punti molto piccoli */
+                    "random": true,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 180, /* Distanza media tra i punti */
+                    "color": "#999999", /* Linee grigie */
+                    "opacity": 0.2, /* Linee molto trasparenti */
+                    "width": 1 /* Linee sottili */
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5, /* Movimento lento */
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false
+                    }
+                },
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": false
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 150, 
+                        "line_linked": {
+                            "opacity": 0.5
+                        }
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
     
     <script src="script.js"></script>
 </body>
 </html>
-
-
