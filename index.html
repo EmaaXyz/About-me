@@ -118,14 +118,14 @@
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 80, /* VERSIONE PRECEDENTE */
+                    "value": 150, /* ALTA DENSITÀ */
                     "density": {
                         "enable": true,
                         "value_area": 1000 
                     }
                 },
                 "color": {
-                    "value": "#ffffff"
+                    "value": "#ffffff" /* BIANCO PURO PER LUMINOSITÀ */
                 },
                 "shape": {
                     "type": "circle",
@@ -138,7 +138,7 @@
                     }
                 },
                 "opacity": {
-                    "value": 1, 
+                    "value": 1, /* MASSIMA OPACITÀ */
                     "random": false,
                     "anim": {
                         "enable": false
@@ -153,14 +153,14 @@
                 },
                 "line_linked": {
                     "enable": true,
-                    "distance": 250, /* VERSIONE PRECEDENTE */
+                    "distance": 800, /* DISTANZA MASSIMIZZATA (Linee che attraversano lo schermo) */
                     "color": "#ffffff", 
-                    "opacity": 0.5, 
+                    "opacity": 1, /* LINEE MOLTO VISIBILI */
                     "width": 1.5
                 },
                 "move": {
                     "enable": true,
-                    "speed": 7, 
+                    "speed": 7, /* VELOCITÀ MASSIMA */
                     "direction": "none",
                     "random": true, 
                     "straight": false,
@@ -181,11 +181,11 @@
                     "onclick": {
                         "enable": false
                     },
-                    "resize": true
+                        "resize": true
                 },
                 "modes": {
                     "grab": {
-                        "distance": 350, 
+                        "distance": 450, 
                         "line_linked": {
                             "opacity": 1
                         }
