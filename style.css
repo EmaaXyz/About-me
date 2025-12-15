@@ -6,8 +6,9 @@ body {
     font-family: 'Clarity City ExtraBold 800', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #000; 
     color: #fff;
-    line-height: 1.6; 
+    line-height: 1.4; /* Line Height ridotta */
     overflow-x: hidden;
+    font-size: 0.9em; /* Dimensione base ridotta */
 }
 
 /* PARTICLES.JS (ANIMATED BACKGROUND) */
@@ -27,17 +28,17 @@ body {
     top: 0;
     right: 0;
     z-index: 100;
-    padding: 20px 40px;
-    background: rgba(0, 0, 0, 0.7); /* Sfondo scuro traslucido */
+    padding: 10px 20px; /* Dimezzato */
+    background: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(5px);
 }
 
 .navbar a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.2em;
-    margin-left: 25px;
-    padding: 5px 0;
+    font-size: 1em; /* Ridotto */
+    margin-left: 15px; /* Ridotto */
+    padding: 3px 0;
     font-weight: 600; 
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s, color 0.3s;
@@ -49,35 +50,35 @@ body {
 }
 
 
-/* MAIN SECTIONS: TITOLI GRIGIO CHIARO E LAYOUT AMPIO */
+/* MAIN SECTIONS: TITOLI GRIGIO CHIARO E LAYOUT COMPATTO */
 .section {
     position: relative;
     z-index: 10;
-    padding: 100px 10%; 
+    padding: 50px 5%; /* Dimezzato padding sezione */
     max-width: 100%; 
     margin: 0 auto;
     text-align: center;
 }
 
 h3 {
-    font-size: 2.8em; 
-    margin-bottom: 30px;
-    color: #cccccc; /* GRIGIO CHIARO per i titoli */
-    border-bottom: 4px solid #fff; 
-    padding-bottom: 15px;
+    font-size: 1.8em; /* Dimezzato */
+    margin-bottom: 15px; /* Ridotto */
+    color: #cccccc; 
+    border-bottom: 3px solid #fff; /* Ridotto */
+    padding-bottom: 10px;
     display: inline-block;
     letter-spacing: 1px;
     font-weight: 800; 
 }
 
 .large-text {
-    font-size: 1.8em; /* TESTO ABOUT ME GRANDE E LEGGIBILE */
+    font-size: 1.2em; /* Dimezzato da 1.8em */
     line-height: 1.4; 
 }
 
 /* HERO SECTION */
 .hero {
-    min-height: 100vh;
+    min-height: 90vh; /* Leggermente ridotto */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,45 +88,45 @@ h3 {
 }
 
 .profile-pic {
-    width: 300px; 
-    height: 300px;
+    width: 150px; /* Dimezzato da 300px */
+    height: 150px; /* Dimezzato da 300px */
     border-radius: 50%;
-    border: 6px solid #555; 
-    margin-bottom: 40px;
+    border: 3px solid #555; /* Ridotto */
+    margin-bottom: 20px; 
     object-fit: cover;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
 }
 
 .hero-name {
-    font-size: 6.5em;
-    margin: 10px 0;
-    letter-spacing: 3px;
+    font-size: 3.25em; /* Dimezzato da 6.5em */
+    margin: 5px 0;
+    letter-spacing: 2px;
     color: #fff;
 }
 
 .hero-subtitle {
-    font-size: 2.5em;
+    font-size: 1.5em; /* Dimezzato da 2.5em */
     color: #bbb; 
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .btn {
     display: inline-block;
     background-color: transparent;
-    border: 4px solid #fff; 
+    border: 2px solid #fff; /* Dimezzato */
     color: #fff;
-    padding: 15px 35px;
+    padding: 10px 20px; /* Ridotto */
     text-decoration: none;
-    font-size: 1.3em;
+    font-size: 1em; /* Ridotto */
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    border-radius: 8px;
+    border-radius: 5px;
     letter-spacing: 1px;
     font-weight: bold;
 }
 
 .large-btn {
-    padding: 20px 50px; 
-    font-size: 1.5em;
+    padding: 12px 30px; /* Ridotto */
+    font-size: 1.1em; /* Ridotto */
 }
 
 .large-btn:hover {
@@ -146,7 +147,7 @@ h3 {
 }
 
 
-/* ICON COLORS */
+/* ICON COLORS (invariato) */
 .cpp-color { color: #00599c !important; } 
 .c-color { color: #888888 !important; } 
 .java-color { color: #ea2d2e !important; }
@@ -154,20 +155,20 @@ h3 {
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
-/* SKILLS SECTION: Layout a griglia per replicare l'ampiezza del sito di riferimento */
+/* SKILLS SECTION: Riquadri dimezzati */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Riquadri MOLTO LARGI */
-    gap: 60px; /* SPAZIATURA GENEROSA */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Ridotto da 280px */
+    gap: 20px; /* Ridotto da 60px */
     text-align: center;
-    max-width: 1400px; 
-    margin: 0 auto 50px auto; 
+    max-width: 900px; /* Ridotto */
+    margin: 0 auto 30px auto; 
 }
 
 .skill-card {
     background-color: #111; 
-    padding: 70px 25px; /* PADDING ENORME */
-    border-radius: 20px; 
+    padding: 30px 15px; /* Ridotto da 70px */
+    border-radius: 10px; 
     border: 1px solid #444; 
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%; 
@@ -178,36 +179,36 @@ h3 {
 }
 
 .skill-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px); /* Ridotto */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .skill-icon {
-    font-size: 7em; /* ICONE MOLTO GRANDI */
-    margin-bottom: 20px;
+    font-size: 3.5em; /* Dimezzato da 7em */
+    margin-bottom: 10px;
 }
 
 .skill-name {
     display: block;
-    font-size: 1.6em; 
+    font-size: 1.2em; /* Ridotto */
     font-weight: bold;
 }
 
 
-/* PROJECTS SECTION: Layout a griglia per replicare l'ampiezza del sito di riferimento */
+/* PROJECTS SECTION: Riquadri dimezzati */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Riquadri ancora più larghi */
-    gap: 40px; 
-    margin-top: 40px;
-    max-width: 1400px; 
-    margin: 40px auto 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ridotto da 350px */
+    gap: 20px; 
+    margin-top: 20px;
+    max-width: 900px; 
+    margin: 20px auto 0 auto;
 }
 
 .project-card {
     background-color: #111;
-    padding: 40px; /* PADDING GENEROSO */
-    border-radius: 15px; 
+    padding: 20px; /* Ridotto da 40px */
+    border-radius: 10px; 
     border: 1px solid #444;
     text-align: left;
     height: 100%; 
@@ -219,29 +220,29 @@ h3 {
 .project-card h4 {
     margin-top: 0;
     color: #fff;
-    font-size: 1.6em; 
-    margin-bottom: 8px;
+    font-size: 1.2em; /* Ridotto */
+    margin-bottom: 5px;
     line-height: 1.2;
 }
 
 .project-card p {
-    font-size: 1.1em; 
+    font-size: 0.9em; /* Ridotto */
     color: #bbb;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    line-height: 1.5;
+    margin-bottom: 10px;
 }
 
 .project-link {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
     color: #000;
     background-color: #fff; 
-    padding: 10px 18px; 
+    padding: 5px 10px; /* Ridotto */
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 4px;
     transition: background-color 0.3s;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.9em;
     align-self: flex-start; 
 }
 
@@ -249,11 +250,11 @@ h3 {
     background-color: #ccc;
 }
 
-/* MUSIC CONTROLS */
+/* MUSIC CONTROLS (Ridotti) */
 #music-controls {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 15px; /* Ridotto */
+    right: 15px; /* Ridotto */
     z-index: 100;
     display: flex;
     align-items: center;
@@ -261,25 +262,25 @@ h3 {
 
 #toggle-music {
     background: #111;
-    border: 3px solid #fff; 
+    border: 2px solid #fff; 
     color: #fff;
     border-radius: 50%;
-    width: 60px; 
-    height: 60px;
+    width: 40px; /* Ridotto */
+    height: 40px; /* Ridotto */
     cursor: pointer;
-    margin-right: 15px;
+    margin-right: 10px;
     transition: background-color 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 #volume-slider {
-    width: 120px; 
+    width: 80px; /* Ridotto */
     -webkit-appearance: none;
     appearance: none;
-    height: 10px; 
+    height: 8px; 
     background: #555;
     outline: none;
     opacity: 0.9;
@@ -289,21 +290,21 @@ h3 {
 #volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 22px; 
-    height: 22px;
+    width: 16px; 
+    height: 16px;
     border-radius: 50%;
     background: #fff; 
     cursor: pointer;
 }
 
-/* FOOTER */
+/* FOOTER (Ridotto) */
 .footer {
     position: relative;
     z-index: 10;
     text-align: center;
-    padding: 40px;
-    margin-top: 100px;
+    padding: 20px;
+    margin-top: 50px;
     border-top: 1px solid #111;
-    font-size: 1.1em;
+    font-size: 0.9em;
     color: #666; 
 }
