@@ -155,20 +155,19 @@ h3 {
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
-/* SKILLS SECTION: Riquadri dimezzati */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Ridotto da 280px */
-    gap: 20px; /* Ridotto da 60px */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ridotto da 140px a 100px */
+    gap: 15px; /* Ridotto */
     text-align: center;
-    max-width: 900px; /* Ridotto */
+    max-width: 800px; /* Ridotto */
     margin: 0 auto 30px auto; 
 }
 
 .skill-card {
     background-color: #111; 
-    padding: 30px 15px; /* Ridotto da 70px */
-    border-radius: 10px; 
+    padding: 20px 10px; /* Ridotto da 30px a 20px */
+    border-radius: 8px; 
     border: 1px solid #444; 
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%; 
@@ -179,18 +178,18 @@ h3 {
 }
 
 .skill-card:hover {
-    transform: translateY(-4px); /* Ridotto */
+    transform: translateY(-4px); 
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .skill-icon {
-    font-size: 3.5em; /* Dimezzato da 7em */
-    margin-bottom: 10px;
+    font-size: 3em; /* Icone leggermente più piccole */
+    margin-bottom: 5px;
 }
 
 .skill-name {
     display: block;
-    font-size: 1.2em; /* Ridotto */
+    font-size: 1.1em; 
     font-weight: bold;
 }
 
@@ -308,3 +307,4 @@ h3 {
     font-size: 0.9em;
     color: #666; 
 }
+
