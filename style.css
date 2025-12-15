@@ -75,7 +75,7 @@ h3 {
     line-height: 1.4; 
 }
 
-/* HERO SECTION (invariato) */
+/* HERO SECTION */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -146,7 +146,7 @@ h3 {
 }
 
 
-/* ICON COLORS (invariato) */
+/* ICON COLORS */
 .cpp-color { color: #00599c !important; } 
 .c-color { color: #888888 !important; } 
 .java-color { color: #ea2d2e !important; }
@@ -154,20 +154,20 @@ h3 {
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
-/* SKILLS SECTION: Layout a griglia Riquadri GRANDI (Versione precedente) */
+/* SKILLS SECTION: Layout a griglia per replicare l'ampiezza del sito di riferimento */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-    gap: 50px; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Riquadri MOLTO LARGI */
+    gap: 60px; /* SPAZIATURA GENEROSA */
     text-align: center;
-    max-width: 1200px; 
+    max-width: 1400px; 
     margin: 0 auto 50px auto; 
 }
 
 .skill-card {
     background-color: #111; 
-    padding: 60px 20px; /* Padding generoso */
-    border-radius: 15px;
+    padding: 70px 25px; /* PADDING ENORME */
+    border-radius: 20px; 
     border: 1px solid #444; 
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%; 
@@ -183,30 +183,30 @@ h3 {
 }
 
 .skill-icon {
-    font-size: 5.5em; 
-    margin-bottom: 15px;
+    font-size: 7em; /* ICONE MOLTO GRANDI */
+    margin-bottom: 20px;
 }
 
 .skill-name {
     display: block;
-    font-size: 1.4em;
+    font-size: 1.6em; 
     font-weight: bold;
 }
 
 
-/* PROJECTS SECTION: Layout a griglia Riquadri GRANDI (Versione precedente) */
+/* PROJECTS SECTION: Layout a griglia per replicare l'ampiezza del sito di riferimento */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px; 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Riquadri ancora più larghi */
+    gap: 40px; 
     margin-top: 40px;
-    max-width: 1200px; 
+    max-width: 1400px; 
     margin: 40px auto 0 auto;
 }
 
 .project-card {
     background-color: #111;
-    padding: 30px; 
+    padding: 40px; /* PADDING GENEROSO */
     border-radius: 15px; 
     border: 1px solid #444;
     text-align: left;
@@ -219,24 +219,24 @@ h3 {
 .project-card h4 {
     margin-top: 0;
     color: #fff;
-    font-size: 1.4em; 
-    margin-bottom: 5px;
+    font-size: 1.6em; 
+    margin-bottom: 8px;
     line-height: 1.2;
 }
 
 .project-card p {
-    font-size: 1em; 
+    font-size: 1.1em; 
     color: #bbb;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 .project-link {
     display: inline-block;
-    margin-top: 15px;
+    margin-top: 20px;
     color: #000;
     background-color: #fff; 
-    padding: 8px 15px; 
+    padding: 10px 18px; 
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -249,7 +249,7 @@ h3 {
     background-color: #ccc;
 }
 
-/* MUSIC CONTROLS (invariato) */
+/* MUSIC CONTROLS */
 #music-controls {
     position: fixed;
     bottom: 30px;
@@ -296,7 +296,7 @@ h3 {
     cursor: pointer;
 }
 
-/* FOOTER (invariato) */
+/* FOOTER */
 .footer {
     position: relative;
     z-index: 10;
