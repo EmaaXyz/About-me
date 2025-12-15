@@ -2,39 +2,44 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #000; /* Sfondo nero per il network */
     color: #fff;
-    line-height: 1.6;
+    line-height: 1.8; /* Aumentato per migliore leggibilità */
     overflow-x: hidden;
 }
 
 /* 1. STILE PER PARTICLES.JS (SFONDO ANIMATO) */
 #particles-js {
-    position: fixed; /* Lo fissa come sfondo */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Deve stare dietro a tutto il contenuto */
-    background-color: #000; /* Assicurati che il contenitore sia nero */
+    z-index: 1;
+    background-color: #000;
 }
 
-/* SEZIONI PRINCIPALI E LAYOUT */
+/* SEZIONI PRINCIPALI E LAYOUT: CENTRATURA E DIMENSIONE MAGGIORE */
 .section {
     position: relative;
-    z-index: 10; /* Il contenuto sta sopra il network */
-    padding: 40px 10%;
-    max-width: 900px;
+    z-index: 10;
+    padding: 60px 5%; /* Aumentato il padding */
+    max-width: 1000px; /* Aumentata la larghezza massima */
     margin: 0 auto;
+    text-align: center; /* CENTRA TUTTO IL CONTENUTO DELLA SEZIONE */
 }
 
 h3 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-    color: #fff;
+    font-size: 2.2em; /* Titoli più grandi */
+    margin-bottom: 25px;
+    border-bottom: 3px solid #00c4cc; /* Colore di accento diverso */
+    padding-bottom: 12px;
+    display: inline-block; /* Centra il bordo inferiore */
+}
+
+.large-text {
+    font-size: 1.2em; /* Testo del paragrafo ingrandito */
 }
 
 /* HERO SECTION (Sezione di apertura) */
@@ -50,98 +55,164 @@ h3 {
 
 /* IMMAGINE INGRANDITA */
 .profile-pic {
-    width: 220px;
-    height: 220px;
+    width: 280px; /* Più grande */
+    height: 280px; /* Più grande */
     border-radius: 50%;
-    border: 3px solid #fff;
-    margin-bottom: 20px;
+    border: 5px solid #00c4cc; /* Bordo colorato */
+    margin-bottom: 30px;
     object-fit: cover;
+    box-shadow: 0 0 20px rgba(0, 196, 204, 0.5); /* Ombra per evidenziare */
 }
 
 /* NOME INGRANDITO */
 .hero-name {
-    font-size: 4.5em; 
-    margin: 5px 0;
+    font-size: 5.5em; /* Nome molto grande */
+    margin: 10px 0;
+    letter-spacing: 2px;
 }
 
 /* SOTTOTITOLO INGRANDITO */
 .hero-subtitle {
-    font-size: 1.8em; 
-    color: #ccc;
-    margin-bottom: 30px;
+    font-size: 2.2em; /* Sottotitolo grande */
+    color: #00c4cc;
+    margin-bottom: 40px;
 }
 
 .btn {
     display: inline-block;
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 3px solid #00c4cc;
     color: #fff;
-    padding: 10px 25px;
+    padding: 12px 30px;
     text-decoration: none;
-    font-size: 1em;
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.1em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.large-btn {
+    padding: 15px 40px; /* Bottone CTA più grande */
+    font-size: 1.3em;
 }
 
 .btn:hover {
-    background-color: #fff;
+    background-color: #00c4cc;
     color: #000;
+    border-color: #00c4cc;
 }
 
-/* SEZIONE SKILLS */
+.discord-btn {
+    background-color: #5865f2; /* Colore Discord */
+    border-color: #5865f2;
+}
+
+.discord-btn:hover {
+    background-color: #4f5bcf;
+    color: #fff;
+    border-color: #4f5bcf;
+}
+
+
+/* SEZIONE SKILLS CON ICONE COLORATE E PIÙ GRANDI */
+
+/* Definizioni dei colori specifici */
+.cpp-color { color: #00599c !important; } /* Blu C++ */
+.c-color { color: #555555 !important; } /* Grigio scuro C */
+.java-color { color: #ea2d2e !important; } /* Rosso Java */
+.js-color { color: #f7df1e !important; } /* Giallo JavaScript */
+.csharp-color { color: #9B00FF !important; } /* VIOLA C# (come richiesto) */
+.python-color { color: #306998 !important; } /* Blu Python */
+
+
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Carte più grandi */
+    gap: 30px; /* Maggiore spaziatura */
     text-align: center;
 }
 
 .skill-card {
     background-color: #111;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: background-color 0.3s, border-color 0.3s;
+    padding: 30px 15px; /* Più spazio verticale */
+    border-radius: 12px;
+    border: 2px solid #333;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .skill-card:hover {
-    background-color: #222;
-    border-color: #555;
+    transform: translateY(-10px); /* Effetto sollevamento */
+    box-shadow: 0 10px 20px rgba(0, 196, 204, 0.3);
 }
 
 .skill-icon {
-    font-size: 2em;
-    color: #aaa;
-    margin-bottom: 5px;
+    font-size: 4.5em; /* ICONE MOLTO GRANDI */
+    margin-bottom: 10px;
 }
+
+.skill-name {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 
 /* SEZIONE PROGETTI */
 .projects-grid {
     display: grid;
-    /* Adattato per supportare 4 progetti in modo più flessibile */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Carte Progetto più grandi */
+    gap: 40px;
+    margin-top: 30px;
 }
 
 .project-card {
-    background-color: #111;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #333;
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #444;
+    text-align: left; /* Il contenuto del progetto rimane allineato a sinistra */
 }
 
 .project-card h4 {
     margin-top: 0;
-    color: #fff;
+    color: #00c4cc;
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
-.project-card a {
-    display: block;
+.project-card p {
+    font-size: 1.1em;
+}
+
+.project-link {
+    display: inline-block;
     margin-top: 15px;
-    color: #00bcd4; /* Colore link di progetto */
+    color: #fff;
+    background-color: #00c4cc;
+    padding: 8px 20px;
     text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-/* CONTROLLI MUSICA */
+.project-link:hover {
+    background-color: #00a0a8;
+}
+
+/* FOOTER */
+.footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 30px;
+    margin-top: 80px;
+    border-top: 1px solid #111;
+    font-size: 1em;
+    color: #888;
+}
+
+/* CONTROLLI MUSICA (Nessuna modifica strutturale) */
 #music-controls {
     position: fixed;
     bottom: 20px;
@@ -153,48 +224,37 @@ h3 {
 
 #toggle-music {
     background: none;
-    border: 2px solid #ccc;
-    color: #ccc;
+    border: 2px solid #00c4cc;
+    color: #00c4cc;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px; /* Bottone più grande */
+    height: 50px; /* Bottone più grande */
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 15px;
     transition: background-color 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.2em;
 }
 
 #volume-slider {
-    width: 80px;
+    width: 100px; /* Slider più lungo */
     -webkit-appearance: none;
     appearance: none;
-    height: 5px;
+    height: 8px; /* Slider più spesso */
     background: #555;
     outline: none;
-    opacity: 0.7;
+    opacity: 0.8;
     transition: opacity .2s;
 }
 
 #volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 18px; /* Thumb più grande */
+    height: 18px; /* Thumb più grande */
     border-radius: 50%;
-    background: #fff;
+    background: #00c4cc; /* Colore di accento */
     cursor: pointer;
-}
-
-/* FOOTER */
-.footer {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    border-top: 1px solid #111;
-    font-size: 0.9em;
-    color: #555;
 }
