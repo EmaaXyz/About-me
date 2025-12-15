@@ -2,14 +2,15 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000; /* Sfondo Nero Profondo */
+    /* Usa il font Clarity City se è importato correttamente, altrimenti usa un fallback */
+    font-family: 'Clarity City ExtraBold 800', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; 
     color: #fff;
     line-height: 2; 
     overflow-x: hidden;
 }
 
-/* PARTICLES.JS (ANIMATED BACKGROUND) */
+/* PARTICLES.JS (ANIMATED BACKGROUND) - Invariato */
 #particles-js {
     position: fixed;
     top: 0;
@@ -20,7 +21,7 @@ body {
     background-color: #000;
 }
 
-/* NAVBAR FISSA IN ALTO A DESTRA */
+/* NAVBAR FISSA IN ALTO A DESTRA - Invariato */
 .navbar {
     position: fixed;
     top: 0;
@@ -46,12 +47,12 @@ body {
 }
 
 
-/* MAIN SECTIONS: AMPLIATE PER TUTTA LA PAGINA */
+/* MAIN SECTIONS: TITOLI GRIGIO CHIARO E LAYOUT AMPIO */
 .section {
     position: relative;
     z-index: 10;
-    padding: 80px 10%; /* Più ampiezza sui lati */
-    max-width: 100%; /* Si estende per tutta la larghezza */
+    padding: 80px 10%; 
+    max-width: 100%; 
     margin: 0 auto;
     text-align: center;
 }
@@ -59,7 +60,8 @@ body {
 h3 {
     font-size: 2.5em; 
     margin-bottom: 30px;
-    border-bottom: 4px solid #fff; /* Accento Bianco */
+    color: #cccccc; /* GRIGIO CHIARO per i titoli */
+    border-bottom: 4px solid #fff; /* Linea di fondo bianca */
     padding-bottom: 15px;
     display: inline-block;
     letter-spacing: 1px;
@@ -69,7 +71,7 @@ h3 {
     font-size: 1.4em;
 }
 
-/* HERO SECTION */
+/* HERO SECTION - Invariato, ma ora usa il nuovo font */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -148,7 +150,7 @@ h3 {
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
-/* SKILLS SECTION: Layout a griglia come da esempio */
+/* SKILLS SECTION: Layout a griglia Riquadri (corretto per assicurare il funzionamento) */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
@@ -188,10 +190,10 @@ h3 {
 }
 
 
-/* PROJECTS SECTION: Layout a griglia come da esempio */
+/* PROJECTS SECTION: Layout a griglia Riquadri (corretto per assicurare il funzionamento) */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Riquadri più stretti e fitti */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 20px; 
     margin-top: 40px;
     max-width: 1200px; 
@@ -243,7 +245,7 @@ h3 {
     background-color: #ccc;
 }
 
-/* MUSIC CONTROLS */
+/* MUSIC CONTROLS - Invariato */
 #music-controls {
     position: fixed;
     bottom: 30px;
@@ -255,7 +257,7 @@ h3 {
 
 #toggle-music {
     background: #111;
-    border: 3px solid #fff; /* Bianco */
+    border: 3px solid #fff; 
     color: #fff;
     border-radius: 50%;
     width: 60px; 
@@ -286,11 +288,11 @@ h3 {
     width: 22px; 
     height: 22px;
     border-radius: 50%;
-    background: #fff; /* Bianco */
+    background: #fff; 
     cursor: pointer;
 }
 
-/* FOOTER */
+/* FOOTER - Invariato */
 .footer {
     position: relative;
     z-index: 10;
