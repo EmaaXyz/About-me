@@ -70,82 +70,75 @@ body {
 /* ... (Hero section e Bottoni invariati) ... */
 
 
-/* SKILLS SECTION: Layout a griglia MOLTO PIÙ PICCOLO e compatto */
+/* ... (Sezioni iniziali body, h3, large-text invariate) ... */
+
+/* SKILLS SECTION: Layout a griglia Riquadri ANCORA PIÙ PICCOLI */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Minore larghezza riquadro */
-    gap: 20px; /* Spazio ridotto tra i riquadri */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Minore larghezza riquadro */
+    gap: 15px; /* Spazio ridotto tra i riquadri */
     text-align: center;
-    max-width: 1000px; /* Larghezza massima ridotta */
+    max-width: 900px; /* Larghezza massima ridotta */
     margin: 0 auto 50px auto; 
 }
 
 .skill-card {
     background-color: #111; 
-    padding: 30px 15px; /* Padding ridotto */
-    border-radius: 10px;
+    padding: 20px 10px; /* Padding MOLTO ridotto */
+    border-radius: 8px;
     border: 1px solid #444; 
-    transition: transform 0.3s, box-shadow 0.3s;
-    height: 100%; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* ... (transizioni e display invariati) ... */
 }
 
 .skill-icon {
-    font-size: 4em; /* Icone leggermente più piccole */
-    margin-bottom: 10px;
+    font-size: 3.5em; /* Icone più piccole */
+    margin-bottom: 5px;
 }
 
 .skill-name {
     display: block;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
 }
 
 
-/* PROJECTS SECTION: Layout a griglia MOLTO PIÙ PICCOLO e compatto */
+/* PROJECTS SECTION: Layout a griglia Riquadri ANCORA PIÙ PICCOLI */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Riquadri più stretti */
-    gap: 20px; /* Spazio ridotto */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Riquadri più stretti */
+    gap: 15px; /* Spazio ridotto */
     margin-top: 40px;
-    max-width: 1000px; /* Larghezza massima ridotta */
+    max-width: 900px; /* Larghezza massima ridotta */
     margin: 40px auto 0 auto;
 }
 
 .project-card {
     background-color: #111;
-    padding: 20px; /* Padding ridotto */
-    border-radius: 10px; 
+    padding: 15px; /* Padding MOLTO ridotto */
+    border-radius: 8px; 
     border: 1px solid #444;
-    text-align: left;
-    height: 100%; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
+    /* ... (display e justify-content invariati) ... */
 }
 
 .project-card h4 {
     margin-top: 0;
     color: #fff;
-    font-size: 1.2em; /* Titolo leggermente più piccolo */
-    margin-bottom: 5px;
+    font-size: 1.1em; /* Titolo leggermente più piccolo */
+    margin-bottom: 3px;
 }
 
 .project-card p {
-    font-size: 0.9em; /* Descrizione più piccola */
+    font-size: 0.85em; /* Descrizione più piccola */
     color: #bbb;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    line-height: 1.4;
+    margin-bottom: 8px;
 }
 
 .project-link {
     display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px; /* Bottone più piccolo */
-    font-size: 0.9em;
+    margin-top: 5px;
+    padding: 4px 8px; /* Bottone molto piccolo */
+    font-size: 0.8em;
     align-self: flex-start; 
     /* ... (Altri stili link invariati) ... */
 }
@@ -209,4 +202,5 @@ body {
     font-size: 1.1em;
     color: #666; 
 }
+
 
