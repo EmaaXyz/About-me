@@ -2,23 +2,23 @@
 body {
     margin: 0;
     padding: 0;
-    /* Font richiesto (assicurati di averlo importato correttamente in <head>) */
+    /* Font richiesto */
     font-family: 'Clarity City ExtraBold 800', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #000; 
     color: #fff;
-    line-height: 1.4; /* Line Height ridotta */
+    line-height: 1.4; 
     overflow-x: hidden;
     font-size: 0.9em; /* Dimensione base ridotta */
 }
 
 /* PARTICLES.JS (ANIMATED BACKGROUND) */
 #particles-js {
-    position: fixed;
+    position: fixed; /* Cruciale per la visibilità */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 1; /* Deve stare dietro il contenuto */
     background-color: #000;
 }
 
@@ -28,7 +28,7 @@ body {
     top: 0;
     right: 0;
     z-index: 100;
-    padding: 10px 20px; /* Dimezzato */
+    padding: 10px 20px; 
     background: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(5px);
 }
@@ -36,8 +36,8 @@ body {
 .navbar a {
     color: #fff;
     text-decoration: none;
-    font-size: 1em; /* Ridotto */
-    margin-left: 15px; /* Ridotto */
+    font-size: 1em; 
+    margin-left: 15px; 
     padding: 3px 0;
     font-weight: 600; 
     border-bottom: 2px solid transparent;
@@ -54,17 +54,17 @@ body {
 .section {
     position: relative;
     z-index: 10;
-    padding: 50px 5%; /* Dimezzato padding sezione */
+    padding: 50px 5%; 
     max-width: 100%; 
     margin: 0 auto;
     text-align: center;
 }
 
 h3 {
-    font-size: 1.8em; /* Dimezzato */
-    margin-bottom: 15px; /* Ridotto */
+    font-size: 1.8em; 
+    margin-bottom: 15px; 
     color: #cccccc; 
-    border-bottom: 3px solid #fff; /* Ridotto */
+    border-bottom: 3px solid #fff; 
     padding-bottom: 10px;
     display: inline-block;
     letter-spacing: 1px;
@@ -72,13 +72,13 @@ h3 {
 }
 
 .large-text {
-    font-size: 1.2em; /* Dimezzato da 1.8em */
+    font-size: 1.2em; 
     line-height: 1.4; 
 }
 
 /* HERO SECTION */
 .hero {
-    min-height: 90vh; /* Leggermente ridotto */
+    min-height: 90vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,24 +88,24 @@ h3 {
 }
 
 .profile-pic {
-    width: 150px; /* Dimezzato da 300px */
-    height: 150px; /* Dimezzato da 300px */
+    width: 150px; 
+    height: 150px; 
     border-radius: 50%;
-    border: 3px solid #555; /* Ridotto */
+    border: 3px solid #555; 
     margin-bottom: 20px; 
     object-fit: cover;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
 }
 
 .hero-name {
-    font-size: 3.25em; /* Dimezzato da 6.5em */
+    font-size: 3.25em; 
     margin: 5px 0;
     letter-spacing: 2px;
     color: #fff;
 }
 
 .hero-subtitle {
-    font-size: 1.5em; /* Dimezzato da 2.5em */
+    font-size: 1.5em; 
     color: #bbb; 
     margin-bottom: 25px;
 }
@@ -113,11 +113,11 @@ h3 {
 .btn {
     display: inline-block;
     background-color: transparent;
-    border: 2px solid #fff; /* Dimezzato */
+    border: 2px solid #fff; 
     color: #fff;
-    padding: 10px 20px; /* Ridotto */
+    padding: 10px 20px; 
     text-decoration: none;
-    font-size: 1em; /* Ridotto */
+    font-size: 1em; 
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     border-radius: 5px;
     letter-spacing: 1px;
@@ -125,8 +125,8 @@ h3 {
 }
 
 .large-btn {
-    padding: 12px 30px; /* Ridotto */
-    font-size: 1.1em; /* Ridotto */
+    padding: 12px 30px; 
+    font-size: 1.1em; 
 }
 
 .large-btn:hover {
@@ -147,7 +147,7 @@ h3 {
 }
 
 
-/* ICON COLORS (invariato) */
+/* ICON COLORS */
 .cpp-color { color: #00599c !important; } 
 .c-color { color: #888888 !important; } 
 .java-color { color: #ea2d2e !important; }
@@ -155,18 +155,25 @@ h3 {
 .csharp-color { color: #9B00FF !important; } 
 .python-color { color: #306998 !important; }
 
+/* SKILLS SECTION: Layout su riga singola orizzontale scorrevole (Flexbox) */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ridotto da 140px a 100px */
-    gap: 15px; /* Ridotto */
-    text-align: center;
-    max-width: 800px; /* Ridotto */
+    display: flex; /* CAMBIATO A FLEX */
+    gap: 15px; 
+    max-width: 100%; 
+    overflow-x: auto; /* SCORRIMENTO ORIZZONTALE */
+    padding-bottom: 20px; 
     margin: 0 auto 30px auto; 
+    flex-wrap: nowrap; 
+    align-items: stretch;
+    justify-content: flex-start; /* Allinea a sinistra (migliore per lo scorrimento) */
 }
 
 .skill-card {
+    flex-shrink: 0; 
+    width: 140px; /* Larghezza fissa per ogni card */
+
     background-color: #111; 
-    padding: 20px 10px; /* Ridotto da 30px a 20px */
+    padding: 20px 10px; 
     border-radius: 8px; 
     border: 1px solid #444; 
     transition: transform 0.3s, box-shadow 0.3s;
@@ -178,12 +185,12 @@ h3 {
 }
 
 .skill-card:hover {
-    transform: translateY(-4px); 
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05); /* Espansione laterale (non sollevamento) */
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
 }
 
 .skill-icon {
-    font-size: 3em; /* Icone leggermente più piccole */
+    font-size: 3em; 
     margin-bottom: 5px;
 }
 
@@ -194,19 +201,25 @@ h3 {
 }
 
 
-/* PROJECTS SECTION: Riquadri dimezzati */
+/* PROJECTS SECTION: Layout su riga singola orizzontale scorrevole (Flexbox) */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ridotto da 350px */
-    gap: 20px; 
-    margin-top: 20px;
-    max-width: 900px; 
+    display: flex; /* CAMBIATO A FLEX */
+    gap: 15px;
+    max-width: 100%; 
+    overflow-x: auto; /* SCORRIMENTO ORIZZONTALE */
+    padding-bottom: 20px; 
     margin: 20px auto 0 auto;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
 .project-card {
+    flex-shrink: 0;
+    width: 250px; /* Larghezza fissa per i riquadri Project */
+    
     background-color: #111;
-    padding: 20px; /* Ridotto da 40px */
+    padding: 20px; 
     border-radius: 10px; 
     border: 1px solid #444;
     text-align: left;
@@ -214,18 +227,24 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: space-between; 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: scale(1.03); /* Espansione laterale (non sollevamento) */
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
 }
 
 .project-card h4 {
     margin-top: 0;
     color: #fff;
-    font-size: 1.2em; /* Ridotto */
+    font-size: 1.2em; 
     margin-bottom: 5px;
     line-height: 1.2;
 }
 
 .project-card p {
-    font-size: 0.9em; /* Ridotto */
+    font-size: 0.9em; 
     color: #bbb;
     line-height: 1.5;
     margin-bottom: 10px;
@@ -236,7 +255,7 @@ h3 {
     margin-top: 10px;
     color: #000;
     background-color: #fff; 
-    padding: 5px 10px; /* Ridotto */
+    padding: 5px 10px; 
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
@@ -249,11 +268,11 @@ h3 {
     background-color: #ccc;
 }
 
-/* MUSIC CONTROLS (Ridotti) */
+/* MUSIC CONTROLS */
 #music-controls {
     position: fixed;
-    bottom: 15px; /* Ridotto */
-    right: 15px; /* Ridotto */
+    bottom: 15px; 
+    right: 15px; 
     z-index: 100;
     display: flex;
     align-items: center;
@@ -264,8 +283,8 @@ h3 {
     border: 2px solid #fff; 
     color: #fff;
     border-radius: 50%;
-    width: 40px; /* Ridotto */
-    height: 40px; /* Ridotto */
+    width: 40px; 
+    height: 40px; 
     cursor: pointer;
     margin-right: 10px;
     transition: background-color 0.3s;
@@ -276,7 +295,7 @@ h3 {
 }
 
 #volume-slider {
-    width: 80px; /* Ridotto */
+    width: 80px; 
     -webkit-appearance: none;
     appearance: none;
     height: 8px; 
@@ -296,7 +315,7 @@ h3 {
     cursor: pointer;
 }
 
-/* FOOTER (Ridotto) */
+/* FOOTER */
 .footer {
     position: relative;
     z-index: 10;
@@ -307,4 +326,3 @@ h3 {
     font-size: 0.9em;
     color: #666; 
 }
-
