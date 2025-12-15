@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const icon = toggleButton.querySelector('i');
 
     // 1. GESTIONE AUDIO
+    // Set initial volume from the range input value
     music.volume = parseFloat(volumeSlider.value);
 
     toggleButton.addEventListener('click', () => {
         if (music.paused) {
+            // Attempt to start playback.
             music.play().then(() => {
                 icon.classList.remove('fa-volume-off');
                 icon.classList.add('fa-volume-up');
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Previene lo scroll immediato
             e.preventDefault();
 
-            // Ottiene l'ID della sezione (e.g., #skills, #projects)
+            // Ottiene l'ID della sezione
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
