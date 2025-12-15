@@ -112,90 +112,91 @@
         <p>&copy; Emanuele - Full Stack Developer</p>
     </footer>
 
-    <script src="particles.js"></script> 
+<script src="particles.js"></script> 
     
-    <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 150, /* ALTA DENSITÀ */
-                    "density": {
-                        "enable": true,
-                        "value_area": 1000 
-                    }
-                },
-                "color": {
-                    "value": "#ffffff" /* BIANCO PURO PER LUMINOSITÀ */
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 1, /* MASSIMA OPACITÀ */
-                    "random": false,
-                    "anim": {
-                        "enable": false
-                    }
-                },
-                "size": {
-                    "value": 3, 
-                    "random": true,
-                    "anim": {
-                        "enable": false
-                    }
-                },
-                "line_linked": {
+<script>
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 150, 
+                "density": {
                     "enable": true,
-                    "distance": 800, /* DISTANZA MASSIMIZZATA (Linee che attraversano lo schermo) */
-                    "color": "#ffffff", 
-                    "opacity": 1, /* LINEE MOLTO VISIBILI */
-                    "width": 1.5
+                    "value_area": 1000 
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
                 },
-                "move": {
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 1, 
+                "random": false,
+                "anim": {
+                    "enable": false
+                }
+            },
+            "size": {
+                "value": 3, 
+                "random": true,
+                "anim": {
+                    "enable": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150 /* DISTANZA DRASTICAMENTE RIDOTTA: si collegano solo se vicini */
+                "color": "#ffffff", 
+                "opacity": 1, 
+                "width": 1.5
+            },
+            "move": {
+                "enable": true,
+                "speed": 7, 
+                "direction": "none",
+                "random": true, 
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false
+                }
+            },
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
                     "enable": true,
-                    "speed": 7, /* VELOCITÀ MASSIMA */
-                    "direction": "none",
-                    "random": true, 
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false
-                    }
+                    "mode": "grab"
                 },
+                "onclick": {
+                    "enable": false
+                },
+                    "resize": true
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-                    "onclick": {
-                        "enable": false
-                    },
-                        "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 450, 
-                        "line_linked": {
-                            "opacity": 1
-                        }
+            "modes": {
+                "grab": {
+                    "distance": 100, /* Riduciamo anche la distanza di interazione al passaggio del mouse */
+                    "line_linked": {
+                        "opacity": 1
                     }
-                },
+                }
             },
-            "retina_detect": true
-        });
-    </script>
+        },
+        "retina_detect": true
+    });
+</script>
     
     <script src="script.js"></script>
 </body>
 </html>
+
