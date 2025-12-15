@@ -6,6 +6,7 @@
     <title>Emanuele – About Me</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 </head>
 <body>
 
@@ -21,76 +22,76 @@
             <img src="profile.jpg" alt="Emanuele Profile Picture" class="profile-pic">
             <h1 class="hero-name">Emanuele</h1>
             <p class="hero-subtitle">Developer & Security Analyst</p>
-            <a href="#projects" class="btn">View My Projects</a>
+            <a href="#projects" class="btn large-btn">View My Projects</a>
         </div>
     </section>
 
     <section id="skills" class="section skills-section">
-        <h3>Skills</h3>
+        <h3>⚡️ Competenze Tecniche</h3>
         <div class="skills-grid">
             <div class="skill-card">
-                <i class="fas fa-code skill-icon"></i>
+                <i class="devicon-cplusplus-plain skill-icon cpp-color"></i>
                 <span class="skill-name">C++</span>
             </div>
             <div class="skill-card">
-                <i class="fas fa-terminal skill-icon"></i>
+                <i class="devicon-c-plain skill-icon c-color"></i>
                 <span class="skill-name">C</span>
             </div>
             <div class="skill-card">
-                <i class="fab fa-java skill-icon"></i>
+                <i class="devicon-java-plain skill-icon java-color"></i>
                 <span class="skill-name">Java</span>
             </div>
             <div class="skill-card">
-                <i class="fab fa-js skill-icon"></i>
+                <i class="devicon-javascript-plain skill-icon js-color"></i>
                 <span class="skill-name">JavaScript</span>
             </div>
             <div class="skill-card">
-                <i class="fas fa-cogs skill-icon"></i>
+                <i class="devicon-csharp-plain skill-icon csharp-color"></i>
                 <span class="skill-name">C#</span>
             </div>
             <div class="skill-card">
-                <i class="fab fa-python skill-icon"></i>
+                <i class="devicon-python-plain skill-icon python-color"></i>
                 <span class="skill-name">Python</span>
             </div>
         </div>
     </section>
 
     <section id="about" class="section">
-        <h3>About Me</h3>
-        <p>I'm Emanuele, a **Security Analyst** and Developer. I hope this site helps you understand more about my skills and competencies. Below, you can see the projects I am currently working on.</p>
+        <h3>ℹ️ Chi Sono</h3>
+        <p class="large-text">Sono Emanuele, un **Security Analyst** e Developer. Spero che questo sito ti aiuti a capire meglio le mie competenze. Qui sotto, puoi vedere i progetti a cui sto lavorando attualmente.</p>
     </section>
 
     <section id="projects" class="section">
-        <h3>Projects</h3>
+        <h3>📂 Progetti Recenti</h3>
         <div class="projects-grid">
             <div class="project-card">
-                <h4>EasyLink</h4>
-                <p>A C++ program for shortening URLs using a personal server (designed for Windows).</p>
-                <a href="https://github.com/Mark3syt/EasyLink" target="_blank">View Project</a>
+                <h4>EasyLink (C++)</h4>
+                <p>Un programma C++ per accorciare gli URL utilizzando un server personale (progettato per Windows).</p>
+                <a href="https://github.com/Mark3syt/EasyLink" target="_blank" class="project-link">Vedi Progetto</a>
             </div>
             
             <div class="project-card">
-                <h4>Scuk</h4>
-                <p>A text-based Python adventure game.</p>
-                <a href="https://github.com/Mark3syt/Scuk" target="_blank">View Project</a>
+                <h4>Scuk (Python)</h4>
+                <p>Un gioco d'avventura testuale (CLI) sviluppato in Python.</p>
+                <a href="https://github.com/Mark3syt/Scuk" target="_blank" class="project-link">Vedi Progetto</a>
             </div>
             <div class="project-card">
-                <h4>Crypto-Tool CLI</h4>
-                <p>A Python CLI for file hashing (SHA256) and AES encryption/decryption (Fernet).</p>
-                <a href="https://github.com/Mark3syt/crypto-tool" target="_blank">View Project</a>
+                <h4>Crypto-Tool CLI (Python)</h4>
+                <p>Una CLI Python per hashing di file (SHA256) e crittografia/decrittografia AES (Fernet), focalizzata sulla sicurezza.</p>
+                <a href="https://github.com/Mark3syt/crypto-tool" target="_blank" class="project-link">Vedi Progetto</a>
             </div>
             <div class="project-card">
-                <h4>PicoEngine 2D</h4>
-                <p>A small 2D game engine prototype in C# using the Entity-Component System (ECS) pattern.</p>
-                <a href="https://github.com/Mark3syt/csharp-2d-engine" target="_blank">View Project</a>
+                <h4>PicoEngine 2D (C#)</h4>
+                <p>Un piccolo prototipo di motore di gioco 2D in C# che utilizza il pattern Entity-Component System (ECS).</p>
+                <a href="https://github.com/Mark3syt/csharp-2d-engine" target="_blank" class="project-link">Vedi Progetto</a>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section">
-        <h3>Contact</h3>
-        <p>Want to collaborate? Join my Discord server!</p>
-        <a href="https://discord.gg/k6jJcMK26C" class="btn" target="_blank">Join on Discord</a>
+        <h3>📧 Contatti</h3>
+        <p class="large-text">Vuoi collaborare o fare domande? Unisciti al mio server Discord!</p>
+        <a href="https://discord.gg/k6jJcMK26C" class="btn large-btn discord-btn" target="_blank">Join on Discord</a>
     </section>
     
     <div id="music-controls">
@@ -100,7 +101,7 @@
         <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.05" title="Volume">
     </div>
     <footer class="footer">
-        <p>&reg; Emanuele</p>
+        <p>&copy; Emanuele - Developer & Security Analyst</p>
     </footer>
 
     <script src="particles.js"></script> 
