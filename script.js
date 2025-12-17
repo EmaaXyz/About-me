@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Particles.js
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             "particles": {
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const volumeSlider = document.getElementById('volume-slider');
 
     if (music && toggleBtn && volumeSlider) {
-        music.volume = 0.05;
+        music.volume = volumeSlider.value;
         toggleBtn.addEventListener('click', () => {
             if (music.paused) {
                 music.play();
@@ -49,21 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         volumeSlider.addEventListener('input', (e) => {
             music.volume = e.target.value;
+            toggleBtn.innerHTML = music.volume == 0 ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
         });
     }
-
-    // 4. Smooth Scroll Fix per tutti i link interni
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
 });
