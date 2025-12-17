@@ -99,7 +99,6 @@ h3 {
     padding-bottom: 10px;
 }
 
-/* Skills & Workstation Grids */
 .skills-grid, .workstation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -123,7 +122,6 @@ h3 {
 
 .skill-icon-svg { width: 60px; height: 60px; margin-bottom: 15px; }
 
-/* Workstation Specifics */
 .spec-icon { font-size: 2.5rem; color: #fff; margin-bottom: 15px; }
 .spec-info { display: flex; flex-direction: column; gap: 5px; }
 .spec-label { font-size: 0.8rem; color: #888; text-transform: uppercase; font-weight: bold; }
@@ -135,7 +133,12 @@ h3 {
     gap: 20px;
     overflow-x: auto;
     padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #555 #111;
 }
+
+.projects-grid::-webkit-scrollbar { height: 8px; }
+.projects-grid::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
 
 .project-card {
     min-width: 250px;
