@@ -6,6 +6,7 @@ body {
     color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
+    scroll-behavior: smooth; /* Abilita lo scroll fluido */
 }
 
 #particles-js {
@@ -35,11 +36,10 @@ body {
 .navbar a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; }
 .navbar a:hover { color: #bbb; }
 
-.section { position: relative; z-index: 10; padding: 80px 10%; text-align: center; }
+.section { position: relative; z-index: 10; padding: 100px 10%; text-align: center; }
 
-/* FIX CENTRATURA HERO */
 .hero {
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,13 +62,22 @@ body {
     border: 3px solid #555;
     margin-bottom: 20px;
     object-fit: cover;
-    display: block; /* Assicura che si comporti come blocco per il margine auto */
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .hero-name { font-size: 3.5rem; margin: 10px 0; letter-spacing: 2px; }
-.hero-subtitle { font-size: 1.5rem; color: #bbb; margin-bottom: 30px; }
+
+/* Stile Typewriter */
+.hero-subtitle { font-size: 1.5rem; color: #bbb; margin-bottom: 30px; min-height: 1.6em; }
+.cursor {
+    font-weight: bold;
+    color: #fff;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
 
 .btn {
     padding: 12px 30px;
@@ -78,6 +87,7 @@ body {
     font-weight: bold;
     border-radius: 5px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .btn:hover { background: #fff; color: #000; }
@@ -111,12 +121,7 @@ h3 {
 
 .skill-card:hover { transform: translateY(-10px); border-color: #fff; }
 
-.skill-icon-svg {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
-}
-
+.skill-icon-svg { width: 60px; height: 60px; margin-bottom: 15px; }
 .skill-name { font-weight: 600; color: #fff; }
 
 .projects-grid {
@@ -136,14 +141,9 @@ h3 {
 }
 
 .project-link {
-    background: #fff;
-    color: #000;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 10px;
+    background: #fff; color: #000; padding: 5px 10px;
+    text-decoration: none; border-radius: 5px; font-weight: bold;
+    display: inline-block; margin-top: 10px;
 }
 
 #music-controls { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; align-items: center; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 50px; }
