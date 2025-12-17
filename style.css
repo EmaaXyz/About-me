@@ -6,7 +6,7 @@ body {
     color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
-    scroll-behavior: smooth; /* Abilita lo scroll fluido */
+    scroll-behavior: smooth;
 }
 
 #particles-js {
@@ -65,9 +65,8 @@ body {
 }
 
 .hero-name { font-size: 3.5rem; margin: 10px 0; letter-spacing: 2px; }
-
-/* Stile Typewriter */
 .hero-subtitle { font-size: 1.5rem; color: #bbb; margin-bottom: 30px; min-height: 1.6em; }
+
 .cursor {
     font-weight: bold;
     color: #fff;
@@ -100,15 +99,16 @@ h3 {
     padding-bottom: 10px;
 }
 
-.skills-grid {
+/* Skills & Workstation Grids */
+.skills-grid, .workstation-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-.skill-card {
+.skill-card, .spec-card {
     background: #111;
     padding: 30px;
     border-radius: 15px;
@@ -119,10 +119,16 @@ h3 {
     align-items: center;
 }
 
-.skill-card:hover { transform: translateY(-10px); border-color: #fff; }
+.skill-card:hover, .spec-card:hover { transform: translateY(-10px); border-color: #fff; }
 
 .skill-icon-svg { width: 60px; height: 60px; margin-bottom: 15px; }
-.skill-name { font-weight: 600; color: #fff; }
+
+/* Workstation Specifics */
+.spec-icon { font-size: 2.5rem; color: #fff; margin-bottom: 15px; }
+.spec-info { display: flex; flex-direction: column; gap: 5px; }
+.spec-label { font-size: 0.8rem; color: #888; text-transform: uppercase; font-weight: bold; }
+.spec-value { font-size: 1.1rem; font-weight: bold; color: #fff; }
+.spec-detail { font-size: 0.9rem; color: #bbb; }
 
 .projects-grid {
     display: flex;
