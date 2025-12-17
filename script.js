@@ -1,193 +1,55 @@
-/* Aggiunta Fondamentale per lo Smooth Scroll */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Compensa l'altezza della navbar */
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Particles.js Initialization
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2 }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "grab" } }
+            }
+        });
+    }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #000;
-    color: #fff;
-    line-height: 1.6;
-    overflow-x: hidden;
-    /* scroll-behavior rimosso da body e messo su html per compatibilità migliore */
-}
+    // 2. Typing Effect
+    const text = "Full Stack Developer";
+    const typewriterElement = document.getElementById('typewriter');
+    let i = 0;
 
-#particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+    function typeWriter() {
+        if (typewriterElement && i < text.length) {
+            typewriterElement.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    typeWriter();
 
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 20px 40px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-}
+    // 3. Audio Logic
+    const music = document.getElementById('background-music');
+    const toggleBtn = document.getElementById('toggle-music');
+    const volumeSlider = document.getElementById('volume-slider');
 
-.navbar .logo { font-size: 1.5rem; font-weight: 800; }
-.navbar a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; }
-.navbar a:hover { color: #bbb; }
-
-.section { position: relative; z-index: 10; padding: 100px 5%; text-align: center; }
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 10;
-}
-
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #555;
-    margin-bottom: 20px;
-    object-fit: cover;
-}
-
-.hero-name { font-size: 3.5rem; margin: 10px 0; letter-spacing: 2px; }
-.hero-subtitle { font-size: 1.5rem; color: #bbb; margin-bottom: 30px; min-height: 1.6em; }
-
-.cursor {
-    font-weight: bold;
-    color: #fff;
-    animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.btn {
-    padding: 12px 30px;
-    border: 2px solid #fff;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.btn:hover { background: #fff; color: #000; }
-
-h3 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    border-bottom: 2px solid #fff;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-/* Skills Grid (6 colonne fisse) */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 15px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Workstation Grid (4 colonne) */
-.workstation-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.skill-card, .spec-card {
-    background: #111;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid #333;
-    transition: 0.3s; /* Reintrodotta animazione hover */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.skill-card:hover, .spec-card:hover { 
-    transform: translateY(-10px); 
-    border-color: #fff; 
-}
-
-.skill-icon-svg { width: 50px; height: 50px; margin-bottom: 10px; }
-.skill-name { font-size: 0.9rem; font-weight: bold; }
-
-.spec-icon { font-size: 2.5rem; color: #fff; margin-bottom: 15px; }
-.spec-info { display: flex; flex-direction: column; gap: 5px; }
-.spec-label { font-size: 0.8rem; color: #888; text-transform: uppercase; font-weight: bold; }
-.spec-value { font-size: 1.1rem; font-weight: bold; color: #fff; }
-.spec-detail { font-size: 0.9rem; color: #bbb; }
-
-.projects-grid {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: #555 #111;
-}
-
-.projects-grid::-webkit-scrollbar { height: 8px; }
-.projects-grid::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
-
-.project-card {
-    min-width: 250px;
-    background: #111;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-    border: 1px solid #333;
-}
-
-.project-link {
-    background: #fff; color: #000; padding: 5px 10px;
-    text-decoration: none; border-radius: 5px; font-weight: bold;
-    display: inline-block; margin-top: 10px;
-}
-
-#music-controls { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; align-items: center; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 50px; }
-#toggle-music { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; margin-right: 10px; }
-#volume-slider { width: 80px; }
-
-.footer { position: relative; z-index: 10; text-align: center; padding: 40px; color: #666; }
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .skills-grid { grid-template-columns: repeat(3, 1fr); }
-    .workstation-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-    .skills-grid { grid-template-columns: repeat(2, 1fr); }
-    .workstation-grid { grid-template-columns: 1fr; }
-}
+    if (music && toggleBtn && volumeSlider) {
+        music.volume = volumeSlider.value;
+        toggleBtn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                toggleBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                music.pause();
+                toggleBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+        volumeSlider.addEventListener('input', (e) => {
+            music.volume = e.target.value;
+            toggleBtn.innerHTML = music.volume == 0 ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+        });
+    }
+});
