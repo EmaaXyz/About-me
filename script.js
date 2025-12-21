@@ -65,3 +65,39 @@ ScrollReveal().reveal("#skills", {
     });
   }
 });
+
+document.querySelectorAll('.bottom-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault()
+
+    const targetId = link.getAttribute('href')
+    const target = document.querySelector(targetId)
+
+    if (!target) return
+
+    const start = window.pageYOffset
+    const end = target.offsetTop
+    const duration = 800
+    let startTime = null
+
+    function animateScroll(timestamp) {
+      if (!startTime) startTime = timestamp
+      const progress = timestamp - startTime
+      const ease = easeInOut(progress / duration)
+
+      window.scrollTo(0, start + (end - start) * ease)
+
+      if (progress < duration) {
+        requestAnimationFrame(animateScroll)
+      }
+    }
+
+    function easeInOut(t) {
+      return t < 0.5
+        ? 2 * t * t
+        : 1 - Math.pow(-2 * t + 2, 2) / 2
+    }
+
+    requestAnimationFrame(animateScroll)
+  })
+})
