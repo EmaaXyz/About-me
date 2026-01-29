@@ -119,6 +119,7 @@ section {
 
 .python { background: #3776ab; }
 .java { background: #f89820; }
+.cs { background: #68217A; }
 
 .projects {
   display: grid;
@@ -210,3 +211,4 @@ body {
 
 
 /* by https://salvatorerusso.xyz 
+
