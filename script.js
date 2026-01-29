@@ -57,8 +57,9 @@ function animatePercentage(el, target) {
 
 ScrollReveal().reveal("#skills", {
   afterReveal: () => {
-    document.querySelector(".python").style.width = "40%";
-    document.querySelector(".java").style.width = "65%";
+    document.querySelector(".python").style.width = "60%";
+    document.querySelector(".java").style.width = "85%";
+    document.querySelector(".progress.cs").style.width = "25%";
     document.querySelectorAll(".percent").forEach(p => {
       p.style.opacity = 1;
       animatePercentage(p, p.dataset.value);
@@ -101,3 +102,4 @@ document.querySelectorAll('.bottom-nav a').forEach(link => {
     requestAnimationFrame(animateScroll)
   })
 })
+
