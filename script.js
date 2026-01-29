@@ -56,6 +56,24 @@ ScrollReveal().reveal("#skills", {
   }
 });
 
+function animatePercentage(el, target) {
+  let current = 0;
+  const interval = setInterval(() => {
+    current++;
+    el.innerText = current + "%";
+    if (current >= target) clearInterval(interval);
+  }, 20);
+}
+
+ScrollReveal().reveal("#skills", {
+  afterReveal: () => {
+    document.querySelector(".python").style.width = "60%";
+    document.querySelector(".cs").style.width = "25%";
+    document.querySelector(".java").style.width = "85%";
+    document.querySelectorAll(".percent").forEach(p => animatePercentage(p, p.dataset.value));
+  }
+});
+
 document.querySelectorAll('.bottom-nav a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -79,3 +97,4 @@ document.querySelectorAll('.bottom-nav a').forEach(link => {
     requestAnimationFrame(animateScroll);
   });
 });
+
