@@ -1,6 +1,4 @@
-setTimeout(() => {
-  document.getElementById("loading").style.display = "none";
-}, 1500);
+setTimeout(() => document.getElementById("loading").style.display = "none", 1500);
 
 const text = "Junior Developer";
 let i = 0;
@@ -19,7 +17,7 @@ particlesJS("particles-js", {
     color: { value: "#666" },
     size: { value: 3 },
     move: { speed: 1 },
-    line_linked: { enable: true, color: "#333" }
+    links: { enable: true, color: "#333" }
   }
 });
 
@@ -39,13 +37,6 @@ fetch("https://api.github.com/users/mark3syt/repos")
     });
   });
 
-ScrollReveal().reveal("section", {
-  distance: "60px",
-  duration: 900,
-  origin: "bottom",
-  interval: 150
-});
-
 function animatePercentage(el, target) {
   let current = 0;
   const interval = setInterval(() => {
@@ -55,51 +46,36 @@ function animatePercentage(el, target) {
   }, 20);
 }
 
+ScrollReveal().reveal("section", { distance: "60px", duration: 900, origin: "bottom", interval: 150 });
 ScrollReveal().reveal("#skills", {
   afterReveal: () => {
     document.querySelector(".python").style.width = "60%";
+    document.querySelector(".cs").style.width = "25%";
     document.querySelector(".java").style.width = "85%";
-    document.querySelector(".progress.cs").style.width = "25%";
-    document.querySelectorAll(".percent").forEach(p => {
-      p.style.opacity = 1;
-      animatePercentage(p, p.dataset.value);
-    });
+    document.querySelectorAll(".percent").forEach(p => animatePercentage(p, p.dataset.value));
   }
 });
 
 document.querySelectorAll('.bottom-nav a').forEach(link => {
   link.addEventListener('click', e => {
-    e.preventDefault()
-
-    const targetId = link.getAttribute('href')
-    const target = document.querySelector(targetId)
-
-    if (!target) return
-
-    const start = window.pageYOffset
-    const end = target.offsetTop
-    const duration = 800
-    let startTime = null
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    const start = window.pageYOffset;
+    const end = target.offsetTop;
+    const duration = 800;
+    let startTime = null;
 
     function animateScroll(timestamp) {
-      if (!startTime) startTime = timestamp
-      const progress = timestamp - startTime
-      const ease = easeInOut(progress / duration)
-
-      window.scrollTo(0, start + (end - start) * ease)
-
-      if (progress < duration) {
-        requestAnimationFrame(animateScroll)
-      }
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const ease = progress/duration < 0.5
+        ? 2*(progress/duration)**2
+        : 1 - Math.pow(-2*(progress/duration)+2, 2)/2;
+      window.scrollTo(0, start + (end - start) * ease);
+      if (progress < duration) requestAnimationFrame(animateScroll);
     }
 
-    function easeInOut(t) {
-      return t < 0.5
-        ? 2 * t * t
-        : 1 - Math.pow(-2 * t + 2, 2) / 2
-    }
-
-    requestAnimationFrame(animateScroll)
-  })
-})
-
+    requestAnimationFrame(animateScroll);
+  });
+});
