@@ -4,8 +4,23 @@
 <meta charset="UTF-8">
 <title>Emanuele Cervone | Junior Developer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+<!-- Loader failsafe: sparisce sempre, anche se un CDN è offline -->
+<script>
+  window.addEventListener('load', function() {
+    var l = document.getElementById('loading');
+    if (l) l.style.display = 'none';
+  });
+  setTimeout(function() {
+    var l = document.getElementById('loading');
+    if (l) l.style.display = 'none';
+  }, 3000);
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- NO defer: script.js in fondo al body li usa direttamente -->
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <link rel="stylesheet" href="style.css">
@@ -22,7 +37,7 @@
       <div class="home-content">
         <h1>Emanuele Cervone</h1>
         <div class="typewriter-container">
-          <span id="typewriter"></span><span class="cursor">▏</span>
+          <span id="typewriter"></span><span class="cursor">&#9615;</span>
         </div>
       </div>
     </div>
@@ -35,7 +50,7 @@
         <div class="timeline-item"><span>2022</span><p>Starting to discover coding</p></div>
         <div class="timeline-item"><span>2023</span><p>Getting passionate about coding</p></div>
         <div class="timeline-item"><span>2024</span><p>Practicing with easy projects</p></div>
-        <div class="timeline-item"><span>2025</span><p>Developing in Java & Python fluently</p></div>
+        <div class="timeline-item"><span>2025</span><p>Developing in Java &amp; Python fluently</p></div>
         <div class="timeline-item current"><span>2026</span><p>Starting to study C#</p></div>
       </div>
     </div>
@@ -48,7 +63,7 @@
         <div class="skill-header">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
           <span>Python</span>
-          <strong class="percent" data-value="60">0%</strong>
+          <strong class="percent" data-value="85">0%</strong>
         </div>
         <div class="progress-bar"><div class="progress python"></div></div>
       </div>
@@ -56,7 +71,7 @@
         <div class="skill-header">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
           <span>C#</span>
-          <strong class="percent" data-value="25">0%</strong>
+          <strong class="percent" data-value="50">0%</strong>
         </div>
         <div class="progress-bar"><div class="progress cs"></div></div>
       </div>
@@ -64,7 +79,7 @@
         <div class="skill-header">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
           <span>Java</span>
-          <strong class="percent" data-value="85">0%</strong>
+          <strong class="percent" data-value="100">0%</strong>
         </div>
         <div class="progress-bar"><div class="progress java"></div></div>
       </div>
@@ -79,7 +94,7 @@
   <section id="contact" class="contact">
     <h2>Contact</h2>
     <div class="contact-grid">
-      <a href="https://discord.gg/CvvwUvXhdG" target="_blank" class="contact-card glass discord-btn">
+      <a href="https://discord.gg/CvvwUvXhdG" target="_blank" rel="noopener noreferrer" class="contact-card glass discord-btn">
         <i class="fa-brands fa-discord"></i>
         <div class="contact-info">
           <span>Join my Discord</span>
@@ -90,14 +105,14 @@
         <i class="fa-solid fa-envelope"></i>
         <div class="contact-info">
           <span>Email me</span>
-          <p>ema.cer.21@gmail.com</p>
+          <p class="email-text">ema.cer.21&#64;gmail.com</p>
         </div>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    <p>© 2026 Emanuele Cervone. All rights reserved.</p>
+    <p>&#169; 2026 Emanuele Cervone. All rights reserved.</p>
   </footer>
 </div>
 

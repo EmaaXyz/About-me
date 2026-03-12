@@ -44,6 +44,7 @@ body {
   border-top: 4px solid #fff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  will-change: transform;
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -80,6 +81,8 @@ h2 {
   border: 4px solid #444;
   box-shadow: 0 0 25px rgba(255,255,255,0.15);
   object-fit: cover;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .typewriter-container {
@@ -109,28 +112,28 @@ h2 {
 .skill-header img { width: 45px; }
 .percent { font-size: 1rem; color: #aaa; opacity: 0; transition: 1s; }
 .progress-bar { height: 12px; background: #222; border-radius: 6px; margin-top: 15px; }
-.progress { height: 100%; width: 0; border-radius: 6px; transition: 2s ease-out; }
+.progress { height: 100%; width: 0; border-radius: 6px; transition: width 2s ease-out; will-change: width; transform: translateZ(0); }
 .python { background: #3776ab; }
 .java { background: #f89820; }
 .cs { background: #68217A; }
 
 .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.project { padding: 25px; background: #151515; border-radius: 15px; border: 1px solid #222; transition: 0.3s; }
-.project:hover { transform: translateY(-8px); border-color: #444; }
+.project { padding: 25px; background: #151515; border-radius: 15px; border: 1px solid #222; transition: transform 0.3s ease, border-color 0.3s ease; will-change: transform; transform: translateZ(0); }
+.project:hover { transform: translateY(-8px) translateZ(0); border-color: #444; }
 .project a { text-decoration: none; color: inherit; }
 
 /* Contact - Ritorno all'originale centrato */
 .contact-grid { display: flex; flex-direction: column; gap: 20px; align-items: center; }
-.contact-card { display: flex; align-items: center; gap: 25px; padding: clamp(15px, 3vw, 25px) clamp(20px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 550px; text-decoration: none; color: inherit; transition: 0.3s; }
-.discord-btn:hover { background: rgba(88, 101, 242, 0.2); border-color: #5865F2; transform: translateY(-5px); }
+.contact-card { display: flex; align-items: center; gap: 25px; padding: clamp(15px, 3vw, 25px) clamp(20px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 550px; text-decoration: none; color: inherit; transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease; will-change: transform; transform: translateZ(0); }
+.discord-btn:hover { background: rgba(88, 101, 242, 0.2); border-color: #5865F2; transform: translateY(-5px) translateZ(0); }
 .contact-card i { font-size: clamp(1.8rem, 4vw, 2.5rem); }
 .fa-discord { color: #5865F2; }
 
 /* Navbar */
 .bottom-nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: clamp(15px, 4vw, 30px); padding: 15px clamp(20px, 5vw, 35px); border-radius: 50px; z-index: 100; transition: 0.3s; width: max-content; }
 .glass { background: rgba(255,255,255,.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,.1); }
-.nav-link { color: #888; font-size: clamp(1.1rem, 3vw, 1.4rem); transition: 0.3s; display: inline-block; }
-.nav-link:hover { color: #fff; transform: scale(1.2); }
+.nav-link { color: #888; font-size: clamp(1.1rem, 3vw, 1.4rem); transition: color 0.3s ease, transform 0.3s ease; display: inline-block; will-change: transform; }
+.nav-link:hover { color: #fff; transform: scale(1.2) translateZ(0); }
 
 .nav-active-anim { animation: navClick 0.4s ease-out; color: #fff !important; }
 @keyframes navClick { 0% { transform: scale(1); } 50% { transform: scale(1.5); } 100% { transform: scale(1.2); } }
@@ -146,3 +149,5 @@ h2 {
   .timeline-item { padding-left: 25px; }
   .timeline-wrapper { margin: 0 auto; }
 }
+/* Fix email — nessun link blu */
+.email-text { color: #aaa; text-decoration: none; cursor: default; user-select: text; }
