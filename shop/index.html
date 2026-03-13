@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emanuele Dev | Shop — VOIP Numbers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<script>
+  window.addEventListener('load', function() {
+    var l = document.getElementById('loading');
+    if (l) l.style.display = 'none';
+  });
+  setTimeout(function() {
+    var l = document.getElementById('loading');
+    if (l) l.style.display = 'none';
+  }, 3000);
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+:root {
+  --tg:  #26A5E4;
+  --wa:  #25D366;
+  --dc:  #5865F2;
+  --premium-gold: #f5c542;
+  --bg:  #0e0e0e;
+  --card: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.09);
+  --text: #eaeaea;
+  --muted: #888;
+}
+
+html, body { background: var(--bg); color: var(--text); overflow: hidden; }
+
+/* ── Loader ── */
+#loading {
+  position: fixed; inset: 0; background: #000;
+  display: flex; justify-content: center; align-items: center; z-index: 9999;
+}
+.spinner {
+  width: 60px; height: 60px;
+  border: 4px solid #333; border-top: 4px solid #fff;
+  border-radius: 50%; animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Particles ── */
+#particles-js { position: fixed; inset: 0; z-index: -1; }
+
+/* ── Scroll container ── */
+.scroll-container {
+  height: 100vh; overflow-y: scroll;
+  scroll-snap-type: y mandatory; scroll-behavior: smooth;
+}
+
+/* ── Back link ── */
+.back-link {
+  position: fixed; top: 22px; left: 28px; z-index: 200;
+  color: var(--muted); font-size: 0.9rem; text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); padding: 8px 16px; border-radius: 30px;
+  transition: color 0.3s, background 0.3s;
+}
+.back-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 80px 15%;
+  scroll-snap-align: start;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  padding: 6px 18px; border-radius: 30px;
+  font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 28px;
+}
+.hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700; line-height: 1.1;
+  background: linear-gradient(135deg, #fff 30%, #666 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+.hero p {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--muted); max-width: 540px; line-height: 1.7; margin-bottom: 40px;
+}
+.hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;
+}
+.stat { text-align: center; }
+.stat strong { display: block; font-size: 1.8rem; font-weight: 700; color: #fff; }
+.stat span { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── Section ── */
+.shop-section {
+  min-height: 100vh; padding: 80px 8%;
+  scroll-snap-align: start; display: flex;
+  flex-direction: column; justify-content: center;
+}
+.section-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 48px;
+}
+.section-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.tg-icon  { background: rgba(38, 165, 228, 0.15); color: var(--tg); }
+.wa-icon  { background: rgba(37, 211, 102, 0.15); color: var(--wa); }
+.dc-icon  { background: rgba(88, 101, 242, 0.15); color: var(--dc); }
+
+.section-header h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600;
+  color: #fff; margin: 0;
+}
+.section-header p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+/* ── Cards grid ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 26px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  position: relative; overflow: hidden; cursor: pointer;
+}
+.product-card::before {
+  content: ''; position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.3s;
+  border-radius: 18px;
+}
+.product-card.tg::before  { background: radial-gradient(circle at top right, rgba(38,165,228,0.08), transparent 60%); }
+.product-card.wa::before  { background: radial-gradient(circle at top right, rgba(37,211,102,0.08), transparent 60%); }
+.product-card.dc::before  { background: radial-gradient(circle at top right, rgba(88,101,242,0.08), transparent 60%); }
+.product-card:hover::before { opacity: 1; }
+.product-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.18); }
+
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.flag { font-size: 2rem; line-height: 1; }
+.badge-premium {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
+  background: rgba(245,197,66,0.15); color: var(--premium-gold);
+  border: 1px solid rgba(245,197,66,0.3);
+}
+.badge-standard {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
+  background: rgba(255,255,255,0.06); color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.card-body h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.card-body p  { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.price { font-size: 1.5rem; font-weight: 700; color: #fff; }
+.price span { font-size: 0.85rem; font-weight: 400; color: var(--muted); }
+
+.buy-btn {
+  padding: 8px 20px; border-radius: 30px; font-size: 0.8rem;
+  font-weight: 600; border: none; cursor: pointer; text-decoration: none;
+  transition: filter 0.2s, transform 0.2s;
+}
+.buy-btn:hover { filter: brightness(1.15); transform: scale(1.04); }
+.buy-btn.tg { background: var(--tg); color: #fff; }
+.buy-btn.wa { background: var(--wa); color: #fff; }
+.buy-btn.dc { background: var(--dc); color: #fff; }
+
+/* ── How it works ── */
+.how-section {
+  min-height: 60vh; padding: 80px 8%;
+  scroll-snap-align: start; display: flex;
+  flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+}
+.how-section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 48px; color: #fff; }
+.steps { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 900px; }
+.step { flex: 1; min-width: 180px; max-width: 220px; }
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0 auto 16px;
+}
+.step h4 { font-size: 0.95rem; color: #fff; margin-bottom: 8px; }
+.step p  { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+.step-arrow { align-self: center; color: var(--border); font-size: 1.4rem; flex: none; }
+
+/* ── Footer ── */
+.footer { text-align: center; padding: 60px 0 100px; color: #666; font-size: 0.85rem; scroll-snap-align: end; }
+
+/* ── Navbar ── */
+.bottom-nav {
+  position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: clamp(15px, 4vw, 30px); padding: 15px clamp(20px, 5vw, 35px);
+  border-radius: 50px; z-index: 100; width: max-content;
+  background: rgba(255,255,255,.03); backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.nav-link { color: #888; font-size: clamp(1.1rem, 3vw, 1.4rem); transition: color 0.3s ease, transform 0.3s ease; display: inline-block; text-decoration: none; }
+.nav-link:hover { color: #fff; transform: scale(1.2); }
+
+/* ── Telegram order modal ── */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px); z-index: 500;
+  display: none; justify-content: center; align-items: center;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: #131313; border: 1px solid var(--border);
+  border-radius: 22px; padding: 36px 32px;
+  max-width: 420px; width: 90%; text-align: center;
+  animation: fadeUp 0.3s ease;
+}
+@keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+.modal h3 { font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
+.modal p { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+.modal-price { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 24px; }
+.modal-actions { display: flex; flex-direction: column; gap: 12px; }
+.modal-tg-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 13px 20px; border-radius: 12px; font-size: 0.9rem; font-weight: 600;
+  text-decoration: none; background: var(--tg); color: #fff;
+  transition: filter 0.2s;
+}
+.modal-tg-btn:hover { filter: brightness(1.12); }
+.modal-close {
+  background: none; border: 1px solid var(--border); color: var(--muted);
+  padding: 11px; border-radius: 12px; cursor: pointer; font-size: 0.85rem;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+/* ── Verified badge ── */
+.verified-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(38,165,228,0.08); border: 1px solid rgba(38,165,228,0.3);
+  padding: 10px 20px; border-radius: 30px; text-decoration: none;
+  color: #26A5E4; font-size: 0.85rem; font-weight: 600;
+  margin-bottom: 36px; transition: background 0.3s, border-color 0.3s;
+}
+.verified-badge:hover { background: rgba(38,165,228,0.15); border-color: rgba(38,165,228,0.6); }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hero { padding: 80px 5%; }
+  .shop-section, .how-section { padding: 60px 5%; }
+  .hero-stats { gap: 24px; }
+  .steps { gap: 16px; }
+  .step-arrow { display: none; }
+  .back-link { top: 14px; left: 14px; font-size: 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="loading"><div class="spinner"></div></div>
+<div id="particles-js"></div>
+
+<a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Portfolio</a>
+
+<div class="scroll-container" id="main-scroll-container">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-badge"><span></span> Shop — VOIP Numbers</div>
+    <h1>Verify Anywhere,<br>Pay Less.</h1>
+    <p>Virtual phone numbers for Telegram, WhatsApp and Discord. Instant delivery via Telegram bot. No subscription needed.</p>
+
+    <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="verified-badge">
+      <img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" style="width:18px;height:18px;">
+      <span>Verified seller · @stark020009</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><circle cx="12" cy="12" r="12" fill="#26A5E4" opacity="0.2"/><path d="M7 13l3 3 7-7" stroke="#26A5E4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <div class="hero-stats">
+      <div class="stat"><strong>3</strong><span>Platforms</span></div>
+      <div class="stat"><strong>5+</strong><span>Countries</span></div>
+      <div class="stat"><strong>€3</strong><span>Starting from</span></div>
+    </div>
+  </section>
+
+  <!-- ── TELEGRAM ── -->
+  <section class="shop-section" id="telegram">
+    <div class="section-header">
+      <div class="section-icon tg-icon"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" style="width:28px;height:28px;"></div>
+      <div>
+        <h2>Telegram Numbers</h2>
+        <p>Real SIM numbers — verified, one-time use</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="product-card tg" onclick="openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00','tg')">
+        <div class="card-top">
+          <span class="flag">🇺🇸</span>
+          <span class="badge-premium">Premium</span>
+        </div>
+        <div class="card-body">
+          <h3>USA</h3>
+          <p>Premium American number. Top carrier, high success rate.</p>
+        </div>
+        <div class="card-footer">
+          <div class="price">€5 <span>/ use</span></div>
+          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00','tg')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card tg" onclick="openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00','tg')">
+        <div class="card-top">
+          <span class="flag">🇮🇩</span>
+          <span class="badge-standard">Standard</span>
+        </div>
+        <div class="card-body">
+          <h3>Indonesia</h3>
+          <p>Indonesian number, fast SMS delivery.</p>
+        </div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00','tg')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card tg" onclick="openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00','tg')">
+        <div class="card-top">
+          <span class="flag">🇰🇪</span>
+          <span class="badge-standard">Standard</span>
+        </div>
+        <div class="card-body">
+          <h3>Kenya</h3>
+          <p>Kenyan number, reliable OTP.</p>
+        </div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00','tg')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card tg" onclick="openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00','tg')">
+        <div class="card-top">
+          <span class="flag">🇨🇴</span>
+          <span class="badge-standard">Standard</span>
+        </div>
+        <div class="card-body">
+          <h3>Colombia</h3>
+          <p>Colombian number, solid SMS delivery.</p>
+        </div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00','tg')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card tg" onclick="openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00','tg')">
+        <div class="card-top">
+          <span class="flag">🇪🇬</span>
+          <span class="badge-standard">Standard</span>
+        </div>
+        <div class="card-body">
+          <h3>Egypt</h3>
+          <p>Egyptian number, instant activation.</p>
+        </div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00','tg')">Buy</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── WHATSAPP ── -->
+  <section class="shop-section" id="whatsapp">
+    <div class="section-header">
+      <div class="section-icon wa-icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" style="width:28px;height:28px;"></div>
+      <div>
+        <h2>WhatsApp Numbers</h2>
+        <p>OTP numbers for new WhatsApp accounts</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="product-card wa" onclick="openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€3.00','wa')">
+        <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>USA</h3><p>American number, high WhatsApp success rate.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€3.00','wa')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card wa" onclick="openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00','wa')">
+        <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, fast WA verification.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00','wa')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card wa" onclick="openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00','wa')">
+        <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Kenya</h3><p>Kenyan number, reliable OTP delivery.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00','wa')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card wa" onclick="openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00','wa')">
+        <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Colombia</h3><p>Colombian number, solid success rate.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00','wa')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card wa" onclick="openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00','wa')">
+        <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Egypt</h3><p>Egyptian number, quick activation.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00','wa')">Buy</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── DISCORD ── -->
+  <section class="shop-section" id="discord">
+    <div class="section-header">
+      <div class="section-icon dc-icon"><img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" style="width:28px;height:28px;"></div>
+      <div>
+        <h2>Discord Numbers</h2>
+        <p>Phone verification numbers for Discord accounts</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="product-card dc" onclick="openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00','dc')">
+        <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>USA</h3><p>American number for Discord phone verify.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00','dc')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card dc" onclick="openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00','dc')">
+        <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, verified Discord OTP.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00','dc')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card dc" onclick="openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00','dc')">
+        <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Kenya</h3><p>Kenyan number, fast Discord SMS.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00','dc')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card dc" onclick="openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00','dc')">
+        <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Colombia</h3><p>Colombian number, reliable verification.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00','dc')">Buy</button>
+        </div>
+      </div>
+
+      <div class="product-card dc" onclick="openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00','dc')">
+        <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
+        <div class="card-body"><h3>Egypt</h3><p>Egyptian number, instant code delivery.</p></div>
+        <div class="card-footer">
+          <div class="price">€3 <span>/ use</span></div>
+          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00','dc')">Buy</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-section">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Choose your number</h4>
+        <p>Pick platform and country. Pay once, use once.</p>
+      </div>
+      <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Contact via Telegram</h4>
+        <p>Hit "Buy" and open the Telegram chat to complete your order.</p>
+      </div>
+      <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Receive OTP</h4>
+        <p>Your virtual number and verification code delivered instantly.</p>
+      </div>
+      <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Done ✓</h4>
+        <p>Account verified. Number disposed. No data retained.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 Emanuele Cervone · <a href="/" style="color:#555; text-decoration:none;">emanueledev.xyz</a></p>
+    <p style="margin-top:8px; font-size:0.75rem;">Numbers are single-use virtual SIMs for legitimate account verification only.</p>
+  </footer>
+</div>
+
+<!-- ── Bottom Nav ── -->
+<nav class="bottom-nav">
+  <a href="#telegram" class="nav-link" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+  <a href="#whatsapp" class="nav-link" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  <a href="#discord"  class="nav-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+</nav>
+
+<!-- ── Order Modal ── -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
+  <div class="modal">
+    <h3 id="modal-title">Product</h3>
+    <p id="modal-desc">Description</p>
+    <div class="modal-price" id="modal-price">€0</div>
+    <div class="modal-actions">
+      <a id="modal-tg-link" href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="modal-tg-btn">
+        <i class="fa-brands fa-telegram"></i> Order on Telegram
+      </a>
+      <button class="modal-close" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Particles ──
+if (typeof particlesJS !== 'undefined') {
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 60, density: { enable: true, value_area: 900 } },
+      color: { value: "#ffffff" },
+      shape: { type: "circle" },
+      opacity: { value: 0.35 },
+      size: { value: 2.5 },
+      line_linked: { enable: true, distance: 140, color: "#ffffff", opacity: 0.25, width: 1 },
+      move: { enable: true, speed: 1.4 }
+    },
+    interactivity: {
+      events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } }
+    }
+  });
+}
+
+// ── Nav scroll ──
+document.querySelectorAll('.nav-link[href^="#"]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    var container = document.getElementById('main-scroll-container');
+    if (target && container) {
+      container.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+    }
+  });
+});
+
+// ── Modal ──
+function openModal(title, desc, price, platform) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-desc').textContent  = desc;
+  document.getElementById('modal-price').textContent = price;
+  var msg = encodeURIComponent('Hi! I want to buy: ' + title + ' (' + price + ')');
+  document.getElementById('modal-tg-link').href = 'https://t.me/stark020009?text=' + msg;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-backdrop')) {
+    document.getElementById('modal-backdrop').classList.remove('open');
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>

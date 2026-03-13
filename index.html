@@ -24,6 +24,23 @@
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <link rel="stylesheet" href="style.css">
+<style>
+.shop-btn {
+  position: fixed; top: 22px; left: 28px; z-index: 200;
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px;
+  font-size: 1rem; font-weight: 600;
+  color: #eaeaea; text-decoration: none;
+  background: rgba(255,255,255,.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.1);
+  transition: color 0.3s, background 0.3s, transform 0.2s;
+}
+.shop-btn:hover { color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+.shop-btn i { font-size: 1.05rem; }
+.telegram-btn:hover { background: rgba(38, 165, 228, 0.2); border-color: #26A5E4; transform: translateY(-5px) translateZ(0); }
+.fa-telegram { color: #26A5E4; }
+</style>
 </head>
 <body>
 
@@ -101,6 +118,13 @@
           <p>stark020009</p>
         </div>
       </a>
+      <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="contact-card glass telegram-btn">
+        <i class="fa-brands fa-telegram"></i>
+        <div class="contact-info">
+          <span>Message on Telegram</span>
+          <p>@stark020009</p>
+        </div>
+      </a>
       <div class="contact-card glass">
         <i class="fa-solid fa-envelope"></i>
         <div class="contact-info">
@@ -115,6 +139,10 @@
     <p>&#169; 2026 Emanuele Cervone. All rights reserved.</p>
   </footer>
 </div>
+
+<a href="/shop" class="shop-btn glass">
+  <i class="fa-solid fa-bag-shopping"></i> Shop
+</a>
 
 <nav class="bottom-nav glass">
   <a href="#home" class="nav-link"><i class="fa-solid fa-house"></i></a>
