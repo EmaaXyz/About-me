@@ -171,27 +171,27 @@
 </div>
 <script>
 (function() {
-  var KEY = 'emanueledev_index';
-  var NS  = 'emanueledev-xyz';
+  var KEY = 'index';
+  var NS  = 'emanueledev';
   var el  = document.getElementById('visit-count');
   var SESSION_KEY = 'visited_index';
 
-  function display(n) { if (el) el.textContent = Number(n).toLocaleString(); }
-
-  if (sessionStorage.getItem(SESSION_KEY)) {
-    // Already counted this session — just fetch current value
-    fetch('https://api.countapi.xyz/get/' + NS + '/' + KEY)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ display(d.value); })
-      .catch(function(){ display('—'); });
-  } else {
-    // First visit this session — hit (increment)
-    sessionStorage.setItem(SESSION_KEY, '1');
-    fetch('https://api.countapi.xyz/hit/' + NS + '/' + KEY)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ display(d.value); })
-      .catch(function(){ display('—'); });
+  function display(n) {
+    var num = parseInt(n, 10);
+    if (el) el.textContent = isNaN(num) ? '—' : num.toLocaleString();
   }
+
+  var isNew = !sessionStorage.getItem(SESSION_KEY);
+  if (isNew) sessionStorage.setItem(SESSION_KEY, '1');
+
+  var url = isNew
+    ? 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up'
+    : 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/get';
+
+  fetch(url)
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(d) { display(d.count); })
+    .catch(function() { display('—'); });
 })();
 </script>
 
