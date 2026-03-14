@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>404 – Pagina non trovata | Emanuele Cervone</title>
+  <link rel="icon" type="image/jpeg" href="WebSitePfp.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    /* ── Reset & Base ── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0e0e0e;
+      color: #eaeaea;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Particles ── */
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* ── Glass utility (copiato da style.css) ── */
+    .glass {
+      background: rgba(255, 255, 255, .03);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    /* ── Shop-btn (copiato esattamente da index.html <style>) ── */
+    .shop-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #eaeaea;
+      text-decoration: none;
+      background: rgba(255, 255, 255, .03);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, .1);
+      transition: color 0.3s, background 0.3s, transform 0.2s;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .shop-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .shop-btn i {
+      font-size: 1.05rem;
+    }
+
+    /* ── Contact-card (copiato da style.css) ── */
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: clamp(30px, 5vw, 50px) clamp(30px, 6vw, 60px);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      text-decoration: none;
+      color: inherit;
+      text-align: center;
+    }
+
+    /* ── 404 specifico ── */
+    .error-code {
+      font-size: clamp(5rem, 18vw, 9rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -4px;
+      line-height: 1;
+      /* leggero bagliore come i titoli h2 */
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.08);
+    }
+
+    .error-label {
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      color: #aaa;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      margin: 4px auto;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+  <!-- Card centrale, stile contact-card + glass -->
+  <div class="contact-card glass">
+    <p class="error-code">404</p>
+    <p class="error-label">Pagina non trovata</p>
+
+    <hr class="divider">
+
+    <!-- Pulsante ritorno Home con stile shop-btn -->
+    <a href="index.html" class="shop-btn">
+      <i class="fa-solid fa-house"></i> Torna alla Home
+    </a>
+
+
+  </div>
+
+  <script>
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3 },
+          line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+          move: { enable: true, speed: 2 }
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: true, mode: "push" }
+          }
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
