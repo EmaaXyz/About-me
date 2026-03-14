@@ -272,6 +272,56 @@ html, body { background: var(--bg); color: var(--text); overflow: hidden; }
   .step-arrow { display: none; }
   .back-link { top: 14px; left: 14px; font-size: 0.8rem; }
 }
+
+/* Review widget */
+.review-fab {
+  position: fixed; bottom: 90px; right: 28px; z-index: 300;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #aaa; font-size: 1.15rem;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+.review-fab:hover { background: rgba(255,255,255,0.12); color: #fff; transform: scale(1.1); }
+.review-panel {
+  position: fixed; bottom: 150px; right: 28px; z-index: 400;
+  width: 300px; background: #131313;
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+  padding: 22px; display: none; flex-direction: column; gap: 14px;
+  animation: fadeUp 0.25s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+}
+.review-panel.open { display: flex; }
+.review-panel-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
+.review-panel-sub   { font-size: 0.75rem; color: #666; margin-top: -8px; }
+.stars { display: flex; gap: 5px; }
+.star { font-size: 1.5rem; cursor: pointer; color: #333; transition: color 0.15s, transform 0.15s; user-select: none; }
+.star:hover, .star.active { color: #f5c542; transform: scale(1.15); }
+.review-textarea {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+  color: #eaeaea; font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem; padding: 10px 12px; resize: none; height: 80px;
+  outline: none; transition: border-color 0.2s;
+}
+.review-textarea::placeholder { color: #444; }
+.review-textarea:focus { border-color: rgba(255,255,255,0.22); }
+.review-submit {
+  padding: 10px; border-radius: 10px; border: none;
+  background: rgba(255,255,255,0.07); color: #eaeaea;
+  font-family: 'Poppins', sans-serif; font-size: 0.82rem;
+  font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.review-submit:hover { background: rgba(255,255,255,0.13); }
+.review-submit:disabled { opacity: 0.35; cursor: default; }
+.review-divider { height: 1px; background: rgba(255,255,255,0.07); border: none; margin: 2px 0; }
+.reviews-list { display: flex; flex-direction: column; gap: 8px; max-height: 140px; overflow-y: auto; }
+.review-item { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 9px 11px; border: 1px solid rgba(255,255,255,0.05); }
+.ri-stars { color: #f5c542; font-size: 0.72rem; margin-bottom: 3px; }
+.ri-text  { font-size: 0.77rem; color: #bbb; line-height: 1.4; }
+.no-reviews { font-size: 0.78rem; color: #444; text-align: center; padding: 8px 0; }
+.review-success { text-align: center; font-size: 0.82rem; color: #4ade80; display: none; }
 </style>
 </head>
 <body>
@@ -287,7 +337,7 @@ html, body { background: var(--bg); color: var(--text); overflow: hidden; }
   <section class="hero">
     <div class="hero-badge"><span></span> Shop — VOIP Numbers</div>
     <h1>Verify Anywhere,<br>Pay Less.</h1>
-    <p>Virtual phone numbers for Telegram, WhatsApp and Discord. Instant delivery via Telegram bot. No subscription needed.</p>
+    <p>Virtual phone numbers for Telegram, WhatsApp and Discord. Instant delivery via Telegram. No subscription needed.</p>
 
     <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="verified-badge">
       <img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" style="width:18px;height:18px;">
@@ -402,12 +452,12 @@ html, body { background: var(--bg); color: var(--text); overflow: hidden; }
     </div>
     <div class="cards-grid">
 
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€3.00','wa')">
-        <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-standard">Standard</span></div>
+      <div class="product-card wa" onclick="openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00','wa')">
+        <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-premium">Premium</span></div>
         <div class="card-body"><h3>USA</h3><p>American number, high WhatsApp success rate.</p></div>
         <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€3.00','wa')">Buy</button>
+          <div class="price">€7 <span>/ use</span></div>
+          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00','wa')">Buy</button>
         </div>
       </div>
 
@@ -634,26 +684,133 @@ document.addEventListener('keydown', function(e) {
 </div>
 <script>
 (function() {
-  var KEY = 'emanueledev_shop';
-  var NS  = 'emanueledev-xyz';
+  var KEY = 'shop';
+  var NS  = 'emanueledev';
   var el  = document.getElementById('visit-count');
   var SESSION_KEY = 'visited_shop';
 
-  function display(n) { if (el) el.textContent = Number(n).toLocaleString(); }
-
-  if (sessionStorage.getItem(SESSION_KEY)) {
-    fetch('https://api.countapi.xyz/get/' + NS + '/' + KEY)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ display(d.value); })
-      .catch(function(){ display('—'); });
-  } else {
-    sessionStorage.setItem(SESSION_KEY, '1');
-    fetch('https://api.countapi.xyz/hit/' + NS + '/' + KEY)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ display(d.value); })
-      .catch(function(){ display('—'); });
+  function display(n) {
+    var num = parseInt(n, 10);
+    if (el) el.textContent = isNaN(num) ? '—' : num.toLocaleString();
   }
+
+  var isNew = !sessionStorage.getItem(SESSION_KEY);
+  if (isNew) sessionStorage.setItem(SESSION_KEY, '1');
+
+  var url = isNew
+    ? 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up'
+    : 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/get';
+
+  fetch(url)
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(d) { display(d.count); })
+    .catch(function() { display('—'); });
 })();
+</script>
+
+
+<!-- Review FAB -->
+<button class="review-fab" onclick="toggleReview()" title="Leave a review">
+  <i class="fa-solid fa-comment-dots"></i>
+</button>
+
+<div class="review-panel" id="review-panel">
+  <div class="review-panel-title">Leave a Review</div>
+  <div class="review-panel-sub">How was your experience?</div>
+
+  <div id="reviews-list-wrap">
+    <div class="reviews-list" id="reviews-list"></div>
+  </div>
+
+  <hr class="review-divider">
+
+  <div class="stars" id="stars">
+    <span class="star" data-v="1">&#9733;</span>
+    <span class="star" data-v="2">&#9733;</span>
+    <span class="star" data-v="3">&#9733;</span>
+    <span class="star" data-v="4">&#9733;</span>
+    <span class="star" data-v="5">&#9733;</span>
+  </div>
+
+  <textarea class="review-textarea" id="review-text" placeholder="Write your review..."></textarea>
+  <button class="review-submit" id="review-submit" onclick="submitReview()">Submit</button>
+  <div class="review-success" id="review-success">Thanks for your review! ✓</div>
+</div>
+
+<script>
+var reviewRating = 0;
+
+function toggleReview() {
+  var panel = document.getElementById('review-panel');
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open')) renderReviews();
+}
+
+document.addEventListener('click', function(e) {
+  var panel = document.getElementById('review-panel');
+  var fab = document.querySelector('.review-fab');
+  if (panel && fab && !panel.contains(e.target) && !fab.contains(e.target)) {
+    panel.classList.remove('open');
+  }
+});
+
+document.getElementById('stars').addEventListener('click', function(e) {
+  var star = e.target.closest('.star');
+  if (!star) return;
+  reviewRating = parseInt(star.dataset.v);
+  document.querySelectorAll('.star').forEach(function(s) {
+    s.classList.toggle('active', parseInt(s.dataset.v) <= reviewRating);
+  });
+});
+
+document.getElementById('stars').addEventListener('mouseover', function(e) {
+  var star = e.target.closest('.star');
+  if (!star) return;
+  var v = parseInt(star.dataset.v);
+  document.querySelectorAll('.star').forEach(function(s) {
+    s.style.color = parseInt(s.dataset.v) <= v ? '#f5c542' : '';
+  });
+});
+
+document.getElementById('stars').addEventListener('mouseleave', function() {
+  document.querySelectorAll('.star').forEach(function(s) {
+    s.style.color = parseInt(s.dataset.v) <= reviewRating ? '#f5c542' : '';
+  });
+});
+
+function submitReview() {
+  var text = document.getElementById('review-text').value.trim();
+  if (!reviewRating || !text) return;
+
+  var reviews = JSON.parse(localStorage.getItem('shop_reviews') || '[]');
+  reviews.unshift({ rating: reviewRating, text: text, date: new Date().toLocaleDateString('en-GB') });
+  localStorage.setItem('shop_reviews', JSON.stringify(reviews));
+
+  document.getElementById('review-text').value = '';
+  reviewRating = 0;
+  document.querySelectorAll('.star').forEach(function(s) { s.classList.remove('active'); s.style.color = ''; });
+
+  var succ = document.getElementById('review-success');
+  succ.style.display = 'block';
+  setTimeout(function() { succ.style.display = 'none'; }, 2500);
+
+  renderReviews();
+}
+
+function renderReviews() {
+  var list = document.getElementById('reviews-list');
+  var reviews = JSON.parse(localStorage.getItem('shop_reviews') || '[]');
+  if (!reviews.length) {
+    list.innerHTML = '<div class="no-reviews">No reviews yet. Be the first!</div>';
+    return;
+  }
+  list.innerHTML = reviews.map(function(r) {
+    return '<div class="review-item">'
+      + '<div class="ri-stars">' + '&#9733;'.repeat(r.rating) + '&#9734;'.repeat(5 - r.rating) + ' <span style="color:#555;font-size:0.7rem;">' + r.date + '</span></div>'
+      + '<div class="ri-text">' + r.text.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>'
+      + '</div>';
+  }).join('');
+}
 </script>
 
 </body>
