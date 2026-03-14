@@ -41,6 +41,84 @@
 .shop-btn i { font-size: 1.05rem; }
 .telegram-btn:hover { background: rgba(38, 165, 228, 0.2); border-color: #26A5E4; transform: translateY(-5px) translateZ(0); }
 .fa-telegram { color: #26A5E4; }
+
+.login-btn {
+  position: fixed; top: 22px; left: 160px; z-index: 200;
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px;
+  font-size: 1rem; font-weight: 600;
+  color: #eaeaea; text-decoration: none; cursor: pointer;
+  background: rgba(255,255,255,.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.1);
+  transition: color 0.3s, background 0.3s, transform 0.2s;
+}
+.login-btn:hover { color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+.login-btn i { font-size: 1.05rem; }
+
+/* Login modal */
+.login-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px); z-index: 1000;
+  display: none; justify-content: center; align-items: center;
+}
+.login-backdrop.open { display: flex; }
+.login-modal {
+  background: #111; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 22px; padding: 38px 34px;
+  width: 90%; max-width: 380px; text-align: center;
+  animation: fadeUp 0.3s ease;
+}
+.login-modal h3 { font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
+.login-modal p  { font-size: 0.82rem; color: #666; margin-bottom: 28px; }
+.login-field {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+  color: #eaeaea; font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem; padding: 13px 16px; margin-bottom: 12px;
+  outline: none; transition: border-color 0.2s;
+}
+.login-field:focus { border-color: rgba(255,255,255,0.25); }
+.login-field::placeholder { color: #444; }
+.login-action {
+  width: 100%; padding: 13px; border-radius: 12px; border: none;
+  background: rgba(255,255,255,0.08); color: #eaeaea;
+  font-family: 'Poppins', sans-serif; font-size: 0.9rem;
+  font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 4px;
+}
+.login-action:hover { background: rgba(255,255,255,0.15); }
+.login-error { font-size: 0.8rem; color: #f87171; margin-top: 10px; display: none; }
+
+.login-divider { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
+.login-divider span { font-size: 0.75rem; color: #333; white-space: nowrap; }
+.login-divider::before, .login-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+.signup-link { font-size: 0.82rem; color: #666; margin-top: 2px; }
+.signup-link button { background: none; border: none; color: #aaa; font-family: 'Poppins', sans-serif; font-size: 0.82rem; cursor: pointer; text-decoration: underline; transition: color 0.2s; }
+.signup-link button:hover { color: #fff; }
+.login-success { font-size: 0.8rem; color: #4ade80; margin-top: 10px; display: none; }
+
+
+/* Logged-in state */
+.user-badge {
+  position: fixed; top: 22px; left: 160px; z-index: 200;
+  display: none; align-items: center; gap: 10px;
+  padding: 14px 22px; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 600; color: #eaeaea;
+  background: rgba(255,255,255,.03); backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.user-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; color: #fff;
+}
+.logout-x {
+  background: none; border: none; color: #555; cursor: pointer;
+  font-size: 0.85rem; padding: 0; margin-left: 4px;
+  transition: color 0.2s;
+}
+.logout-x:hover { color: #f87171; }
 </style>
 </head>
 <body>
@@ -144,6 +222,148 @@
 <a href="/shop" class="shop-btn glass">
   <i class="fa-solid fa-bag-shopping"></i> Shop
 </a>
+
+<button class="login-btn glass" id="login-btn" onclick="openLogin()">
+  <i class="fa-solid fa-user"></i> Log in
+</button>
+
+<div class="user-badge glass" id="user-badge">
+  <div class="user-avatar" id="user-avatar">E</div>
+  <span id="user-name">Ema</span>
+  <button class="logout-x" onclick="doLogout()" title="Log out"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<!-- Login modal -->
+<div class="login-backdrop" id="login-backdrop" onclick="backdropClose(event)">
+  <div class="login-modal">
+
+    <!-- Sign in view -->
+    <div id="view-signin">
+      <h3>Welcome back</h3>
+      <p>Sign in to your account</p>
+      <input class="login-field" id="login-user" type="text" placeholder="Username" autocomplete="off">
+      <input class="login-field" id="login-pass" type="password" placeholder="Password">
+      <button class="login-action" onclick="doLogin()">Sign in</button>
+      <div class="login-error" id="login-error">Wrong username or password.</div>
+      <div class="login-divider"><span>or</span></div>
+      <div class="signup-link">Don't have an account? <button onclick="switchView('signup')">Sign up</button></div>
+    </div>
+
+    <!-- Sign up view -->
+    <div id="view-signup" style="display:none">
+      <h3>Create account</h3>
+      <p>Join and save your preferences</p>
+      <input class="login-field" id="su-user" type="text" placeholder="Username" autocomplete="off">
+      <input class="login-field" id="su-pass" type="password" placeholder="Password">
+      <input class="login-field" id="su-pass2" type="password" placeholder="Confirm password">
+      <button class="login-action" onclick="doSignup()">Sign up</button>
+      <div class="login-error" id="signup-error">Error during registration.</div>
+      <div class="login-success" id="signup-success">Account created! You can now sign in.</div>
+      <div class="login-divider"><span>or</span></div>
+      <div class="signup-link">Already have an account? <button onclick="switchView('signin')">Sign in</button></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  if (sessionStorage.getItem('ema_logged')) {
+    var u = sessionStorage.getItem('ema_user') || 'Ema';
+    showLoggedIn(u);
+  }
+})();
+
+function switchView(v) {
+  document.getElementById('view-signin').style.display = v === 'signin' ? 'block' : 'none';
+  document.getElementById('view-signup').style.display = v === 'signup' ? 'block' : 'none';
+  document.getElementById('login-error').style.display = 'none';
+  document.getElementById('signup-error').style.display = 'none';
+  document.getElementById('signup-success').style.display = 'none';
+}
+
+function openLogin() {
+  switchView('signin');
+  document.getElementById('login-backdrop').classList.add('open');
+  setTimeout(function() { document.getElementById('login-user').focus(); }, 100);
+}
+
+function backdropClose(e) {
+  if (e.target === document.getElementById('login-backdrop')) closeLogin();
+}
+
+function closeLogin() {
+  document.getElementById('login-backdrop').classList.remove('open');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLogin();
+});
+
+function getUsers() {
+  return JSON.parse(localStorage.getItem('site_users') || '{}');
+}
+
+function doLogin() {
+  var u = document.getElementById('login-user').value.trim();
+  var p = document.getElementById('login-pass').value;
+  var users = getUsers();
+  var isAdmin = (u === 'Ema' && p === '24692469');
+  var isUser  = users[u] && users[u] === p;
+  if (isAdmin || isUser) {
+    sessionStorage.setItem('ema_logged', '1');
+    sessionStorage.setItem('ema_user', u);
+    closeLogin();
+    showLoggedIn(u);
+  } else {
+    var err = document.getElementById('login-error');
+    err.style.display = 'block';
+    document.getElementById('login-pass').value = '';
+    setTimeout(function() { err.style.display = 'none'; }, 3000);
+  }
+}
+
+function doSignup() {
+  var u  = document.getElementById('su-user').value.trim();
+  var p  = document.getElementById('su-pass').value;
+  var p2 = document.getElementById('su-pass2').value;
+  var err  = document.getElementById('signup-error');
+  var succ = document.getElementById('signup-success');
+  err.style.display = 'none'; succ.style.display = 'none';
+
+  if (!u || !p) { err.textContent = 'Fill in all fields.'; err.style.display = 'block'; return; }
+  if (p !== p2) { err.textContent = 'Passwords do not match.'; err.style.display = 'block'; return; }
+  if (u === 'Ema') { err.textContent = 'Username not available.'; err.style.display = 'block'; return; }
+
+  var users = getUsers();
+  if (users[u]) { err.textContent = 'Username already taken.'; err.style.display = 'block'; return; }
+
+  users[u] = p;
+  localStorage.setItem('site_users', JSON.stringify(users));
+  succ.style.display = 'block';
+  document.getElementById('su-user').value = '';
+  document.getElementById('su-pass').value = '';
+  document.getElementById('su-pass2').value = '';
+  setTimeout(function() { switchView('signin'); }, 2000);
+}
+
+function showLoggedIn(username) {
+  document.getElementById('login-btn').style.display = 'none';
+  var badge = document.getElementById('user-badge');
+  badge.style.display = 'flex';
+  var initials = username ? username.charAt(0).toUpperCase() : 'U';
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-name').textContent = username;
+}
+
+function doLogout() {
+  sessionStorage.removeItem('ema_logged');
+  sessionStorage.removeItem('ema_user');
+  document.getElementById('login-btn').style.display = 'flex';
+  document.getElementById('user-badge').style.display = 'none';
+}
+</script>
+
 
 <nav class="bottom-nav glass">
   <a href="#home" class="nav-link"><i class="fa-solid fa-house"></i></a>
