@@ -2,419 +2,731 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Emanuele Cervone | Junior Developer</title>
+<title>Emanuele Cervone | Developer</title>
 <link rel="icon" type="image/jpeg" href="WebSitePfp.jpg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
-<!-- Loader failsafe: sparisce sempre, anche se un CDN è offline -->
 <script>
-  window.addEventListener('load', function() {
-    var l = document.getElementById('loading');
-    if (l) l.style.display = 'none';
-  });
-  setTimeout(function() {
-    var l = document.getElementById('loading');
-    if (l) l.style.display = 'none';
-  }, 3000);
+  window.addEventListener('load',function(){var l=document.getElementById('loading');if(l)l.style.display='none';});
+  setTimeout(function(){var l=document.getElementById('loading');if(l)l.style.display='none';},3000);
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- NO defer: script.js in fondo al body li usa direttamente -->
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<link rel="stylesheet" href="style.css">
 <style>
-.shop-btn {
-  position: fixed; top: 22px; left: 28px; z-index: 200;
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 28px; border-radius: 50px;
-  font-size: 1rem; font-weight: 600;
-  color: #eaeaea; text-decoration: none;
-  background: rgba(255,255,255,.03);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,.1);
-  transition: color 0.3s, background 0.3s, transform 0.2s;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#141414;
+  --bg2:#1c1c1c;
+  --border:rgba(255,255,255,0.07);
+  --borderh:rgba(255,255,255,0.15);
+  --text:#e8e8e8;
+  --muted:#666;
+  --muted2:#999;
+  --accent:#fff;
+  --tg:#26A5E4;
+  --dc:#5865F2;
+  --fd:'Bebas Neue',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'DM Mono',monospace;
 }
-.shop-btn:hover { color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
-.shop-btn i { font-size: 1.05rem; }
-.telegram-btn:hover { background: rgba(38, 165, 228, 0.2); border-color: #26A5E4; transform: translateY(-5px) translateZ(0); }
-.fa-telegram { color: #26A5E4; }
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow:hidden;-webkit-font-smoothing:antialiased}
 
-.login-btn {
-  position: fixed; top: 22px; left: 160px; z-index: 200;
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 28px; border-radius: 50px;
-  font-size: 1rem; font-weight: 600;
-  color: #eaeaea; text-decoration: none; cursor: pointer;
-  background: rgba(255,255,255,.03);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,.1);
-  transition: color 0.3s, background 0.3s, transform 0.2s;
-}
-.login-btn:hover { color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
-.login-btn i { font-size: 1.05rem; }
+/* ── LOADER ── */
+#loading{position:fixed;inset:0;background:#000;display:flex;justify-content:center;align-items:center;z-index:9999}
+.spinner{width:32px;height:32px;border:2px solid #222;border-top:2px solid #fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* Login modal */
-.login-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(8px); z-index: 1000;
-  display: none; justify-content: center; align-items: center;
-}
-.login-backdrop.open { display: flex; }
-.login-modal {
-  background: #111; border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 22px; padding: 38px 34px;
-  width: 90%; max-width: 380px; text-align: center;
-  animation: fadeUp 0.3s ease;
-}
-.login-modal h3 { font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
-.login-modal p  { font-size: 0.82rem; color: #666; margin-bottom: 28px; }
-.login-field {
-  width: 100%; background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
-  color: #eaeaea; font-family: 'Poppins', sans-serif;
-  font-size: 0.88rem; padding: 13px 16px; margin-bottom: 12px;
-  outline: none; transition: border-color 0.2s;
-}
-.login-field:focus { border-color: rgba(255,255,255,0.25); }
-.login-field::placeholder { color: #444; }
-.login-action {
-  width: 100%; padding: 13px; border-radius: 12px; border: none;
-  background: rgba(255,255,255,0.08); color: #eaeaea;
-  font-family: 'Poppins', sans-serif; font-size: 0.9rem;
-  font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 4px;
-}
-.login-action:hover { background: rgba(255,255,255,0.15); }
-.login-error { font-size: 0.8rem; color: #f87171; margin-top: 10px; display: none; }
+/* ── PARTICLES ── */
+#particles-js{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-.login-divider { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
-.login-divider span { font-size: 0.75rem; color: #333; white-space: nowrap; }
-.login-divider::before, .login-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
-.signup-link { font-size: 0.82rem; color: #666; margin-top: 2px; }
-.signup-link button { background: none; border: none; color: #aaa; font-family: 'Poppins', sans-serif; font-size: 0.82rem; cursor: pointer; text-decoration: underline; transition: color 0.2s; }
-.signup-link button:hover { color: #fff; }
-.login-success { font-size: 0.8rem; color: #4ade80; margin-top: 10px; display: none; }
+/* ── SCROLL CONTAINER ── */
+.sc{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth;position:relative;z-index:1}
 
+/* ── TOP NAV ── */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 48px;
+  pointer-events:none;
+}
+.logo{
+  font-family:var(--fd);font-size:1.15rem;letter-spacing:.08em;
+  color:var(--text);text-decoration:none;line-height:1.1;
+  pointer-events:all;
+}
+.logo span{display:block}
+.nav-right{
+  display:flex;gap:36px;list-style:none;
+  pointer-events:all;
+}
+.nav-right a{
+  font-family:var(--fb);font-size:.72rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted2);text-decoration:none;transition:color .2s;
+}
+.nav-right a:hover{color:var(--text)}
 
-/* Logged-in state */
-.user-badge {
-  position: fixed; top: 22px; left: 160px; z-index: 200;
-  display: none; align-items: center; gap: 10px;
-  padding: 14px 22px; border-radius: 50px;
-  font-size: 0.9rem; font-weight: 600; color: #eaeaea;
-  background: rgba(255,255,255,.03); backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,.1);
+/* ── LEFT SOCIAL BAR ── */
+.social-bar{
+  position:fixed;left:24px;top:50%;transform:translateY(-50%);
+  z-index:300;display:flex;flex-direction:column;gap:20px;
+  align-items:center;
 }
-.user-avatar {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; font-weight: 700; color: #fff;
+.social-bar a{
+  color:var(--muted);font-size:.88rem;text-decoration:none;
+  transition:color .2s,transform .2s;
 }
-.logout-x {
-  background: none; border: none; color: #555; cursor: pointer;
-  font-size: 0.85rem; padding: 0; margin-left: 4px;
-  transition: color 0.2s;
+.social-bar a:hover{color:var(--text);transform:scale(1.2)}
+.social-line{width:1px;height:40px;background:var(--border)}
+
+/* ── RIGHT SCROLL INDICATOR ── */
+.scroll-ind{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);
+  z-index:300;display:flex;flex-direction:column;align-items:center;gap:10px;
 }
-.logout-x:hover { color: #f87171; }
+.scroll-ind-line{width:1px;height:60px;background:var(--border)}
+.scroll-ind-text{
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;
+  color:var(--muted);text-transform:uppercase;
+  writing-mode:vertical-rl;text-orientation:mixed;
+}
+.scroll-ind-dots{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.sid{width:5px;height:5px;border-radius:50%;background:var(--border);border:1px solid var(--muted);transition:background .3s,border-color .3s}
+.sid.active{background:var(--accent);border-color:var(--accent)}
+
+/* ── SECTION BASE ── */
+section{
+  min-height:100vh;scroll-snap-align:start;
+  position:relative;display:flex;align-items:center;
+  padding:0 120px 0 96px;
+}
+
+/* ── SECTION NUMBER ── */
+.sec-num{
+  position:absolute;bottom:32px;left:48px;
+  font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;
+  color:var(--muted);
+}
+
+/* ── SECTION 01 — HOME ── */
+#home{justify-content:center;flex-direction:column}
+.home-eyebrow{
+  font-family:var(--fb);font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted2);margin-bottom:16px;
+}
+.home-name{
+  font-family:var(--fd);
+  font-size:clamp(5rem,14vw,13rem);
+  line-height:.93;letter-spacing:.02em;
+  color:var(--text);margin-bottom:28px;
+}
+.home-sub{
+  font-family:var(--fb);font-size:clamp(.85rem,1.5vw,1rem);
+  color:var(--muted2);letter-spacing:.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+}
+.home-sub::before{content:'';display:block;width:32px;height:1px;background:var(--muted)}
+.tw-wrap{display:flex;align-items:center;gap:2px}
+.cursor{color:var(--accent);animation:blink .8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── SECTION 02 — JOURNEY ── */
+#journey{flex-direction:column;justify-content:center;padding-top:100px;padding-bottom:80px}
+.sec-header{
+  font-family:var(--fd);font-size:clamp(3.5rem,8vw,7rem);
+  letter-spacing:.04em;color:var(--text);margin-bottom:64px;
+  line-height:1;
+}
+.journey-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;width:100%}
+.tl{display:flex;flex-direction:column;gap:0}
+.tl-item{
+  padding:26px 0 26px 32px;border-left:1px solid var(--border);
+  position:relative;transition:border-color .3s;
+}
+.tl-item::before{
+  content:'';position:absolute;left:-4px;top:32px;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--muted);transition:background .3s,border-color .3s;
+}
+.tl-item.current{border-left-color:rgba(255,255,255,.35)}
+.tl-item.current::before{background:var(--accent);border-color:var(--accent)}
+.tl-year{font-family:var(--fm);font-size:.72rem;color:var(--muted);margin-bottom:6px;letter-spacing:.08em}
+.tl-text{font-size:.9rem;color:var(--text);font-weight:400;line-height:1.5}
+
+.skills-col{display:flex;flex-direction:column;gap:32px;justify-content:center}
+.sk-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sk-name{font-size:.82rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:10px}
+.sk-name img{width:20px;height:20px}
+.sk-pct{font-family:var(--fm);font-size:.72rem;color:var(--muted);opacity:0;transition:opacity .6s}
+.sk-bar{height:2px;background:rgba(255,255,255,.07);border-radius:2px}
+.sk-fill{height:100%;width:0;border-radius:2px;background:var(--accent);transition:width 2s cubic-bezier(.16,1,.3,1)}
+.sk-fill.python{background:linear-gradient(90deg,#3776ab,#FFD43B)}
+.sk-fill.java{background:linear-gradient(90deg,#f89820,#EA2D2E)}
+.sk-fill.cs{background:linear-gradient(90deg,#68217A,#9B4F96)}
+
+/* ── SECTION 03 — PROJECTS ── */
+#projects{flex-direction:column;justify-content:flex-start;padding-top:120px;padding-bottom:80px}
+.projects-header{display:flex;align-items:flex-end;justify-content:space-between;width:100%;margin-bottom:48px}
+.projects-header h2{font-family:var(--fd);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:.04em;line-height:1}
+.projects-meta{font-family:var(--fm);font-size:.7rem;color:var(--muted);letter-spacing:.1em;padding-bottom:12px}
+.projects-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1px;width:100%;background:var(--border);
+  border:1px solid var(--border);
+}
+.proj-card{
+  background:var(--bg);padding:28px;
+  transition:background .3s;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:14px;min-height:160px;
+}
+.proj-card:hover{background:var(--bg2)}
+.proj-card::after{
+  content:'→';position:absolute;bottom:22px;right:22px;
+  font-size:.9rem;color:var(--muted);transition:color .2s,transform .2s;
+}
+.proj-card:hover::after{color:var(--text);transform:translate(3px,-3px)}
+.proj-card a{text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;height:100%}
+.proj-name{font-family:var(--fd);font-size:1.45rem;letter-spacing:.04em;color:var(--text);line-height:1}
+.proj-desc{font-size:.78rem;color:var(--muted2);line-height:1.55;flex:1}
+.proj-lang{
+  font-family:var(--fm);font-size:.62rem;color:var(--muted);
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--border);padding:2px 8px;border-radius:3px;
+  display:inline-block;width:fit-content;
+}
+
+/* ── SECTION 04 — CONTACT ── */
+#contact{gap:80px;align-items:center}
+.contact-l{flex:1;max-width:380px}
+.contact-l h2{font-family:var(--fd);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:.04em;line-height:.95;margin-bottom:40px}
+.c-info-item{margin-bottom:28px}
+.c-info-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.c-info-val{font-size:.88rem;color:var(--text)}
+.c-links{display:flex;flex-direction:column;gap:10px;margin-top:40px}
+.c-link{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px;border:1px solid var(--border);border-radius:4px;
+  text-decoration:none;color:var(--muted2);font-size:.82rem;font-weight:500;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.c-link:hover{color:var(--text);border-color:var(--borderh);background:rgba(255,255,255,.03)}
+.c-link i{font-size:.95rem;flex-shrink:0}
+.c-link.tg:hover{border-color:rgba(38,165,228,.5);color:var(--tg)}
+.c-link.dc:hover{border-color:rgba(88,101,242,.5);color:var(--dc)}
+.c-link.shop:hover{border-color:rgba(255,255,255,.3);color:#fff}
+
+.contact-r{
+  flex:1;border:1px solid var(--border);padding:40px;
+  display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,.01);
+}
+.cf-title{font-family:var(--fd);font-size:2rem;letter-spacing:.06em;color:var(--text);margin-bottom:8px}
+.cf-input{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);
+  color:var(--text);font-family:var(--fb);font-size:.88rem;
+  padding:13px 0;outline:none;transition:border-color .2s;
+  placeholder-shown:color:var(--muted);
+}
+.cf-input::placeholder{color:var(--muted)}
+.cf-input:focus{border-bottom-color:rgba(255,255,255,.4)}
+.cf-textarea{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);
+  color:var(--text);font-family:var(--fb);font-size:.88rem;
+  padding:13px 0;outline:none;resize:none;height:80px;
+  transition:border-color .2s;
+}
+.cf-textarea::placeholder{color:var(--muted)}
+.cf-textarea:focus{border-bottom-color:rgba(255,255,255,.4)}
+.cf-btn{
+  align-self:flex-start;margin-top:8px;
+  padding:13px 32px;border:1px solid var(--borderh);background:transparent;
+  color:var(--text);font-family:var(--fb);font-size:.82rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.cf-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+.cf-sent{font-family:var(--fm);font-size:.75rem;color:#4ade80;display:none;margin-top:4px}
+
+/* ── FOOTER ── */
+.footer{
+  min-height:auto!important;scroll-snap-align:end;
+  padding:28px 120px 28px 96px;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-l{font-family:var(--fm);font-size:.65rem;color:var(--muted);letter-spacing:.08em}
+.footer-r a{font-family:var(--fm);font-size:.65rem;color:var(--muted);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.footer-r a:hover{color:var(--text)}
+
+/* ── SHOP BTN (top-left corner util) ── */
+.shop-pill{
+  position:fixed;top:18px;right:90px;z-index:400;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 18px;border:1px solid var(--border);border-radius:4px;
+  font-family:var(--fb);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted2);text-decoration:none;
+  background:rgba(20,20,20,.9);backdrop-filter:blur(10px);
+  transition:color .2s,border-color .2s;
+}
+.shop-pill:hover{color:var(--text);border-color:var(--borderh)}
+
+/* ── LOGIN BTN ── */
+.login-pill{
+  position:fixed;top:18px;right:220px;z-index:400;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 18px;border:1px solid var(--border);border-radius:4px;
+  font-family:var(--fb);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted2);background:rgba(20,20,20,.9);backdrop-filter:blur(10px);
+  cursor:pointer;transition:color .2s,border-color .2s;
+}
+.login-pill:hover{color:var(--text);border-color:var(--borderh)}
+
+/* ── USER BADGE ── */
+.user-badge{
+  position:fixed;top:18px;right:220px;z-index:400;
+  display:none;align-items:center;gap:9px;
+  padding:8px 18px;border:1px solid var(--border);border-radius:4px;
+  font-family:var(--fb);font-size:.72rem;font-weight:500;letter-spacing:.1em;
+  color:var(--muted2);background:rgba(20,20,20,.9);backdrop-filter:blur(10px);
+}
+.user-av{
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:700;color:#fff;
+}
+.logout-x{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.72rem;transition:color .2s;padding:0;margin-left:2px}
+.logout-x:hover{color:#f87171}
+
+/* ── VISIT COUNTER ── */
+#visit-counter{
+  position:fixed;top:18px;right:24px;z-index:400;
+  display:flex;align-items:center;gap:5px;
+  padding:8px 14px;border:1px solid var(--border);border-radius:4px;
+  background:rgba(20,20,20,.9);backdrop-filter:blur(10px);
+  color:rgba(255,255,255,.28);font-family:var(--fm);font-size:.65rem;
+  pointer-events:none;user-select:none;
+}
+
+/* ── LOGIN MODAL ── */
+.login-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(16px);z-index:1000;display:none;justify-content:center;align-items:center}
+.login-backdrop.open{display:flex}
+.login-modal{
+  background:#161616;border:1px solid var(--borderh);
+  padding:40px 36px;width:90%;max-width:360px;
+  animation:fadeUp .25s ease;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.lm-title{font-family:var(--fd);font-size:2rem;letter-spacing:.06em;color:var(--text);margin-bottom:4px}
+.lm-sub{font-size:.78rem;color:var(--muted);margin-bottom:28px}
+.lm-field{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);
+  color:var(--text);font-family:var(--fb);font-size:.88rem;
+  padding:12px 0;margin-bottom:16px;outline:none;transition:border-color .2s;display:block;
+}
+.lm-field::placeholder{color:var(--muted)}
+.lm-field:focus{border-bottom-color:rgba(255,255,255,.4)}
+.lm-btn{
+  width:100%;padding:13px;border:1px solid var(--borderh);background:transparent;
+  color:var(--text);font-family:var(--fb);font-size:.82rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  transition:background .2s,color .2s;margin-top:4px;
+}
+.lm-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+.lm-err{font-family:var(--fm);font-size:.72rem;color:#f87171;margin-top:10px;display:none}
+.lm-succ{font-family:var(--fm);font-size:.72rem;color:#4ade80;margin-top:10px;display:none}
+.lm-divider{display:flex;align-items:center;gap:10px;margin:14px 0}
+.lm-divider span{font-size:.72rem;color:var(--muted)}
+.lm-divider::before,.lm-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.lm-switch{font-size:.78rem;color:var(--muted)}
+.lm-switch button{background:none;border:none;color:var(--muted2);font-family:var(--fb);font-size:.78rem;cursor:pointer;text-decoration:underline;transition:color .2s}
+.lm-switch button:hover{color:var(--text)}
+
+/* mobile */
+@media(max-width:860px){
+  section{padding:80px 24px 80px 60px}
+  .topnav{padding:20px 24px}
+  .nav-right{gap:20px}
+  .social-bar,.scroll-ind{display:none}
+  .journey-grid{grid-template-columns:1fr}
+  #contact{flex-direction:column;gap:40px;align-items:flex-start;padding-top:100px}
+  .contact-r{width:100%}
+  .footer{padding:24px}
+  .shop-pill,.login-pill,.user-badge{display:none!important}
+}
 </style>
 </head>
 <body>
-
 <div id="loading"><div class="spinner"></div></div>
 <div id="particles-js"></div>
 
-<div class="scroll-container" id="main-scroll-container">
-  <section id="home" class="home">
-    <div class="home-container">
-      <img id="github-avatar" class="profile-img" src="" alt="GitHub Avatar">
-      <div class="home-content">
-        <h1>Emanuele Cervone</h1>
-        <div class="typewriter-container">
-          <span id="typewriter"></span><span class="cursor">&#9615;</span>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ── TOP NAV ── -->
+<header class="topnav">
+  <a href="#home" class="logo" id="sc-logo">
+    <span>EM</span>
+    <span>AN</span>
+  </a>
+  <ul class="nav-right">
+    <li><a href="#journey" id="nl-journey">Journey</a></li>
+    <li><a href="#projects" id="nl-projects">Projects</a></li>
+    <li><a href="#contact" id="nl-contact">Contact</a></li>
+  </ul>
+</header>
 
-  <section id="timeline">
-    <div class="timeline-wrapper">
-      <h2>Journey</h2>
-      <div class="timeline">
-        <div class="timeline-item"><span>2022</span><p>Starting to discover coding</p></div>
-        <div class="timeline-item"><span>2023</span><p>Getting passionate about coding</p></div>
-        <div class="timeline-item"><span>2024</span><p>Practicing with easy projects</p></div>
-        <div class="timeline-item"><span>2025</span><p>Developing in Java &amp; Python fluently</p></div>
-        <div class="timeline-item current"><span>2026</span><p>Starting to study C#</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-wrapper">
-      <div class="skill-card">
-        <div class="skill-header">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-          <span>Python</span>
-          <strong class="percent" data-value="85">0%</strong>
-        </div>
-        <div class="progress-bar"><div class="progress python"></div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-header">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
-          <span>C#</span>
-          <strong class="percent" data-value="50">0%</strong>
-        </div>
-        <div class="progress-bar"><div class="progress cs"></div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-header">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
-          <span>Java</span>
-          <strong class="percent" data-value="100">0%</strong>
-        </div>
-        <div class="progress-bar"><div class="progress java"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div id="projects-container" class="projects"></div>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <div class="contact-grid">
-      <a href="https://discord.gg/CvvwUvXhdG" target="_blank" rel="noopener noreferrer" class="contact-card glass discord-btn">
-        <i class="fa-brands fa-discord"></i>
-        <div class="contact-info">
-          <span>Join my Discord</span>
-          <p>stark020009</p>
-        </div>
-      </a>
-      <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="contact-card glass telegram-btn">
-        <i class="fa-brands fa-telegram"></i>
-        <div class="contact-info">
-          <span>Message on Telegram</span>
-          <p>@stark020009</p>
-        </div>
-      </a>
-      <div class="contact-card glass">
-        <i class="fa-solid fa-envelope"></i>
-        <div class="contact-info">
-          <span>Email me</span>
-          <p class="email-text">ema.cer.21&#64;gmail.com</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>&#169; 2026 Emanuele Cervone. All rights reserved.</p>
-  </footer>
+<!-- ── LEFT SOCIAL BAR ── -->
+<div class="social-bar">
+  <div class="social-line"></div>
+  <a href="https://github.com/EmaaXyz" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fa-brands fa-github"></i></a>
+  <a href="https://discord.gg/CvvwUvXhdG" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fa-brands fa-discord"></i></a>
+  <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+  <div class="social-line"></div>
 </div>
 
-<a href="/shop" class="shop-btn glass">
-  <i class="fa-solid fa-bag-shopping"></i> Shop
-</a>
+<!-- ── RIGHT SCROLL INDICATOR ── -->
+<div class="scroll-ind">
+  <div class="scroll-ind-text">Scroll</div>
+  <div class="scroll-ind-line"></div>
+  <div class="scroll-ind-dots">
+    <div class="sid active" data-sec="0"></div>
+    <div class="sid" data-sec="1"></div>
+    <div class="sid" data-sec="2"></div>
+    <div class="sid" data-sec="3"></div>
+  </div>
+</div>
 
-<button class="login-btn glass" id="login-btn" onclick="openLogin()">
-  <i class="fa-solid fa-user"></i> Log in
-</button>
+<!-- ── SHOP PILL ── -->
+<a href="/shop" class="shop-pill"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
 
-<div class="user-badge glass" id="user-badge">
-  <div class="user-avatar" id="user-avatar">E</div>
+<!-- ── LOGIN PILL ── -->
+<button class="login-pill" id="login-btn" onclick="openLogin()"><i class="fa-solid fa-user"></i> Log in</button>
+<div class="user-badge" id="user-badge">
+  <div class="user-av" id="user-av">E</div>
   <span id="user-name">Ema</span>
-  <button class="logout-x" onclick="doLogout()" title="Log out"><i class="fa-solid fa-xmark"></i></button>
+  <button class="logout-x" onclick="doLogout()"><i class="fa-solid fa-xmark"></i></button>
 </div>
 
-<!-- Login modal -->
+<!-- ── VISIT COUNTER ── -->
+<div id="visit-counter">
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+  <span id="visit-count">—</span>
+</div>
+
+<!-- ════ MAIN SCROLL CONTAINER ════ -->
+<div class="sc" id="sc">
+
+  <!-- ── .01 HOME ── -->
+  <section id="home">
+    <div>
+      <p class="home-eyebrow">I am</p>
+      <h1 class="home-name">EMANUELE<br>CERVONE</h1>
+      <div class="home-sub">
+        <div class="tw-wrap">
+          <span id="typewriter"></span><span class="cursor">▎</span>
+        </div>
+      </div>
+    </div>
+    <div class="sec-num">.01</div>
+  </section>
+
+  <!-- ── .02 JOURNEY + SKILLS ── -->
+  <section id="journey">
+    <div style="width:100%">
+      <h2 class="sec-header">JOURNEY</h2>
+      <div class="journey-grid">
+        <!-- Timeline -->
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-year">2022</div>
+            <div class="tl-text">Starting to discover coding</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2023</div>
+            <div class="tl-text">Getting passionate about coding</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2024</div>
+            <div class="tl-text">Practicing with early projects</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2025</div>
+            <div class="tl-text">Developing in Java & Python fluently</div>
+          </div>
+          <div class="tl-item current">
+            <div class="tl-year">2026</div>
+            <div class="tl-text">Building in C#, Arch Linux & security tooling</div>
+          </div>
+        </div>
+        <!-- Skills -->
+        <div class="skills-col">
+          <div>
+            <div class="sk-label">
+              <div class="sk-name"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">Java</div>
+              <span class="sk-pct" data-value="100">0%</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill java" data-w="100"></div></div>
+          </div>
+          <div>
+            <div class="sk-label">
+              <div class="sk-name"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">Python</div>
+              <span class="sk-pct" data-value="85">0%</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill python" data-w="85"></div></div>
+          </div>
+          <div>
+            <div class="sk-label">
+              <div class="sk-name"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">C#</div>
+              <span class="sk-pct" data-value="50">0%</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill cs" data-w="50"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-num">.02</div>
+  </section>
+
+  <!-- ── .03 PROJECTS ── -->
+  <section id="projects">
+    <div style="width:100%">
+      <div class="projects-header">
+        <h2>PROJECTS</h2>
+        <span class="projects-meta">Via GitHub API</span>
+      </div>
+      <div id="projects-container" class="projects-grid"></div>
+    </div>
+    <div class="sec-num">.03</div>
+  </section>
+
+  <!-- ── .04 CONTACT ── -->
+  <section id="contact">
+    <div class="contact-l">
+      <h2>CON<br>TACT</h2>
+      <div class="c-info-item">
+        <div class="c-info-label">E-mail</div>
+        <div class="c-info-val">ema.cer.21@gmail.com</div>
+      </div>
+      <div class="c-info-item">
+        <div class="c-info-label">Telegram</div>
+        <div class="c-info-val">@stark020009</div>
+      </div>
+      <div class="c-links">
+        <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="c-link tg">
+          <i class="fa-brands fa-telegram"></i> Message on Telegram
+        </a>
+        <a href="https://discord.gg/CvvwUvXhdG" target="_blank" rel="noopener noreferrer" class="c-link dc">
+          <i class="fa-brands fa-discord"></i> Join Discord
+        </a>
+        <a href="/shop" class="c-link shop">
+          <i class="fa-solid fa-bag-shopping"></i> Visit the Shop
+        </a>
+      </div>
+    </div>
+    <div class="contact-r">
+      <div class="cf-title">SEND MESSAGE +</div>
+      <input class="cf-input" id="cf-name"  type="text"     placeholder="Your name">
+      <input class="cf-input" id="cf-email" type="email"    placeholder="Your e-mail">
+      <textarea class="cf-textarea" id="cf-msg" placeholder="Message"></textarea>
+      <button class="cf-btn" onclick="sendMsg()">Send Message →</button>
+      <div class="cf-sent" id="cf-sent">Message sent via Telegram link ✓</div>
+    </div>
+    <div class="sec-num">.04</div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-l">© 2026 Emanuele Cervone — All rights reserved.</div>
+    <div class="footer-r"><a href="https://github.com/EmaaXyz" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+  </footer>
+
+</div><!-- /.sc -->
+
+<!-- ── LOGIN MODAL ── -->
 <div class="login-backdrop" id="login-backdrop" onclick="backdropClose(event)">
   <div class="login-modal">
-
-    <!-- Sign in view -->
     <div id="view-signin">
-      <h3>Welcome back</h3>
-      <p>Sign in to your account</p>
-      <input class="login-field" id="login-user" type="text" placeholder="Username" autocomplete="off">
-      <input class="login-field" id="login-pass" type="password" placeholder="Password">
-      <button class="login-action" onclick="doLogin()">Sign in</button>
-      <div class="login-error" id="login-error">Wrong username or password.</div>
-      <div class="login-divider"><span>or</span></div>
-      <div class="signup-link">Don't have an account? <button onclick="switchView('signup')">Sign up</button></div>
+      <div class="lm-title">SIGN IN</div>
+      <div class="lm-sub">Welcome back.</div>
+      <input class="lm-field" id="login-user" type="text" placeholder="Username" autocomplete="off">
+      <input class="lm-field" id="login-pass" type="password" placeholder="Password">
+      <button class="lm-btn" onclick="doLogin()">Sign in</button>
+      <div class="lm-err" id="login-error">Wrong username or password.</div>
+      <div class="lm-divider"><span>or</span></div>
+      <div class="lm-switch">No account? <button onclick="switchView('signup')">Sign up</button></div>
     </div>
-
-    <!-- Sign up view -->
     <div id="view-signup" style="display:none">
-      <h3>Create account</h3>
-      <p>Join and save your preferences</p>
-      <input class="login-field" id="su-user" type="text" placeholder="Username" autocomplete="off">
-      <input class="login-field" id="su-pass" type="password" placeholder="Password">
-      <input class="login-field" id="su-pass2" type="password" placeholder="Confirm password">
-      <button class="login-action" onclick="doSignup()">Sign up</button>
-      <div class="login-error" id="signup-error">Error during registration.</div>
-      <div class="login-success" id="signup-success">Account created! You can now sign in.</div>
-      <div class="login-divider"><span>or</span></div>
-      <div class="signup-link">Already have an account? <button onclick="switchView('signin')">Sign in</button></div>
+      <div class="lm-title">SIGN UP</div>
+      <div class="lm-sub">Create your account.</div>
+      <input class="lm-field" id="su-user" type="text" placeholder="Username" autocomplete="off">
+      <input class="lm-field" id="su-pass" type="password" placeholder="Password">
+      <input class="lm-field" id="su-pass2" type="password" placeholder="Confirm password">
+      <button class="lm-btn" onclick="doSignup()">Sign up</button>
+      <div class="lm-err" id="signup-error">Error during registration.</div>
+      <div class="lm-succ" id="signup-success">Account created! You can now sign in.</div>
+      <div class="lm-divider"><span>or</span></div>
+      <div class="lm-switch">Already have an account? <button onclick="switchView('signin')">Sign in</button></div>
     </div>
-
   </div>
 </div>
 
 <script>
-(function() {
-  if (sessionStorage.getItem('ema_logged')) {
-    var u = sessionStorage.getItem('ema_user') || 'Ema';
-    showLoggedIn(u);
-  }
-})();
-
-function switchView(v) {
-  document.getElementById('view-signin').style.display = v === 'signin' ? 'block' : 'none';
-  document.getElementById('view-signup').style.display = v === 'signup' ? 'block' : 'none';
-  document.getElementById('login-error').style.display = 'none';
-  document.getElementById('signup-error').style.display = 'none';
-  document.getElementById('signup-success').style.display = 'none';
+// ── Particles ──
+if(typeof particlesJS!=='undefined'){
+  particlesJS("particles-js",{particles:{number:{value:35,density:{enable:true,value_area:900}},color:{value:"#ffffff"},shape:{type:"circle"},opacity:{value:0.12},size:{value:1.5},line_linked:{enable:true,distance:140,color:"#ffffff",opacity:0.06,width:1},move:{enable:true,speed:0.7}},interactivity:{events:{onhover:{enable:true,mode:"grab"}}}});
 }
 
-function openLogin() {
-  switchView('signin');
-  document.getElementById('login-backdrop').classList.add('open');
-  setTimeout(function() { document.getElementById('login-user').focus(); }, 100);
+// ── Typewriter ──
+var twText="Junior Developer",twI=0;
+function typeWriter(){
+  var el=document.getElementById("typewriter");
+  if(!el)return;
+  if(twI<twText.length){el.textContent+=twText.charAt(twI);twI++;setTimeout(typeWriter,120);}
 }
+typeWriter();
 
-function backdropClose(e) {
-  if (e.target === document.getElementById('login-backdrop')) closeLogin();
+// ── Scroll indicator ──
+var sc=document.getElementById('sc');
+var sections=['home','journey','projects','contact'];
+function updateDots(){
+  var sTop=sc.scrollTop,vh=window.innerHeight;
+  var idx=Math.round(sTop/vh);
+  document.querySelectorAll('.sid').forEach(function(d){d.classList.remove('active');});
+  var active=document.querySelector('.sid[data-sec="'+Math.min(idx,sections.length-1)+'"]');
+  if(active)active.classList.add('active');
 }
+sc.addEventListener('scroll',updateDots,{passive:true});
 
-function closeLogin() {
-  document.getElementById('login-backdrop').classList.remove('open');
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLogin();
+// ── Smooth nav scroll ──
+document.querySelectorAll('a[href^="#"], .nav-right a').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t&&sc){e.preventDefault();sc.scrollTo({top:t.offsetTop,behavior:'smooth'});}
+  });
 });
 
-function getUsers() {
-  return JSON.parse(localStorage.getItem('site_users') || '{}');
+// ── GitHub API ──
+fetch("https://api.github.com/users/EmaaXyz")
+  .then(function(r){if(!r.ok)throw 0;return r.json();})
+  .catch(function(){});
+
+fetch("https://api.github.com/users/EmaaXyz/repos?sort=updated&per_page=30")
+  .then(function(r){if(!r.ok)throw 0;return r.json();})
+  .then(function(repos){
+    var c=document.getElementById('projects-container');
+    if(!c||!Array.isArray(repos))return;
+    repos.filter(function(r){return!r.fork;}).forEach(function(repo){
+      var card=document.createElement('div');card.className='proj-card';
+      var a=document.createElement('a');a.href=repo.html_url;a.target='_blank';a.rel='noopener noreferrer';
+      var name=document.createElement('div');name.className='proj-name';name.textContent=repo.name;
+      var desc=document.createElement('div');desc.className='proj-desc';desc.textContent=repo.description||'GitHub Project';
+      var lang=document.createElement('div');lang.className='proj-lang';lang.textContent=repo.language||'Code';
+      a.appendChild(name);a.appendChild(desc);a.appendChild(lang);
+      card.appendChild(a);c.appendChild(card);
+    });
+  }).catch(function(){});
+
+// ── Skills animate ──
+var skillsDone=false;
+function activateSkills(){
+  if(skillsDone)return;skillsDone=true;
+  document.querySelectorAll('.sk-fill').forEach(function(f){
+    f.style.width=f.dataset.w+'%';
+  });
+  document.querySelectorAll('.sk-pct').forEach(function(p){
+    p.style.opacity='1';
+    var target=parseInt(p.dataset.value,10),start=performance.now(),dur=1400;
+    (function step(now){
+      var prog=Math.min((now-start)/dur,1);
+      var ease=1-Math.pow(1-prog,3);
+      p.textContent=Math.round(ease*target)+'%';
+      if(prog<1)requestAnimationFrame(step);
+    })(start);
+  });
+}
+sc.addEventListener('scroll',function(){
+  var j=document.getElementById('journey');
+  if(j&&sc.scrollTop+window.innerHeight*0.6>j.offsetTop)activateSkills();
+},{passive:true});
+
+// ── Contact form ──
+function sendMsg(){
+  var name=document.getElementById('cf-name').value.trim();
+  var email=document.getElementById('cf-email').value.trim();
+  var msg=document.getElementById('cf-msg').value.trim();
+  if(!name||!msg)return;
+  var text=encodeURIComponent('Contact from '+name+(email?' ('+email+')':'')+': '+msg);
+  window.open('https://t.me/stark020009?text='+text,'_blank');
+  document.getElementById('cf-sent').style.display='block';
+  setTimeout(function(){document.getElementById('cf-sent').style.display='none';},3000);
 }
 
-function doLogin() {
-  var u = document.getElementById('login-user').value.trim();
-  var p = document.getElementById('login-pass').value;
-  var users = getUsers();
-  var isAdmin = (u === 'Ema' && p === '24692469');
-  var isUser  = users[u] && users[u] === p;
-  if (isAdmin || isUser) {
-    sessionStorage.setItem('ema_logged', '1');
-    sessionStorage.setItem('ema_user', u);
-    closeLogin();
-    showLoggedIn(u);
-  } else {
-    var err = document.getElementById('login-error');
-    err.style.display = 'block';
-    document.getElementById('login-pass').value = '';
-    setTimeout(function() { err.style.display = 'none'; }, 3000);
+// ── Login ──
+(function(){if(sessionStorage.getItem('ema_logged')){var u=sessionStorage.getItem('ema_user')||'Ema';showLoggedIn(u);}})();
+function switchView(v){
+  document.getElementById('view-signin').style.display=v==='signin'?'block':'none';
+  document.getElementById('view-signup').style.display=v==='signup'?'block':'none';
+  document.getElementById('login-error').style.display='none';
+  document.getElementById('signup-error').style.display='none';
+  document.getElementById('signup-success').style.display='none';
+}
+function openLogin(){switchView('signin');document.getElementById('login-backdrop').classList.add('open');setTimeout(function(){document.getElementById('login-user').focus();},100);}
+function backdropClose(e){if(e.target===document.getElementById('login-backdrop'))closeLogin();}
+function closeLogin(){document.getElementById('login-backdrop').classList.remove('open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLogin();});
+function getUsers(){return JSON.parse(localStorage.getItem('site_users')||'{}');}
+function doLogin(){
+  var u=document.getElementById('login-user').value.trim();
+  var p=document.getElementById('login-pass').value;
+  var users=getUsers();
+  if((u==='Ema'&&p==='24692469')||( users[u]&&users[u]===p)){
+    sessionStorage.setItem('ema_logged','1');sessionStorage.setItem('ema_user',u);
+    closeLogin();showLoggedIn(u);
+  }else{
+    var err=document.getElementById('login-error');err.style.display='block';
+    document.getElementById('login-pass').value='';
+    setTimeout(function(){err.style.display='none';},3000);
   }
 }
-
-function doSignup() {
-  var u  = document.getElementById('su-user').value.trim();
-  var p  = document.getElementById('su-pass').value;
-  var p2 = document.getElementById('su-pass2').value;
-  var err  = document.getElementById('signup-error');
-  var succ = document.getElementById('signup-success');
-  err.style.display = 'none'; succ.style.display = 'none';
-
-  if (!u || !p) { err.textContent = 'Fill in all fields.'; err.style.display = 'block'; return; }
-  if (p !== p2) { err.textContent = 'Passwords do not match.'; err.style.display = 'block'; return; }
-  if (u === 'Ema') { err.textContent = 'Username not available.'; err.style.display = 'block'; return; }
-
-  var users = getUsers();
-  if (users[u]) { err.textContent = 'Username already taken.'; err.style.display = 'block'; return; }
-
-  users[u] = p;
-  localStorage.setItem('site_users', JSON.stringify(users));
-  succ.style.display = 'block';
-  document.getElementById('su-user').value = '';
-  document.getElementById('su-pass').value = '';
-  document.getElementById('su-pass2').value = '';
-  setTimeout(function() { switchView('signin'); }, 2000);
+function doSignup(){
+  var u=document.getElementById('su-user').value.trim();
+  var p=document.getElementById('su-pass').value;
+  var p2=document.getElementById('su-pass2').value;
+  var err=document.getElementById('signup-error');var succ=document.getElementById('signup-success');
+  err.style.display='none';succ.style.display='none';
+  if(!u||!p){err.textContent='Fill in all fields.';err.style.display='block';return;}
+  if(p!==p2){err.textContent='Passwords do not match.';err.style.display='block';return;}
+  if(u==='Ema'){err.textContent='Username not available.';err.style.display='block';return;}
+  var users=getUsers();
+  if(users[u]){err.textContent='Username already taken.';err.style.display='block';return;}
+  users[u]=p;localStorage.setItem('site_users',JSON.stringify(users));
+  succ.style.display='block';
+  document.getElementById('su-user').value='';document.getElementById('su-pass').value='';document.getElementById('su-pass2').value='';
+  setTimeout(function(){switchView('signin');},2000);
+}
+function showLoggedIn(u){
+  document.getElementById('login-btn').style.display='none';
+  var b=document.getElementById('user-badge');b.style.display='flex';
+  document.getElementById('user-av').textContent=u?u.charAt(0).toUpperCase():'U';
+  document.getElementById('user-name').textContent=u;
+}
+function doLogout(){
+  sessionStorage.removeItem('ema_logged');sessionStorage.removeItem('ema_user');
+  document.getElementById('login-btn').style.display='flex';
+  document.getElementById('user-badge').style.display='none';
 }
 
-function showLoggedIn(username) {
-  document.getElementById('login-btn').style.display = 'none';
-  var badge = document.getElementById('user-badge');
-  badge.style.display = 'flex';
-  var initials = username ? username.charAt(0).toUpperCase() : 'U';
-  document.getElementById('user-avatar').textContent = initials;
-  document.getElementById('user-name').textContent = username;
-}
-
-function doLogout() {
-  sessionStorage.removeItem('ema_logged');
-  sessionStorage.removeItem('ema_user');
-  document.getElementById('login-btn').style.display = 'flex';
-  document.getElementById('user-badge').style.display = 'none';
-}
-</script>
-
-
-<nav class="bottom-nav glass">
-  <a href="#home" class="nav-link"><i class="fa-solid fa-house"></i></a>
-  <a href="#timeline" class="nav-link"><i class="fa-solid fa-timeline"></i></a>
-  <a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i></a>
-  <a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i></a>
-  <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i></a>
-</nav>
-
-<!-- Eye visit counter -->
-<div id="visit-counter" style="
-  position:fixed; top:22px; right:28px; z-index:150;
-  display:flex; align-items:center; gap:7px;
-  background:rgba(255,255,255,0.04); backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,0.08); border-radius:30px;
-  padding:10px 18px; color:rgba(255,255,255,0.45); font-size:0.82rem;
-  font-family:'Poppins',sans-serif; pointer-events:none; user-select:none;
-  transition: opacity 0.4s;
-">
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-    <circle cx="12" cy="12" r="3"/>
-  </svg>
-  <span id="visit-count">—</span>
-</div>
-<script>
-(function() {
-  var KEY = 'index';
-  var NS  = 'emanueledev';
-  var el  = document.getElementById('visit-count');
-  var SESSION_KEY = 'visited_index';
-
-  function display(n) {
-    var num = parseInt(n, 10);
-    if (el) el.textContent = isNaN(num) ? '—' : num.toLocaleString();
-  }
-
-  var isNew = !sessionStorage.getItem(SESSION_KEY);
-  if (isNew) sessionStorage.setItem(SESSION_KEY, '1');
-
-  var url = isNew
-    ? 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up'
-    : 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/get';
-
-  fetch(url)
-    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(d) { display(d.count); })
-    .catch(function() { display('—'); });
+// ── Visit counter ──
+(function(){
+  var KEY='index',NS='emanueledev',el=document.getElementById('visit-count'),SK='visited_index';
+  function display(n){var x=parseInt(n,10);if(el)el.textContent=isNaN(x)?'—':x.toLocaleString();}
+  var isNew=!sessionStorage.getItem(SK);if(isNew)sessionStorage.setItem(SK,'1');
+  fetch(isNew?'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/up':'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/get')
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(d){display(d.count);}).catch(function(){display('—');});
 })();
 </script>
-
-<script src="script.js"></script>
 </body>
 </html>

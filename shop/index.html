@@ -2,607 +2,561 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Emanuele Dev | Shop — VOIP Numbers</title>
-<link rel="icon" type="image/jpeg" href="../WebSitePfp.jpg">
+<title>VOIP Numbers — Emanuele Dev</title>
+<link rel="icon" type="image/png" href="logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <script>
-  window.addEventListener('load', function() {
-    var l = document.getElementById('loading');
-    if (l) l.style.display = 'none';
-  });
-  setTimeout(function() {
-    var l = document.getElementById('loading');
-    if (l) l.style.display = 'none';
-  }, 3000);
+  window.addEventListener('load', function() { var l=document.getElementById('loading'); if(l) l.style.display='none'; });
+  setTimeout(function() { var l=document.getElementById('loading'); if(l) l.style.display='none'; }, 3000);
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --tg:#26A5E4;--wa:#25D366;--dc:#5865F2;--gold:#F5C542;
+  --bg:#080808;--s1:#0f0f0f;--s2:#161616;
+  --border:rgba(255,255,255,0.07);--borderh:rgba(255,255,255,0.13);
+  --text:#EDEDED;--muted:#444;--muted2:#888;
+  --fd:'Bricolage Grotesque',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.3}
+#particles-js{position:fixed;inset:0;z-index:0}
+#loading{position:fixed;inset:0;background:#000;display:flex;justify-content:center;align-items:center;z-index:9999}
+.spinner{width:36px;height:36px;border:2px solid #1a1a1a;border-top:2px solid #fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#mw{position:relative;z-index:1}
 
-:root {
-  --tg:  #26A5E4;
-  --wa:  #25D366;
-  --dc:  #5865F2;
-  --premium-gold: #f5c542;
-  --bg:  #0e0e0e;
-  --card: rgba(255,255,255,0.03);
-  --border: rgba(255,255,255,0.09);
-  --text: #eaeaea;
-  --muted: #888;
-}
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,6vw,72px);background:rgba(8,8,8,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-weight:700;font-size:1rem;color:var(--text);text-decoration:none}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--tg);animation:pdot 2s infinite}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.5)}}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted2);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:8px;background:var(--text);color:#000;font-size:.83rem;font-weight:600;text-decoration:none;transition:background .2s,transform .15s}
+.nav-cta:hover{background:#d0d0d0;transform:translateY(-1px)}
+@media(max-width:768px){.nav-links{display:none}}
 
-html, body { background: var(--bg); color: var(--text); overflow: hidden; }
+/* HERO */
+.hero{min-height:100vh;padding:120px clamp(20px,8vw,120px) 80px;display:flex;align-items:center;justify-content:space-between;gap:60px}
+.hero-left{flex:1;max-width:560px}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border:1px solid var(--borderh);border-radius:100px;font-size:.73rem;color:var(--muted2);margin-bottom:28px;background:rgba(255,255,255,.03)}
+.hbdot{width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hbdot::after{content:'';width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pdot 2s infinite}
+.hero h1{font-family:var(--fd);font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:800;line-height:1.06;letter-spacing:-.03em;color:var(--text);margin-bottom:22px}
+.hero h1 em{font-style:normal;background:linear-gradient(110deg,var(--tg) 0%,var(--wa) 50%,var(--dc) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(.9rem,1.8vw,1.07rem);color:var(--muted2);max-width:440px;line-height:1.8;margin-bottom:38px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:52px}
+.btn-p{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:10px;background:var(--text);color:#000;font-weight:600;font-size:.88rem;text-decoration:none;transition:background .2s,transform .15s}
+.btn-p:hover{background:#d0d0d0;transform:translateY(-2px)}
+.btn-s{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:10px;background:transparent;color:var(--muted2);font-weight:500;font-size:.88rem;text-decoration:none;border:1px solid var(--borderh);transition:color .2s,border-color .2s,transform .15s}
+.btn-s:hover{color:var(--text);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hstat strong{display:block;font-family:var(--fd);font-size:1.65rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
+.hstat span{font-size:.71rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+.hero-right{flex:0 0 auto;width:clamp(240px,26vw,340px)}
+.hero-visual{position:relative;height:330px}
+.hvc{position:absolute;border:1px solid var(--borderh);border-radius:14px;padding:16px 20px;background:var(--s1)}
+.hvc.tg{top:0;left:0;width:185px;animation:fl1 4s ease-in-out infinite}
+.hvc.wa{top:110px;right:0;width:165px;animation:fl2 5s ease-in-out infinite}
+.hvc.dc{top:220px;left:30px;width:155px;animation:fl3 4.5s ease-in-out infinite}
+@keyframes fl1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes fl2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fl3{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hvc-label{font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px;font-weight:500}
+.hvc-price{font-family:var(--fm);font-size:1.4rem;font-weight:500;color:var(--text)}
+.hvc-plat{display:flex;align-items:center;gap:6px;font-size:.73rem;color:var(--muted2);margin-top:7px}
+.hvc-d{width:6px;height:6px;border-radius:50%}
+@media(max-width:900px){.hero{flex-direction:column;padding-top:110px}.hero-sub{max-width:100%}.hero-right{display:none}}
 
-/* ── Loader ── */
-#loading {
-  position: fixed; inset: 0; background: #000;
-  display: flex; justify-content: center; align-items: center; z-index: 9999;
-}
-.spinner {
-  width: 60px; height: 60px;
-  border: 4px solid #333; border-top: 4px solid #fff;
-  border-radius: 50%; animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+/* TRUST BAR */
+.trust-bar{padding:26px clamp(20px,8vw,120px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--s1);display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.trust-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:500;white-space:nowrap}
+.trust-items{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500;opacity:.45;transition:opacity .2s}
+.trust-item:hover{opacity:.85}
+.trust-item img{display:block}
 
-/* ── Particles ── */
-#particles-js { position: fixed; inset: 0; z-index: -1; }
+/* SECTION COMMONS */
+.stag{display:inline-block;font-size:.69rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);border:1px solid var(--border);padding:4px 11px;border-radius:4px;margin-bottom:17px;font-weight:500}
+.stitle{font-family:var(--fd);font-size:clamp(1.75rem,3.5vw,2.7rem);font-weight:700;color:var(--text);letter-spacing:-.025em;line-height:1.14;margin-bottom:13px}
+.ssub{font-size:.95rem;color:var(--muted2);max-width:450px;line-height:1.75}
 
-/* ── Scroll container ── */
-.scroll-container {
-  height: 100vh; overflow-y: scroll;
-  scroll-snap-type: y mandatory; scroll-behavior: smooth;
-}
+/* BENEFITS */
+.benefits{padding:120px clamp(20px,8vw,120px)}
+.benefits-hd{margin-bottom:50px}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.bc{background:var(--s1);border:1px solid var(--border);border-radius:16px;padding:26px 26px 32px;transition:border-color .3s,background .3s;position:relative;overflow:hidden}
+.bc:hover{border-color:var(--borderh);background:var(--s2)}
+.bc.wide{grid-column:span 2}
+.bc-icon{width:37px;height:37px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;margin-bottom:17px}
+.bc h3{font-family:var(--fd);font-size:1.03rem;font-weight:600;color:var(--text);margin-bottom:7px}
+.bc p{font-size:.81rem;color:var(--muted2);line-height:1.65}
+.bc-num{position:absolute;bottom:16px;right:20px;font-family:var(--fm);font-size:2.6rem;font-weight:500;color:rgba(255,255,255,.03);line-height:1;user-select:none}
+@media(max-width:860px){.bento{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.bento{grid-template-columns:1fr}.bc.wide{grid-column:span 1}}
 
-/* ── Back link ── */
-.back-link {
-  position: fixed; top: 22px; left: 28px; z-index: 200;
-  color: var(--muted); font-size: 0.9rem; text-decoration: none;
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.04); backdrop-filter: blur(12px);
-  border: 1px solid var(--border); padding: 8px 16px; border-radius: 30px;
-  transition: color 0.3s, background 0.3s;
-}
-.back-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+/* HOW IT WORKS */
+.how{padding:120px clamp(20px,8vw,120px);background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.how-hd{margin-bottom:68px}
+.steps-row{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr;align-items:center;max-width:820px}
+.step-item{text-align:center}
+.snb{width:48px;height:48px;border:1px solid var(--borderh);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.95rem;font-weight:500;color:var(--text);margin:0 auto 16px;background:var(--bg)}
+.step-item h4{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.step-item p{font-size:.77rem;color:var(--muted2);line-height:1.6}
+.scon{text-align:center;color:var(--borderh);font-size:.75rem;margin-top:-30px}
+@media(max-width:700px){.steps-row{grid-template-columns:1fr;max-width:280px;margin:0 auto}.scon{margin:6px auto;transform:rotate(90deg)}}
 
-/* ── Hero ── */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 80px 15%;
-  scroll-snap-align: start;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-  padding: 6px 18px; border-radius: 30px;
-  font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em;
-  text-transform: uppercase; margin-bottom: 28px;
-}
-.hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse-dot 2s infinite; }
-@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
+/* PRODUCTS */
+.products{padding:120px clamp(20px,8vw,120px)}
+.products-hd{margin-bottom:42px}
+.ptabs{display:flex;gap:8px;margin-bottom:42px;flex-wrap:wrap}
+.ptab{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-size:.84rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted2);font-family:var(--fb);transition:all .2s}
+.ptab:hover{color:var(--text);border-color:var(--borderh)}
+.ptab.active{background:var(--s2);border-color:var(--borderh);color:var(--text)}
+.ptab.active.tg{border-color:rgba(38,165,228,.4);color:var(--tg)}
+.ptab.active.wa{border-color:rgba(37,211,102,.4);color:var(--wa)}
+.ptab.active.dc{border-color:rgba(88,101,242,.4);color:var(--dc)}
+.ptab img{width:16px;height:16px;display:block}
+.pp{display:none}.pp.active{display:block}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:13px}
+.product-card{background:var(--s1);border:1px solid var(--border);border-radius:15px;padding:22px;cursor:pointer;transition:transform .25s,border-color .25s,background .25s;display:flex;flex-direction:column;gap:13px;position:relative;overflow:hidden}
+.product-card::after{content:'';position:absolute;inset:0;border-radius:15px;opacity:0;transition:opacity .3s}
+.product-card.tg::after{background:radial-gradient(circle at top right,rgba(38,165,228,.07),transparent 55%)}
+.product-card.wa::after{background:radial-gradient(circle at top right,rgba(37,211,102,.07),transparent 55%)}
+.product-card.dc::after{background:radial-gradient(circle at top right,rgba(88,101,242,.07),transparent 55%)}
+.product-card:hover::after{opacity:1}
+.product-card:hover{transform:translateY(-5px);border-color:var(--borderh);background:var(--s2)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.flag{font-size:1.85rem;line-height:1}
+.badge-premium{font-size:.57rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(245,197,66,.1);color:var(--gold);border:1px solid rgba(245,197,66,.25)}
+.badge-standard{font-size:.57rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,.04);color:var(--muted2);border:1px solid var(--border)}
+.card-body h3{font-family:var(--fd);font-size:.98rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.card-body p{font-size:.76rem;color:var(--muted2);line-height:1.5}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.price{font-family:var(--fm);font-size:1.3rem;font-weight:500;color:var(--text)}
+.price span{font-size:.73rem;font-weight:400;color:var(--muted);font-family:var(--fb)}
+.buy-btn{padding:7px 16px;border-radius:8px;font-size:.76rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:filter .2s,transform .15s;font-family:var(--fb)}
+.buy-btn:hover{filter:brightness(1.12);transform:scale(1.04)}
+.buy-btn.tg{background:var(--tg);color:#fff}
+.buy-btn.wa{background:var(--wa);color:#fff}
+.buy-btn.dc{background:var(--dc);color:#fff}
 
-.hero h1 {
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  font-weight: 700; line-height: 1.1;
-  background: linear-gradient(135deg, #fff 30%, #666 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  margin-bottom: 18px;
-}
-.hero p {
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
-  color: var(--muted); max-width: 540px; line-height: 1.7; margin-bottom: 40px;
-}
-.hero-stats {
-  display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;
-}
-.stat { text-align: center; }
-.stat strong { display: block; font-size: 1.8rem; font-weight: 700; color: #fff; }
-.stat span { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+/* REVIEWS */
+.reviews{padding:120px clamp(20px,8vw,120px);background:var(--s1);border-top:1px solid var(--border)}
+.reviews-hd{margin-bottom:50px}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:13px;margin-bottom:30px}
+.review-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.rc-stars{color:var(--gold);font-size:.77rem;letter-spacing:2px}
+.rc-text{font-size:.82rem;color:var(--muted2);line-height:1.65}
+.rc-date{font-size:.69rem;color:var(--muted)}
+.no-rv-msg{font-size:.82rem;color:var(--muted);text-align:center;padding:34px;border:1px dashed var(--border);border-radius:14px;margin-bottom:30px}
+.rv-leave-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid var(--borderh);border-radius:10px;background:transparent;color:var(--muted2);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.rv-leave-btn:hover{color:var(--text);border-color:rgba(255,255,255,.28);background:var(--s2)}
 
-/* ── Section ── */
-.shop-section {
-  min-height: 100vh; padding: 80px 8%;
-  scroll-snap-align: start; display: flex;
-  flex-direction: column; justify-content: center;
-}
-.section-header {
-  display: flex; align-items: center; gap: 16px; margin-bottom: 48px;
-}
-.section-icon {
-  width: 46px; height: 46px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-}
-.tg-icon  { background: rgba(38, 165, 228, 0.15); color: var(--tg); }
-.wa-icon  { background: rgba(37, 211, 102, 0.15); color: var(--wa); }
-.dc-icon  { background: rgba(88, 101, 242, 0.15); color: var(--dc); }
+/* FAQ */
+.faq{padding:120px clamp(20px,8vw,120px)}
+.faq-hd{margin-bottom:50px}
+.faq-list{max-width:680px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:21px 0;background:none;border:none;text-align:left;font-family:var(--fb);font-size:.92rem;font-weight:500;color:var(--text);cursor:pointer;transition:color .2s}
+.faq-q:hover{color:#fff}
+.faq-q span{flex:1}
+.faq-ico{font-size:.67rem;color:var(--muted);transition:transform .3s,color .2s;flex-shrink:0}
+.faq-item.open .faq-ico{transform:rotate(45deg);color:var(--text)}
+.faq-a{font-size:.85rem;color:var(--muted2);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding-bottom .3s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:21px}
 
-.section-header h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600;
-  color: #fff; margin: 0;
-}
-.section-header p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+/* CTA */
+.cta-sec{padding:80px clamp(20px,8vw,120px)}
+.cta-box{background:var(--s1);border:1px solid var(--borderh);border-radius:24px;padding:clamp(50px,8vw,86px);text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,rgba(38,165,228,.07) 0%,rgba(37,211,102,.03) 45%,transparent 70%);pointer-events:none}
+.cta-box h2{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:13px;position:relative}
+.cta-box p{font-size:.96rem;color:var(--muted2);margin-bottom:36px;position:relative}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;background:var(--tg);color:#fff;border-radius:11px;font-weight:600;font-size:.9rem;text-decoration:none;transition:filter .2s,transform .15s;position:relative}
+.cta-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
 
-/* ── Cards grid ── */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 18px;
-}
+/* FOOTER */
+.footer{padding:42px clamp(20px,8vw,120px);border-top:1px solid var(--border);background:var(--s1);display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:26px}
+.footer-logo{font-family:var(--fd);font-weight:700;font-size:.96rem;color:var(--text);text-decoration:none;display:block;margin-bottom:6px}
+.footer-desc{font-size:.76rem;color:var(--muted);line-height:1.6;max-width:250px}
+.footer-r{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.footer-r a{font-size:.79rem;color:var(--muted2);text-decoration:none;transition:color .2s}
+.footer-r a:hover{color:var(--text)}
+.footer-copy{width:100%;font-size:.71rem;color:var(--muted);border-top:1px solid var(--border);padding-top:21px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
-.product-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px; padding: 26px 24px;
-  display: flex; flex-direction: column; gap: 14px;
-  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-  position: relative; overflow: hidden; cursor: pointer;
-}
-.product-card::before {
-  content: ''; position: absolute; inset: 0;
-  opacity: 0; transition: opacity 0.3s;
-  border-radius: 18px;
-}
-.product-card.tg::before  { background: radial-gradient(circle at top right, rgba(38,165,228,0.08), transparent 60%); }
-.product-card.wa::before  { background: radial-gradient(circle at top right, rgba(37,211,102,0.08), transparent 60%); }
-.product-card.dc::before  { background: radial-gradient(circle at top right, rgba(88,101,242,0.08), transparent 60%); }
-.product-card:hover::before { opacity: 1; }
-.product-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.18); }
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(14px);z-index:800;display:none;justify-content:center;align-items:center}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--s2);border:1px solid var(--borderh);border-radius:20px;padding:34px 30px;max-width:370px;width:92%;text-align:center;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.modal h3{font-family:var(--fd);font-size:1.08rem;color:var(--text);margin-bottom:8px}
+.modal p{font-size:.82rem;color:var(--muted2);margin-bottom:20px;line-height:1.6}
+.modal-price{font-family:var(--fm);font-size:2.1rem;font-weight:500;color:var(--text);margin-bottom:24px}
+.modal-actions{display:flex;flex-direction:column;gap:10px}
+.modal-tg-btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px;border-radius:10px;font-size:.85rem;font-weight:600;text-decoration:none;background:var(--tg);color:#fff;transition:filter .2s}
+.modal-tg-btn:hover{filter:brightness(1.1)}
+.modal-close{background:none;border:1px solid var(--border);color:var(--muted2);padding:11px;border-radius:10px;cursor:pointer;font-size:.81rem;transition:all .2s;font-family:var(--fb)}
+.modal-close:hover{background:rgba(255,255,255,.05);color:var(--text)}
 
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.flag { font-size: 2rem; line-height: 1; }
-.badge-premium {
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
-  background: rgba(245,197,66,0.15); color: var(--premium-gold);
-  border: 1px solid rgba(245,197,66,0.3);
-}
-.badge-standard {
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
-  background: rgba(255,255,255,0.06); color: var(--muted);
-  border: 1px solid var(--border);
-}
+/* REVIEW MODAL */
+.rv-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(14px);z-index:900;display:none;justify-content:center;align-items:center}
+.rv-overlay.open{display:flex}
+.rv-modal{background:var(--s2);border:1px solid var(--borderh);border-radius:20px;padding:30px;max-width:390px;width:92%;animation:fadeUp .25s ease}
+.rm-title{font-family:var(--fd);font-size:1.06rem;color:var(--text);margin-bottom:3px}
+.rm-sub{font-size:.77rem;color:var(--muted);margin-bottom:20px}
+.rm-stars{display:flex;gap:5px;margin-bottom:13px}
+.rm-star{font-size:1.5rem;cursor:pointer;color:#222;transition:color .15s,transform .15s;user-select:none}
+.rm-star:hover,.rm-star.active{color:var(--gold);transform:scale(1.15)}
+.rm-ta{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--fb);font-size:.82rem;padding:11px 13px;resize:none;height:84px;outline:none;transition:border-color .2s;margin-bottom:13px;display:block}
+.rm-ta::placeholder{color:#2a2a2a}
+.rm-ta:focus{border-color:var(--borderh)}
+.rm-acts{display:flex;gap:9px}
+.rm-submit{flex:1;padding:11px;border-radius:10px;border:none;background:var(--text);color:#000;font-family:var(--fb);font-size:.83rem;font-weight:600;cursor:pointer;transition:background .2s}
+.rm-submit:hover{background:#d0d0d0}
+.rm-cancel{padding:11px 15px;border-radius:10px;border:1px solid var(--border);background:none;color:var(--muted2);font-family:var(--fb);font-size:.81rem;cursor:pointer;transition:all .2s}
+.rm-cancel:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.rm-succ{text-align:center;font-size:.79rem;color:#4ade80;display:none;margin-top:10px}
 
-.card-body h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
-.card-body p  { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-
-.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
-.price { font-size: 1.5rem; font-weight: 700; color: #fff; }
-.price span { font-size: 0.85rem; font-weight: 400; color: var(--muted); }
-
-.buy-btn {
-  padding: 8px 20px; border-radius: 30px; font-size: 0.8rem;
-  font-weight: 600; border: none; cursor: pointer; text-decoration: none;
-  transition: filter 0.2s, transform 0.2s;
-}
-.buy-btn:hover { filter: brightness(1.15); transform: scale(1.04); }
-.buy-btn.tg { background: var(--tg); color: #fff; }
-.buy-btn.wa { background: var(--wa); color: #fff; }
-.buy-btn.dc { background: var(--dc); color: #fff; }
-
-/* ── How it works ── */
-.how-section {
-  min-height: 60vh; padding: 80px 8%;
-  scroll-snap-align: start; display: flex;
-  flex-direction: column; justify-content: center; align-items: center;
-  text-align: center;
-}
-.how-section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 48px; color: #fff; }
-.steps { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 900px; }
-.step { flex: 1; min-width: 180px; max-width: 220px; }
-.step-num {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0 auto 16px;
-}
-.step h4 { font-size: 0.95rem; color: #fff; margin-bottom: 8px; }
-.step p  { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
-.step-arrow { align-self: center; color: var(--border); font-size: 1.4rem; flex: none; }
-
-/* ── Footer ── */
-.footer { text-align: center; padding: 60px 0 100px; color: #666; font-size: 0.85rem; scroll-snap-align: end; }
-
-/* ── Navbar ── */
-.bottom-nav {
-  position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: clamp(15px, 4vw, 30px); padding: 15px clamp(20px, 5vw, 35px);
-  border-radius: 50px; z-index: 100; width: max-content;
-  background: rgba(255,255,255,.03); backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,.1);
-}
-.nav-link { color: #888; font-size: clamp(1.1rem, 3vw, 1.4rem); transition: color 0.3s ease, transform 0.3s ease; display: inline-block; text-decoration: none; }
-.nav-link:hover { color: #fff; transform: scale(1.2); }
-
-/* ── Telegram order modal ── */
-.modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px); z-index: 500;
-  display: none; justify-content: center; align-items: center;
-}
-.modal-backdrop.open { display: flex; }
-.modal {
-  background: #131313; border: 1px solid var(--border);
-  border-radius: 22px; padding: 36px 32px;
-  max-width: 420px; width: 90%; text-align: center;
-  animation: fadeUp 0.3s ease;
-}
-@keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-.modal h3 { font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
-.modal p { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
-.modal-price { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 24px; }
-.modal-actions { display: flex; flex-direction: column; gap: 12px; }
-.modal-tg-btn {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 13px 20px; border-radius: 12px; font-size: 0.9rem; font-weight: 600;
-  text-decoration: none; background: var(--tg); color: #fff;
-  transition: filter 0.2s;
-}
-.modal-tg-btn:hover { filter: brightness(1.12); }
-.modal-close {
-  background: none; border: 1px solid var(--border); color: var(--muted);
-  padding: 11px; border-radius: 12px; cursor: pointer; font-size: 0.85rem;
-  transition: background 0.2s;
-}
-.modal-close:hover { background: rgba(255,255,255,0.06); color: #fff; }
-
-/* ── Verified badge ── */
-.verified-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: rgba(38,165,228,0.08); border: 1px solid rgba(38,165,228,0.3);
-  padding: 10px 20px; border-radius: 30px; text-decoration: none;
-  color: #26A5E4; font-size: 0.85rem; font-weight: 600;
-  margin-bottom: 36px; transition: background 0.3s, border-color 0.3s;
-}
-.verified-badge:hover { background: rgba(38,165,228,0.15); border-color: rgba(38,165,228,0.6); }
-
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .hero { padding: 80px 5%; }
-  .shop-section, .how-section { padding: 60px 5%; }
-  .hero-stats { gap: 24px; }
-  .steps { gap: 16px; }
-  .step-arrow { display: none; }
-  .back-link { top: 14px; left: 14px; font-size: 0.8rem; }
-}
-
-/* Review widget */
-.review-fab {
-  position: fixed; bottom: 90px; right: 28px; z-index: 300;
-  width: 48px; height: 48px; border-radius: 50%;
-  background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.12);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: #aaa; font-size: 1.15rem;
-  transition: background 0.3s, color 0.3s, transform 0.2s;
-}
-.review-fab:hover { background: rgba(255,255,255,0.12); color: #fff; transform: scale(1.1); }
-.review-panel {
-  position: fixed; bottom: 150px; right: 28px; z-index: 400;
-  width: 300px; background: #131313;
-  border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
-  padding: 22px; display: none; flex-direction: column; gap: 14px;
-  animation: fadeUp 0.25s ease;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-}
-.review-panel.open { display: flex; }
-.review-panel-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
-.review-panel-sub   { font-size: 0.75rem; color: #666; margin-top: -8px; }
-.stars { display: flex; gap: 5px; }
-.star { font-size: 1.5rem; cursor: pointer; color: #333; transition: color 0.15s, transform 0.15s; user-select: none; }
-.star:hover, .star.active { color: #f5c542; transform: scale(1.15); }
-.review-textarea {
-  width: 100%; background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
-  color: #eaeaea; font-family: 'Poppins', sans-serif;
-  font-size: 0.8rem; padding: 10px 12px; resize: none; height: 80px;
-  outline: none; transition: border-color 0.2s;
-}
-.review-textarea::placeholder { color: #444; }
-.review-textarea:focus { border-color: rgba(255,255,255,0.22); }
-.review-submit {
-  padding: 10px; border-radius: 10px; border: none;
-  background: rgba(255,255,255,0.07); color: #eaeaea;
-  font-family: 'Poppins', sans-serif; font-size: 0.82rem;
-  font-weight: 600; cursor: pointer; transition: background 0.2s;
-}
-.review-submit:hover { background: rgba(255,255,255,0.13); }
-.review-submit:disabled { opacity: 0.35; cursor: default; }
-.review-divider { height: 1px; background: rgba(255,255,255,0.07); border: none; margin: 2px 0; }
-.reviews-list { display: flex; flex-direction: column; gap: 8px; max-height: 140px; overflow-y: auto; }
-.review-item { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 9px 11px; border: 1px solid rgba(255,255,255,0.05); }
-.ri-stars { color: #f5c542; font-size: 0.72rem; margin-bottom: 3px; }
-.ri-text  { font-size: 0.77rem; color: #bbb; line-height: 1.4; }
-.no-reviews { font-size: 0.78rem; color: #444; text-align: center; padding: 8px 0; }
-.review-success { text-align: center; font-size: 0.82rem; color: #4ade80; display: none; }
+/* VISIT COUNTER */
+#visit-counter{position:fixed;top:72px;right:16px;z-index:150;display:flex;align-items:center;gap:6px;background:rgba(8,8,8,.84);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:30px;padding:7px 13px;color:rgba(255,255,255,.3);font-size:.74rem;font-family:var(--fb);pointer-events:none;user-select:none}
 </style>
 </head>
 <body>
-
 <div id="loading"><div class="spinner"></div></div>
 <div id="particles-js"></div>
+<div id="mw">
 
-<a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Portfolio</a>
+<!-- NAVBAR -->
+<header class="navbar">
+  <a href="/" class="nav-logo"><div class="nav-dot"></div>EmanueleXyz</a>
+  <ul class="nav-links">
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#products">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="nav-cta">
+    <i class="fa-brands fa-telegram"></i> Order now
+  </a>
+</header>
 
-<div class="scroll-container" id="main-scroll-container">
-
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero-badge"><span></span> Shop — VOIP Numbers</div>
-    <h1>Verify Anywhere,<br>Pay Less.</h1>
-    <p>Virtual phone numbers for Telegram, WhatsApp and Discord. Instant delivery via Telegram. No subscription needed.</p>
-
-    <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="verified-badge">
-      <img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" style="width:18px;height:18px;">
-      <span>Verified seller · @stark020009</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><circle cx="12" cy="12" r="12" fill="#26A5E4" opacity="0.2"/><path d="M7 13l3 3 7-7" stroke="#26A5E4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="hbdot"></div>
+      Verified seller · @stark020009
+    </div>
+    <h1>Verify Anywhere,<br><em>Pay Less.</em></h1>
+    <p class="hero-sub">Virtual phone numbers for Telegram, WhatsApp and Discord. Instant delivery. No subscription needed.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-p">Browse Numbers <i class="fa-solid fa-arrow-right" style="font-size:.76rem"></i></a>
+      <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="btn-s"><i class="fa-brands fa-telegram"></i> Contact seller</a>
+    </div>
     <div class="hero-stats">
-      <div class="stat"><strong>3</strong><span>Platforms</span></div>
-      <div class="stat"><strong>5+</strong><span>Countries</span></div>
-      <div class="stat"><strong>€3</strong><span>Starting from</span></div>
+      <div class="hstat"><strong>3</strong><span>Platforms</span></div>
+      <div class="hstat"><strong>5+</strong><span>Countries</span></div>
+      <div class="hstat"><strong>€3</strong><span>Starting from</span></div>
+      <div class="hstat"><strong>Instant</strong><span>Delivery</span></div>
     </div>
-  </section>
-
-  <!-- ── TELEGRAM ── -->
-  <section class="shop-section" id="telegram">
-    <div class="section-header">
-      <div class="section-icon tg-icon"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" style="width:28px;height:28px;"></div>
-      <div>
-        <h2>Telegram Numbers</h2>
-        <p>Real SIM numbers — verified, one-time use</p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hvc tg">
+        <div class="hvc-label">Telegram · USA 🇺🇸</div>
+        <div class="hvc-price">€5.00</div>
+        <div class="hvc-plat"><div class="hvc-d" style="background:var(--tg)"></div>Premium · One-time</div>
       </div>
-    </div>
-    <div class="cards-grid">
-
-      <div class="product-card tg" onclick="openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00','tg')">
-        <div class="card-top">
-          <span class="flag">🇺🇸</span>
-          <span class="badge-premium">Premium</span>
-        </div>
-        <div class="card-body">
-          <h3>USA</h3>
-          <p>Premium American number. Top carrier, high success rate.</p>
-        </div>
-        <div class="card-footer">
-          <div class="price">€5 <span>/ use</span></div>
-          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00','tg')">Buy</button>
-        </div>
+      <div class="hvc wa">
+        <div class="hvc-label">WhatsApp · Kenya 🇰🇪</div>
+        <div class="hvc-price">€3.00</div>
+        <div class="hvc-plat"><div class="hvc-d" style="background:var(--wa)"></div>Standard</div>
       </div>
-
-      <div class="product-card tg" onclick="openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00','tg')">
-        <div class="card-top">
-          <span class="flag">🇮🇩</span>
-          <span class="badge-standard">Standard</span>
-        </div>
-        <div class="card-body">
-          <h3>Indonesia</h3>
-          <p>Indonesian number, fast SMS delivery.</p>
-        </div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00','tg')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card tg" onclick="openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00','tg')">
-        <div class="card-top">
-          <span class="flag">🇰🇪</span>
-          <span class="badge-standard">Standard</span>
-        </div>
-        <div class="card-body">
-          <h3>Kenya</h3>
-          <p>Kenyan number, reliable OTP.</p>
-        </div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00','tg')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card tg" onclick="openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00','tg')">
-        <div class="card-top">
-          <span class="flag">🇨🇴</span>
-          <span class="badge-standard">Standard</span>
-        </div>
-        <div class="card-body">
-          <h3>Colombia</h3>
-          <p>Colombian number, solid SMS delivery.</p>
-        </div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00','tg')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card tg" onclick="openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00','tg')">
-        <div class="card-top">
-          <span class="flag">🇪🇬</span>
-          <span class="badge-standard">Standard</span>
-        </div>
-        <div class="card-body">
-          <h3>Egypt</h3>
-          <p>Egyptian number, instant activation.</p>
-        </div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn tg" onclick="event.stopPropagation(); openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00','tg')">Buy</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── WHATSAPP ── -->
-  <section class="shop-section" id="whatsapp">
-    <div class="section-header">
-      <div class="section-icon wa-icon"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" style="width:28px;height:28px;"></div>
-      <div>
-        <h2>WhatsApp Numbers</h2>
-        <p>OTP numbers for new WhatsApp accounts</p>
+      <div class="hvc dc">
+        <div class="hvc-label">Discord · USA 🇺🇸</div>
+        <div class="hvc-price">€3.00</div>
+        <div class="hvc-plat"><div class="hvc-d" style="background:var(--dc)"></div>Standard</div>
       </div>
     </div>
-    <div class="cards-grid">
+  </div>
+</section>
 
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00','wa')">
-        <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-premium">Premium</span></div>
-        <div class="card-body"><h3>USA</h3><p>American number, high WhatsApp success rate.</p></div>
-        <div class="card-footer">
-          <div class="price">€7 <span>/ use</span></div>
-          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00','wa')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00','wa')">
-        <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, fast WA verification.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00','wa')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00','wa')">
-        <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Kenya</h3><p>Kenyan number, reliable OTP delivery.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00','wa')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00','wa')">
-        <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Colombia</h3><p>Colombian number, solid success rate.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00','wa')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00','wa')">
-        <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Egypt</h3><p>Egyptian number, quick activation.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn wa" onclick="event.stopPropagation(); openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00','wa')">Buy</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── DISCORD ── -->
-  <section class="shop-section" id="discord">
-    <div class="section-header">
-      <div class="section-icon dc-icon"><img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" style="width:28px;height:28px;"></div>
-      <div>
-        <h2>Discord Numbers</h2>
-        <p>Phone verification numbers for Discord accounts</p>
-      </div>
-    </div>
-    <div class="cards-grid">
-
-      <div class="product-card dc" onclick="openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00','dc')">
-        <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>USA</h3><p>American number for Discord phone verify.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00','dc')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card dc" onclick="openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00','dc')">
-        <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, verified Discord OTP.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00','dc')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card dc" onclick="openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00','dc')">
-        <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Kenya</h3><p>Kenyan number, fast Discord SMS.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00','dc')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card dc" onclick="openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00','dc')">
-        <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Colombia</h3><p>Colombian number, reliable verification.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00','dc')">Buy</button>
-        </div>
-      </div>
-
-      <div class="product-card dc" onclick="openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00','dc')">
-        <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
-        <div class="card-body"><h3>Egypt</h3><p>Egyptian number, instant code delivery.</p></div>
-        <div class="card-footer">
-          <div class="price">€3 <span>/ use</span></div>
-          <button class="buy-btn dc" onclick="event.stopPropagation(); openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00','dc')">Buy</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ── -->
-  <section class="how-section">
-    <h2>How it works</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h4>Choose your number</h4>
-        <p>Pick platform and country. Pay once, use once.</p>
-      </div>
-      <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h4>Contact via Telegram</h4>
-        <p>Hit "Buy" and open the Telegram chat to complete your order.</p>
-      </div>
-      <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h4>Receive OTP</h4>
-        <p>Your virtual number and verification code delivered instantly.</p>
-      </div>
-      <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h4>Done ✓</h4>
-        <p>Account verified. Number disposed. No data retained.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>© 2026 Emanuele Cervone · <a href="/" style="color:#555; text-decoration:none;">emanueledev.xyz</a></p>
-    <p style="margin-top:8px; font-size:0.75rem;">Numbers are single-use virtual SIMs for legitimate account verification only.</p>
-  </footer>
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-lbl">Works with</span>
+  <div class="trust-items">
+    <div class="trust-item"><img src="https://cdn.simpleicons.org/telegram/26A5E4" width="16" height="16" alt="Telegram">Telegram</div>
+    <div class="trust-item"><img src="https://cdn.simpleicons.org/whatsapp/25D366" width="16" height="16" alt="WhatsApp">WhatsApp</div>
+    <div class="trust-item"><img src="https://cdn.simpleicons.org/discord/5865F2" width="16" height="16" alt="Discord">Discord</div>
+    <div class="trust-item"><i class="fa-solid fa-shield-halved" style="color:#4ade80"></i>Single-use only</div>
+    <div class="trust-item"><i class="fa-solid fa-bolt" style="color:var(--gold)"></i>Instant delivery</div>
+  </div>
 </div>
 
-<!-- ── Bottom Nav ── -->
-<nav class="bottom-nav">
-  <a href="#telegram" class="nav-link" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-  <a href="#whatsapp" class="nav-link" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-  <a href="#discord"  class="nav-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
-</nav>
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="benefits-hd">
+    <div class="stag">Why choose us</div>
+    <h2 class="stitle">Everything you need,<br>nothing you don't.</h2>
+  </div>
+  <div class="bento">
+    <div class="bc wide">
+      <div class="bc-icon" style="background:rgba(38,165,228,.1);color:var(--tg)"><i class="fa-solid fa-bolt"></i></div>
+      <h3>Instant delivery</h3>
+      <p>Your virtual number arrives within minutes via Telegram — no waiting, no queues, no forms.</p>
+      <div class="bc-num">01</div>
+    </div>
+    <div class="bc">
+      <div class="bc-icon" style="background:rgba(74,222,128,.1);color:#4ade80"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>No data retained</h3>
+      <p>Single-use numbers only. Once verified, gone. Your privacy stays intact.</p>
+      <div class="bc-num">02</div>
+    </div>
+    <div class="bc">
+      <div class="bc-icon" style="background:rgba(245,197,66,.1);color:var(--gold)"><i class="fa-solid fa-star"></i></div>
+      <h3>Premium numbers</h3>
+      <p>Top-carrier US numbers with high success rates for the most demanding platforms.</p>
+      <div class="bc-num">03</div>
+    </div>
+    <div class="bc">
+      <div class="bc-icon" style="background:rgba(37,211,102,.1);color:var(--wa)"><i class="fa-solid fa-earth-americas"></i></div>
+      <h3>5+ Countries</h3>
+      <p>USA, Indonesia, Kenya, Colombia, Egypt — pick the flag that fits.</p>
+      <div class="bc-num">04</div>
+    </div>
+    <div class="bc">
+      <div class="bc-icon" style="background:rgba(88,101,242,.1);color:var(--dc)"><i class="fa-solid fa-tag"></i></div>
+      <h3>Starting at €3</h3>
+      <p>No monthly fees, no commitments. Pay only for what you use.</p>
+      <div class="bc-num">05</div>
+    </div>
+    <div class="bc wide">
+      <div class="bc-icon" style="background:rgba(255,255,255,.05);color:var(--muted2)"><i class="fa-brands fa-telegram"></i></div>
+      <h3>Direct Telegram support</h3>
+      <p>Real human support, fast responses, verified seller badge. Message @stark020009 anytime — direct line to the seller.</p>
+      <div class="bc-num">06</div>
+    </div>
+  </div>
+</section>
 
-<!-- ── Order Modal ── -->
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-hd">
+    <div class="stag">Process</div>
+    <h2 class="stitle">Up and running<br>in 4 simple steps.</h2>
+  </div>
+  <div class="steps-row">
+    <div class="step-item">
+      <div class="snb">01</div>
+      <h4>Choose a number</h4>
+      <p>Pick platform and country. Pay once, use once.</p>
+    </div>
+    <div class="scon"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="step-item">
+      <div class="snb">02</div>
+      <h4>Open Telegram</h4>
+      <p>Hit Buy — a pre-filled message opens in your chat.</p>
+    </div>
+    <div class="scon"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="step-item">
+      <div class="snb">03</div>
+      <h4>Receive OTP</h4>
+      <p>Number and code delivered instantly by the seller.</p>
+    </div>
+    <div class="scon"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="step-item">
+      <div class="snb">04</div>
+      <h4>Done ✓</h4>
+      <p>Account verified. Number disposed. No trace left.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-hd">
+    <div class="stag">Pricing</div>
+    <h2 class="stitle">Pick your platform.</h2>
+    <p class="ssub">All numbers are single-use virtual SIMs. Select a tab to browse countries and prices.</p>
+  </div>
+  <div class="ptabs">
+    <button class="ptab tg active" onclick="switchTab('tg')">
+      <img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="TG">Telegram
+    </button>
+    <button class="ptab wa" onclick="switchTab('wa')">
+      <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WA">WhatsApp
+    </button>
+    <button class="ptab dc" onclick="switchTab('dc')">
+      <img src="https://cdn.simpleicons.org/discord/5865F2" alt="DC">Discord
+    </button>
+  </div>
+
+  <div class="pp active" id="panel-tg"><div class="cards-grid">
+    <div class="product-card tg" onclick="openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00')">
+      <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-premium">Premium</span></div>
+      <div class="card-body"><h3>USA</h3><p>Premium American number. Top carrier, high success rate.</p></div>
+      <div class="card-footer"><div class="price">€5 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00')">Buy</button></div>
+    </div>
+    <div class="product-card tg" onclick="openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00')">
+      <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, fast SMS delivery.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card tg" onclick="openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00')">
+      <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Kenya</h3><p>Kenyan number, reliable OTP delivery.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card tg" onclick="openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00')">
+      <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Colombia</h3><p>Colombian number, solid SMS delivery.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card tg" onclick="openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00')">
+      <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Egypt</h3><p>Egyptian number, instant activation.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00')">Buy</button></div>
+    </div>
+  </div></div>
+
+  <div class="pp" id="panel-wa"><div class="cards-grid">
+    <div class="product-card wa" onclick="openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00')">
+      <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-premium">Premium</span></div>
+      <div class="card-body"><h3>USA</h3><p>American number, high WhatsApp success rate.</p></div>
+      <div class="card-footer"><div class="price">€7 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00')">Buy</button></div>
+    </div>
+    <div class="product-card wa" onclick="openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00')">
+      <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, fast WA verification.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card wa" onclick="openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00')">
+      <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Kenya</h3><p>Kenyan number, reliable OTP delivery.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card wa" onclick="openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00')">
+      <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Colombia</h3><p>Colombian number, solid success rate.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card wa" onclick="openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00')">
+      <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Egypt</h3><p>Egyptian number, quick activation.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00')">Buy</button></div>
+    </div>
+  </div></div>
+
+  <div class="pp" id="panel-dc"><div class="cards-grid">
+    <div class="product-card dc" onclick="openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00')">
+      <div class="card-top"><span class="flag">🇺🇸</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>USA</h3><p>American number for Discord phone verify.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card dc" onclick="openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00')">
+      <div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Indonesia</h3><p>Indonesian number, verified Discord OTP.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card dc" onclick="openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00')">
+      <div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Kenya</h3><p>Kenyan number, fast Discord SMS.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card dc" onclick="openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00')">
+      <div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Colombia</h3><p>Colombian number, reliable verification.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00')">Buy</button></div>
+    </div>
+    <div class="product-card dc" onclick="openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00')">
+      <div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div>
+      <div class="card-body"><h3>Egypt</h3><p>Egyptian number, instant code delivery.</p></div>
+      <div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00')">Buy</button></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-hd">
+    <div class="stag">Social proof</div>
+    <h2 class="stitle">Loved by customers.</h2>
+    <p class="ssub">Real reviews from people who used the service. No filters.</p>
+  </div>
+  <div class="reviews-grid" id="reviews-grid"></div>
+  <button class="rv-leave-btn" onclick="openReviewModal()"><i class="fa-solid fa-pen"></i> Leave a review</button>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-hd">
+    <div class="stag">FAQ</div>
+    <h2 class="stitle">Common questions.</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>What is a VOIP number?</span><i class="fa-solid fa-plus faq-ico"></i></button>
+      <div class="faq-a">A VOIP (Voice over IP) number is a virtual phone number not tied to a physical SIM card. It can receive SMS verification codes from platforms like Telegram, WhatsApp, and Discord.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>How is delivery handled?</span><i class="fa-solid fa-plus faq-ico"></i></button>
+      <div class="faq-a">After you click Buy, a pre-filled Telegram message opens automatically. Send it to @stark020009 and your number and OTP code will be delivered directly to your chat — usually within a few minutes.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Are these numbers reusable?</span><i class="fa-solid fa-plus faq-ico"></i></button>
+      <div class="faq-a">No — all numbers are single-use only. This is intentional to protect your privacy and ensure each verification is clean and untraceable.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>What payment methods are accepted?</span><i class="fa-solid fa-plus faq-ico"></i></button>
+      <div class="faq-a">Payment details are handled directly via Telegram. Contact @stark020009 to discuss available options for your region.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span>Is this legal?</span><i class="fa-solid fa-plus faq-ico"></i></button>
+      <div class="faq-a">Yes — virtual numbers for account verification are completely legal. Numbers are intended for legitimate account registration and verification purposes only.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-box">
+    <h2>Ready to verify?</h2>
+    <p>Browse numbers and place your order on Telegram in seconds.</p>
+    <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="cta-btn">
+      <i class="fa-brands fa-telegram"></i> Order on Telegram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <a href="/" class="footer-logo">EmanueleXyz</a>
+    <p class="footer-desc">Virtual phone numbers for Telegram, WhatsApp & Discord. Single-use, instant delivery, privacy first.</p>
+  </div>
+  <div class="footer-r">
+    <a href="/">← Back to portfolio</a>
+    <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer">Telegram @stark020009</a>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Emanuele Cervone</span>
+    <span>Numbers are for legitimate account verification only.</span>
+  </div>
+</footer>
+</div>
+
+<!-- ORDER MODAL -->
 <div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
   <div class="modal">
     <h3 id="modal-title">Product</h3>
@@ -617,201 +571,117 @@ html, body { background: var(--bg); color: var(--text); overflow: hidden; }
   </div>
 </div>
 
-<script>
-// ── Particles ──
-if (typeof particlesJS !== 'undefined') {
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: 60, density: { enable: true, value_area: 900 } },
-      color: { value: "#ffffff" },
-      shape: { type: "circle" },
-      opacity: { value: 0.35 },
-      size: { value: 2.5 },
-      line_linked: { enable: true, distance: 140, color: "#ffffff", opacity: 0.25, width: 1 },
-      move: { enable: true, speed: 1.4 }
-    },
-    interactivity: {
-      events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } }
-    }
-  });
-}
+<!-- REVIEW MODAL -->
+<div class="rv-overlay" id="rv-overlay" onclick="handleRvOv(event)">
+  <div class="rv-modal">
+    <div class="rm-title">Leave a Review</div>
+    <div class="rm-sub">How was your experience with the service?</div>
+    <div class="rm-stars" id="rm-stars">
+      <span class="rm-star" data-v="1">&#9733;</span>
+      <span class="rm-star" data-v="2">&#9733;</span>
+      <span class="rm-star" data-v="3">&#9733;</span>
+      <span class="rm-star" data-v="4">&#9733;</span>
+      <span class="rm-star" data-v="5">&#9733;</span>
+    </div>
+    <textarea class="rm-ta" id="rm-ta" placeholder="Write your review..."></textarea>
+    <div class="rm-acts">
+      <button class="rm-submit" onclick="submitReview()">Submit</button>
+      <button class="rm-cancel" onclick="closeReviewModal()">Cancel</button>
+    </div>
+    <div class="rm-succ" id="rm-succ">Thanks for your review! ✓</div>
+  </div>
+</div>
 
-// ── Nav scroll ──
-document.querySelectorAll('.nav-link[href^="#"]').forEach(function(link) {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = document.querySelector(this.getAttribute('href'));
-    var container = document.getElementById('main-scroll-container');
-    if (target && container) {
-      container.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
-    }
-  });
-});
-
-// ── Modal ──
-function openModal(title, desc, price, platform) {
-  document.getElementById('modal-title').textContent = title;
-  document.getElementById('modal-desc').textContent  = desc;
-  document.getElementById('modal-price').textContent = price;
-  var msg = encodeURIComponent('Hi! I want to buy: ' + title + ' (' + price + ')');
-  document.getElementById('modal-tg-link').href = 'https://t.me/stark020009?text=' + msg;
-  document.getElementById('modal-backdrop').classList.add('open');
-}
-function closeModal(e) {
-  if (!e || e.target === document.getElementById('modal-backdrop')) {
-    document.getElementById('modal-backdrop').classList.remove('open');
-  }
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
-</script>
-
-<!-- Eye visit counter -->
-<div id="visit-counter" style="
-  position:fixed; top:22px; right:28px; z-index:150;
-  display:flex; align-items:center; gap:7px;
-  background:rgba(255,255,255,0.04); backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,0.08); border-radius:30px;
-  padding:10px 18px; color:rgba(255,255,255,0.45); font-size:0.82rem;
-  font-family:'Poppins',sans-serif; pointer-events:none; user-select:none;
-">
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-    <circle cx="12" cy="12" r="3"/>
-  </svg>
+<!-- VISIT COUNTER -->
+<div id="visit-counter">
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
   <span id="visit-count">—</span>
 </div>
-<script>
-(function() {
-  var KEY = 'shop';
-  var NS  = 'emanueledev';
-  var el  = document.getElementById('visit-count');
-  var SESSION_KEY = 'visited_shop';
-
-  function display(n) {
-    var num = parseInt(n, 10);
-    if (el) el.textContent = isNaN(num) ? '—' : num.toLocaleString();
-  }
-
-  var isNew = !sessionStorage.getItem(SESSION_KEY);
-  if (isNew) sessionStorage.setItem(SESSION_KEY, '1');
-
-  var url = isNew
-    ? 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up'
-    : 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/get';
-
-  fetch(url)
-    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(d) { display(d.count); })
-    .catch(function() { display('—'); });
-})();
-</script>
-
-
-<!-- Review FAB -->
-<button class="review-fab" onclick="toggleReview()" title="Leave a review">
-  <i class="fa-solid fa-comment-dots"></i>
-</button>
-
-<div class="review-panel" id="review-panel">
-  <div class="review-panel-title">Leave a Review</div>
-  <div class="review-panel-sub">How was your experience?</div>
-
-  <div id="reviews-list-wrap">
-    <div class="reviews-list" id="reviews-list"></div>
-  </div>
-
-  <hr class="review-divider">
-
-  <div class="stars" id="stars">
-    <span class="star" data-v="1">&#9733;</span>
-    <span class="star" data-v="2">&#9733;</span>
-    <span class="star" data-v="3">&#9733;</span>
-    <span class="star" data-v="4">&#9733;</span>
-    <span class="star" data-v="5">&#9733;</span>
-  </div>
-
-  <textarea class="review-textarea" id="review-text" placeholder="Write your review..."></textarea>
-  <button class="review-submit" id="review-submit" onclick="submitReview()">Submit</button>
-  <div class="review-success" id="review-success">Thanks for your review! ✓</div>
-</div>
 
 <script>
-var reviewRating = 0;
-
-function toggleReview() {
-  var panel = document.getElementById('review-panel');
-  panel.classList.toggle('open');
-  if (panel.classList.contains('open')) renderReviews();
+if(typeof particlesJS!=='undefined'){
+  particlesJS("particles-js",{particles:{number:{value:45,density:{enable:true,value_area:900}},color:{value:"#ffffff"},shape:{type:"circle"},opacity:{value:0.18},size:{value:1.8},line_linked:{enable:true,distance:140,color:"#ffffff",opacity:0.1,width:1},move:{enable:true,speed:0.9}},interactivity:{events:{onhover:{enable:true,mode:"grab"},onclick:{enable:true,mode:"push"}}}});
 }
-
-document.addEventListener('click', function(e) {
-  var panel = document.getElementById('review-panel');
-  var fab = document.querySelector('.review-fab');
-  if (panel && fab && !panel.contains(e.target) && !fab.contains(e.target)) {
-    panel.classList.remove('open');
-  }
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
 });
-
-document.getElementById('stars').addEventListener('click', function(e) {
-  var star = e.target.closest('.star');
-  if (!star) return;
-  reviewRating = parseInt(star.dataset.v);
-  document.querySelectorAll('.star').forEach(function(s) {
-    s.classList.toggle('active', parseInt(s.dataset.v) <= reviewRating);
-  });
-});
-
-document.getElementById('stars').addEventListener('mouseover', function(e) {
-  var star = e.target.closest('.star');
-  if (!star) return;
-  var v = parseInt(star.dataset.v);
-  document.querySelectorAll('.star').forEach(function(s) {
-    s.style.color = parseInt(s.dataset.v) <= v ? '#f5c542' : '';
-  });
-});
-
-document.getElementById('stars').addEventListener('mouseleave', function() {
-  document.querySelectorAll('.star').forEach(function(s) {
-    s.style.color = parseInt(s.dataset.v) <= reviewRating ? '#f5c542' : '';
-  });
-});
-
-function submitReview() {
-  var text = document.getElementById('review-text').value.trim();
-  if (!reviewRating || !text) return;
-
-  var reviews = JSON.parse(localStorage.getItem('shop_reviews') || '[]');
-  reviews.unshift({ rating: reviewRating, text: text, date: new Date().toLocaleDateString('en-GB') });
-  localStorage.setItem('shop_reviews', JSON.stringify(reviews));
-
-  document.getElementById('review-text').value = '';
-  reviewRating = 0;
-  document.querySelectorAll('.star').forEach(function(s) { s.classList.remove('active'); s.style.color = ''; });
-
-  var succ = document.getElementById('review-success');
-  succ.style.display = 'block';
-  setTimeout(function() { succ.style.display = 'none'; }, 2500);
-
-  renderReviews();
+function switchTab(p){
+  document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.pp').forEach(function(x){x.classList.remove('active');});
+  var tab=document.querySelector('.ptab.'+p);
+  var panel=document.getElementById('panel-'+p);
+  if(tab)tab.classList.add('active');
+  if(panel)panel.classList.add('active');
 }
-
-function renderReviews() {
-  var list = document.getElementById('reviews-list');
-  var reviews = JSON.parse(localStorage.getItem('shop_reviews') || '[]');
-  if (!reviews.length) {
-    list.innerHTML = '<div class="no-reviews">No reviews yet. Be the first!</div>';
-    return;
-  }
-  list.innerHTML = reviews.map(function(r) {
-    return '<div class="review-item">'
-      + '<div class="ri-stars">' + '&#9733;'.repeat(r.rating) + '&#9734;'.repeat(5 - r.rating) + ' <span style="color:#555;font-size:0.7rem;">' + r.date + '</span></div>'
-      + '<div class="ri-text">' + r.text.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>'
-      + '</div>';
+function openModal(title,desc,price){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-desc').textContent=desc;
+  document.getElementById('modal-price').textContent=price;
+  var msg=encodeURIComponent('Hi! I want to buy: '+title+' ('+price+')');
+  document.getElementById('modal-tg-link').href='https://t.me/stark020009?text='+msg;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+function closeModal(e){
+  if(!e||e.target===document.getElementById('modal-backdrop'))
+    document.getElementById('modal-backdrop').classList.remove('open');
+}
+function toggleFaq(btn){
+  var item=btn.parentElement;
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
+  if(!wasOpen)item.classList.add('open');
+}
+var reviewRating=0;
+function openReviewModal(){document.getElementById('rv-overlay').classList.add('open');renderReviews();}
+function closeReviewModal(){document.getElementById('rv-overlay').classList.remove('open');}
+function handleRvOv(e){if(e.target===document.getElementById('rv-overlay'))closeReviewModal();}
+document.getElementById('rm-stars').addEventListener('click',function(e){
+  var star=e.target.closest('.rm-star');if(!star)return;
+  reviewRating=parseInt(star.dataset.v);
+  document.querySelectorAll('.rm-star').forEach(function(s){s.classList.toggle('active',parseInt(s.dataset.v)<=reviewRating);});
+});
+document.getElementById('rm-stars').addEventListener('mouseover',function(e){
+  var star=e.target.closest('.rm-star');if(!star)return;
+  var v=parseInt(star.dataset.v);
+  document.querySelectorAll('.rm-star').forEach(function(s){s.style.color=parseInt(s.dataset.v)<=v?'#f5c542':'';});
+});
+document.getElementById('rm-stars').addEventListener('mouseleave',function(){
+  document.querySelectorAll('.rm-star').forEach(function(s){s.style.color=parseInt(s.dataset.v)<=reviewRating?'#f5c542':'';});
+});
+function submitReview(){
+  var text=document.getElementById('rm-ta').value.trim();
+  if(!reviewRating||!text)return;
+  var reviews=JSON.parse(localStorage.getItem('shop_reviews')||'[]');
+  reviews.unshift({rating:reviewRating,text:text,date:new Date().toLocaleDateString('en-GB')});
+  localStorage.setItem('shop_reviews',JSON.stringify(reviews));
+  document.getElementById('rm-ta').value='';
+  reviewRating=0;
+  document.querySelectorAll('.rm-star').forEach(function(s){s.classList.remove('active');s.style.color='';});
+  var succ=document.getElementById('rm-succ');succ.style.display='block';
+  setTimeout(function(){succ.style.display='none';closeReviewModal();renderReviews();},1800);
+}
+function renderReviews(){
+  var grid=document.getElementById('reviews-grid');if(!grid)return;
+  var reviews=JSON.parse(localStorage.getItem('shop_reviews')||'[]');
+  if(!reviews.length){grid.innerHTML='<div class="no-rv-msg">No reviews yet — be the first to leave one!</div>';return;}
+  grid.innerHTML=reviews.map(function(r){
+    return '<div class="review-card"><div class="rc-stars">'+'★'.repeat(r.rating)+'☆'.repeat(5-r.rating)+'</div>'
+      +'<div class="rc-text">'+r.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>'
+      +'<div class="rc-date">'+r.date+'</div></div>';
   }).join('');
 }
+renderReviews();
+(function(){
+  var KEY='shop',NS='emanueledev',el=document.getElementById('visit-count'),SK='visited_shop';
+  function display(n){var x=parseInt(n,10);if(el)el.textContent=isNaN(x)?'—':x.toLocaleString();}
+  var isNew=!sessionStorage.getItem(SK);if(isNew)sessionStorage.setItem(SK,'1');
+  fetch(isNew?'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/up':'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/get')
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(function(d){display(d.count);}).catch(function(){display('—');});
+})();
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){document.getElementById('modal-backdrop').classList.remove('open');closeReviewModal();}
+});
 </script>
-
 </body>
 </html>
