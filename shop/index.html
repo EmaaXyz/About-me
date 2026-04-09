@@ -8,10 +8,7 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-<script>
-  window.addEventListener('load',function(){var l=document.getElementById('loading');if(l)l.style.display='none';});
-  setTimeout(function(){var l=document.getElementById('loading');if(l)l.style.display='none';},2500);
-</script>
+<script>window.addEventListener('load',function(){var l=document.getElementById('loading');if(l){l.style.opacity='0';l.style.transition='opacity .5s ease';setTimeout(function(){l.style.display='none';},500);}});setTimeout(function(){var l=document.getElementById('loading');if(l){l.style.opacity='0';l.style.transition='opacity .5s ease';setTimeout(function(){l.style.display='none';},500);}},2800);</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,923 +17,808 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#061222;--s1:#123249;--s2:#2D5B75;
-  --border:rgba(68,119,148,0.15);--borderh:rgba(68,119,148,0.3);
-  --text:#f0f0f0;--muted:#447794;--muted2:#7a9cb5;--accent:#447794;
-  --tg:#447794;--tg2:rgba(68,119,148,.12);
-  --wa:#2D5B75;--wa2:rgba(45,91,117,.12);
-  --dc:#123249;--dc2:rgba(18,50,73,.12);
-  --gold:#F5C542;
-  --font-main: "Geist", sans-serif;
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --ease-io:cubic-bezier(.76,0,.24,1);
+--bg:#000000;
+--surface:#050505;
+--surface-2:#0a0a0a;
+--border:rgba(255,255,255,0.06);
+--border-hover:rgba(255,255,255,0.12);
+--text:#ffffff;
+--muted:#666666;
+--muted-2:#444444;
+--accent-start:#3b82f6;
+--accent-end:#8b5cf6;
+--accent-mid:#6366f1;
+--grad:linear-gradient(135deg,var(--accent-start),var(--accent-end));
+--grad-glow:rgba(99,102,241,0.25);
+--tg:#229ED9;
+--wa:#25D366;
+--dc:#5865F2;
+--gold:#F5C542;
+--font:'Geist',sans-serif;
+--ease-out:cubic-bezier(.16,1,.3,1);
+--ease-io:cubic-bezier(.76,0,.24,1);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--font-main);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
+body::before{
+content:'';position:fixed;inset:0;
+background:
+radial-gradient(ellipse 80% 50% at 20% 10%,rgba(59,130,246,0.04) 0%,transparent 60%),
+radial-gradient(ellipse 60% 40% at 80% 80%,rgba(139,92,246,0.04) 0%,transparent 60%);
+pointer-events:none;z-index:0;
+}
 body::after{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px 200px;pointer-events:none;z-index:9997;opacity:.028;
+content:'';position:fixed;inset:0;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+background-size:200px 200px;pointer-events:none;z-index:9997;opacity:.025;
 }
 
-#particles-js{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity .4s}
+#particles-js{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-#loading{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px;z-index:9999}
-.load-logo{font-family:var(--font-main);font-size:3rem;font-weight: 800;letter-spacing:.14em;color:var(--text);animation:lp 1.2s ease-in-out infinite}
-@keyframes lp{0%,100%{opacity:.35}50%{opacity:1}}
-.load-bar{width:140px;height:1px;background:var(--border);overflow:hidden;position:relative}
-.load-fill{position:absolute;inset:0;background:var(--accent);animation:lf 1.8s var(--ease-io) infinite;transform-origin:left}
+#loading{
+position:fixed;inset:0;background:var(--bg);
+display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;
+z-index:9999;
+}
+.load-logo{
+font-family:var(--font);font-size:2rem;font-weight:900;letter-spacing:.3em;
+color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;
+animation:lp 1.4s ease-in-out infinite;
+}
+@keyframes lp{0%,100%{opacity:.15}50%{opacity:1}}
+.load-bar{width:120px;height:1px;background:rgba(255,255,255,0.06);overflow:hidden;position:relative}
+.load-fill{position:absolute;inset:0;background:var(--grad);animation:lf 2s var(--ease-io) infinite;transform-origin:left}
 @keyframes lf{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+@keyframes heroFadeBlur{from{opacity:0;filter:blur(12px);transform:translateY(16px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-magnetic{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,0)}50%{box-shadow:0 0 0 8px rgba(99,102,241,0.15),0 0 30px rgba(99,102,241,0.2)}}
+@keyframes borderGlow{0%,100%{opacity:.6}50%{opacity:1}}
 
 #mw{position:relative;z-index:1}
 
 .navbar{
-  position:fixed;top:0;left:0;right:0;z-index:500;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(18px,5vw,60px);
-  background:rgba(6,18,34,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
+position:fixed;top:0;left:0;right:0;z-index:500;height:68px;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 clamp(20px,5vw,80px);
+background:transparent;transition:all .5s var(--ease-out);
 }
-.navbar::after{content:'';position:absolute;top:60px;left:0;right:0;height:40px;background:linear-gradient(to bottom,rgba(6,18,34,.5),transparent);pointer-events:none}
+.navbar.scrolled{
+height:58px;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(24px) saturate(180%);
+-webkit-backdrop-filter:blur(24px) saturate(180%);
+border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-img{width:26px;height:26px;border-radius:6px;transition:transform .3s var(--ease-out)}
+.nav-logo:hover .nav-logo-img{transform:rotate(-10deg) scale(1.12)}
+.nav-logo-name{font-weight:800;font-size:1.1rem;letter-spacing:-.03em;color:var(--text)}
 
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
-.nav-logo-img{width:30px;height:30px;object-fit:contain;display:block;border-radius:4px;filter:brightness(.9);transition:filter .25s}
-.nav-logo:hover .nav-logo-img{filter:brightness(1) drop-shadow(0 0 6px rgba(68,119,148,.4))}
-.nav-logo-name{font-family:var(--font-main);font-weight: 700;font-size:1.1rem;letter-spacing:.04em;color:var(--text)}
-
-.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{
-  color:var(--muted2);text-decoration:none;
-  font-family:var(--font-main);font-size:.62rem;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
-  transition:color .2s;position:relative;
+color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:500;
+text-transform:uppercase;letter-spacing:.12em;transition:color .3s;
 }
-.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease-out)}
 .nav-links a:hover{color:var(--text)}
-.nav-links a:hover::after{transform:scaleX(1)}
 
 .nav-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 18px;
-  border:1px solid var(--borderh);background:transparent;
-  color:var(--text);font-family:var(--font-main);font-size:.62rem;
-  letter-spacing:.14em;text-transform:uppercase;
-  text-decoration:none;
-  transition:background .2s,color .2s;
+display:inline-flex;align-items:center;gap:8px;
+padding:9px 20px;border-radius:100px;
+background:var(--grad);color:#fff;
+font-size:.72rem;font-weight:700;text-decoration:none;
+transition:transform .25s var(--ease-out),box-shadow .25s;
+box-shadow:0 0 0 0 var(--grad-glow);
 }
-.nav-cta:hover{background:var(--tg);border-color:var(--tg);color:#fff}
-
-.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:liveDot 2s infinite}
-@keyframes liveDot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(68,119,148,.4)}50%{opacity:.5;box-shadow:0 0 0 4px rgba(68,119,148,0)}}
-
-@media(max-width:780px){.nav-links{display:none}}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 20px var(--grad-glow)}
 
 .hero{
-  min-height:100vh;padding:100px clamp(20px,7vw,100px) 80px;
-  display:flex;align-items:center;justify-content:space-between;gap:50px;
-  position:relative;overflow:hidden;
+min-height:100vh;padding:140px clamp(20px,7vw,100px) 120px;
+display:flex;flex-direction:column;align-items:center;text-align:center;
+position:relative;overflow:hidden;
 }
-.hero::before{
-  content:'';position:absolute;left:-10%;top:10%;
-  width:65vw;height:80vh;
-  background:radial-gradient(ellipse at 30% 40%,rgba(68,119,148,.1) 0%,rgba(18,50,73,.05) 40%,transparent 70%);
-  pointer-events:none;
-}
-
-.hero-left{flex:1;max-width:580px;position:relative;z-index:1}
 
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:5px 12px 5px 7px;
-  border:1px solid var(--borderh);
-  font-family:var(--font-main);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted2);margin-bottom:28px;
-  background:rgba(255,255,255,.025);
-  animation:fadeUp .6s var(--ease-out) .3s both;
+display:inline-flex;align-items:center;gap:8px;
+padding:6px 16px;border-radius:100px;
+border:1px solid rgba(99,102,241,0.2);
+background:rgba(99,102,241,0.06);
+font-size:.68rem;font-weight:600;letter-spacing:.14em;
+color:var(--accent-mid);
+margin-bottom:36px;
+animation:heroFadeBlur 1.2s var(--ease-out) .1s both;
 }
-.eb-dot{width:16px;height:16px;border-radius:50%;background:rgba(68,119,148,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.eb-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:liveDot 2s infinite}
+.hero-eyebrow::before{
+content:'';width:6px;height:6px;border-radius:50%;
+background:var(--grad);flex-shrink:0;
+}
 
 .hero h1{
-  font-family:var(--font-main);
-  font-size:clamp(3rem,6vw,5.5rem);
-  font-weight:900;line-height:1;letter-spacing:.02em;
-  color:var(--text);margin-bottom:24px;
-  animation:fadeUp .7s var(--ease-out) .45s both;
+font-size:clamp(4rem,11vw,8rem);font-weight:100;line-height:.88;
+letter-spacing:-.04em;margin-bottom:36px;
+animation:heroFadeBlur 1.2s var(--ease-out) .3s both;
 }
+.hero h1 strong{font-weight:900}
 .hero h1 em{
-  font-style:normal;
-  -webkit-text-fill-color:transparent;
-  background:linear-gradient(110deg,var(--tg) 0%,var(--wa) 55%,var(--dc) 100%);
-  -webkit-background-clip:text;background-clip:text;
+font-style:normal;
+color:transparent;
+background:var(--grad);
+-webkit-background-clip:text;background-clip:text;
 }
 
 .hero-sub{
-  font-size:clamp(.85rem,1.6vw,1rem);color:var(--muted2);
-  max-width:420px;line-height:1.85;margin-bottom:36px;
-  animation:fadeUp .7s var(--ease-out) .55s both;
+font-size:clamp(.95rem,2vw,1.15rem);color:var(--muted);
+max-width:560px;font-weight:300;margin-bottom:52px;line-height:1.8;
+animation:heroFadeBlur 1.2s var(--ease-out) .5s both;
 }
 
 .hero-actions{
-  display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:48px;
-  animation:fadeUp .7s var(--ease-out) .65s both;
+display:flex;gap:14px;animation:heroFadeBlur 1.2s var(--ease-out) .65s both;
 }
-.btn-p{
-  display:inline-flex;align-items:center;gap:9px;padding:13px 26px;
-  border:1px solid var(--accent);background:var(--accent);
-  color:#fff;font-family:var(--font-main);font-size:.68rem;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
-  transition:background .2s,color .2s,border-color .2s,transform .2s;
-  position:relative;overflow:hidden;
-}
-.btn-p::before{content:'';position:absolute;inset:0;background:var(--bg);transform:translateY(100%);transition:transform .3s var(--ease-out)}
-.btn-p:hover{color:#fff;border-color:var(--accent)}
-.btn-p:hover::before{transform:translateY(0)}
-.btn-p span,.btn-p i{position:relative;z-index:1}
-.btn-s{
-  display:inline-flex;align-items:center;gap:9px;padding:13px 26px;
-  border:1px solid var(--border);background:transparent;
-  color:var(--muted2);font-family:var(--font-main);font-size:.68rem;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
-  transition:color .2s,border-color .2s;
-}
-.btn-s:hover{color:var(--text);border-color:var(--borderh)}
 
-.hero-stats{
-  display:flex;gap:36px;flex-wrap:wrap;
-  animation:fadeUp .7s var(--ease-out) .75s both;
+.btn-grad{
+padding:16px 38px;background:var(--grad);color:#fff;
+font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;
+text-decoration:none;border-radius:6px;
+transition:transform .25s var(--ease-out),box-shadow .25s;
+box-shadow:0 0 0 0 var(--grad-glow);
 }
-.hstat-divider{width:1px;background:var(--border);align-self:stretch}
-.hstat strong{
-  display:block;font-family:var(--font-main);
-  font-size:2rem;font-weight: 800;letter-spacing:.02em;
-  color:var(--text);line-height:1;margin-bottom:3px;
-}
-.hstat span{font-family:var(--font-main);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.btn-grad:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 30px var(--grad-glow)}
 
-.hero-right{flex:0 0 auto;width:clamp(220px,24vw,310px);position:relative;z-index:1}
-.hero-visual{position:relative;height:300px}
-.hvc{
-  position:absolute;
-  border:1px solid var(--borderh);
-  padding:14px 18px;background:rgba(18,50,73,.95);
-  backdrop-filter:blur(12px);
-  will-change:transform;
+.btn-ghost{
+padding:16px 38px;background:transparent;color:var(--muted);
+font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;
+text-decoration:none;border-radius:6px;
+border:1px solid var(--border);
+transition:all .25s var(--ease-out);
 }
-.hvc.tg{top:0;left:0;width:175px;animation:fl1 4s ease-in-out infinite}
-.hvc.wa{top:105px;right:0;width:160px;animation:fl2 5.2s ease-in-out infinite}
-.hvc.dc{top:210px;left:20px;width:155px;animation:fl3 4.6s ease-in-out infinite}
-@keyframes fl1{0%,100%{transform:translateY(0) translateZ(0)}50%{transform:translateY(-10px) translateZ(0)}}
-@keyframes fl2{0%,100%{transform:translateY(0) translateZ(0)}50%{transform:translateY(-8px) translateZ(0)}}
-@keyframes fl3{0%,100%{transform:translateY(0) translateZ(0)}50%{transform:translateY(-12px) translateZ(0)}}
-.hvc-label{font-family:var(--font-main);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted2);margin-bottom:6px}
-.hvc-price{font-family:var(--font-main);font-weight: 800;font-size:1.6rem;letter-spacing:.04em;color:var(--text)}
-.hvc-plat{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--muted2);margin-top:6px}
-.hvc-d{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.hvc-tag{font-family:var(--font-main);font-size:.54rem;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;border:1px solid var(--border);color:var(--muted);display:inline-block;margin-top:8px}
+.btn-ghost:hover{color:var(--text);border-color:var(--border-hover);background:rgba(255,255,255,0.03)}
 
-@media(max-width:860px){.hero{flex-direction:column;padding-top:90px}.hero-sub{max-width:100%}.hero-right{display:none}}
+.hero-scroll-hint{
+position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+display:flex;flex-direction:column;align-items:center;gap:8px;
+animation:heroFadeBlur 1.2s var(--ease-out) 1s both;
+}
+.hero-scroll-hint span{font-size:.6rem;letter-spacing:.2em;color:var(--muted-2);text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent-mid),transparent);animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
 
-.trust-bar{
-  padding:20px clamp(20px,7vw,100px);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:var(--s1);
-  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
-}
-.trust-lbl{font-family:var(--font-main);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;white-space:nowrap}
-.trust-div{width:1px;height:18px;background:var(--border);flex-shrink:0}
-.trust-items{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
-.trust-item{
-  display:flex;align-items:center;gap:7px;
-  font-family:var(--font-main);font-size:.6rem;letter-spacing:.08em;
-  color:var(--muted2);opacity:.7;transition:opacity .2s;text-transform:uppercase;
-}
-.trust-item:hover{opacity:1}
-.trust-item img{display:block}
-
-.sec-tag{
-  display:inline-block;font-family:var(--font-main);font-size:.58rem;
-  text-transform:uppercase;letter-spacing:.18em;color:var(--muted2);
-  border:1px solid var(--border);padding:4px 10px;margin-bottom:18px;
-}
-.sec-title{
-  font-family:var(--font-main);
-  font-weight: 800;
-  font-size:clamp(2.5rem,5vw,4.5rem);
-  letter-spacing:.04em;color:var(--text);line-height:1;margin-bottom:14px;
-}
-.sec-sub{font-size:.9rem;color:var(--muted2);max-width:460px;line-height:1.8}
-
-.sec-reveal{
-  opacity:0;transform:translateY(16px);
-  transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);
-}
+.sec-reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
 .sec-reveal.visible{opacity:1;transform:translateY(0)}
 
-.benefits{padding:110px clamp(20px,7vw,100px)}
-.benefits-hd{margin-bottom:48px}
+.section-label{
+font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+color:var(--accent-mid);margin-bottom:16px;display:block;
+}
+.section-title{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:100;letter-spacing:-.03em;line-height:1}
+.section-title strong{font-weight:900}
 
-.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.benefits{padding:140px clamp(20px,7vw,100px)}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
 .bc{
-  background:var(--bg);padding:28px 28px 38px;
-  position:relative;overflow:hidden;
-  transition:background .25s;
+background:var(--surface);padding:44px;
+transition:background .4s var(--ease-out);position:relative;overflow:hidden;
 }
-.bc:hover{background:var(--s1)}
+.bc::after{
+content:'';position:absolute;inset:0;
+background:radial-gradient(circle at 0% 100%,rgba(99,102,241,0.06),transparent 70%);
+opacity:0;transition:opacity .4s;
+}
+.bc:hover{background:var(--surface-2)}
+.bc:hover::after{opacity:1}
 .bc.wide{grid-column:span 2}
-
-.bc::before{
-  content:'';position:absolute;top:0;left:0;
-  width:0;height:1px;
-  background:rgba(68,119,148,.4);
-  transition:width .4s var(--ease-out);
-}
-.bc:hover::before{width:100%}
-
 .bc-icon{
-  width:34px;height:34px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;margin-bottom:18px;border:1px solid var(--border);
+width:40px;height:40px;border-radius:10px;
+background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);
+display:flex;align-items:center;justify-content:center;
+font-size:1rem;color:var(--accent-mid);margin-bottom:28px;
 }
-.bc h3{font-family:var(--font-main);font-weight: 700;font-size:1.6rem;letter-spacing:.04em;color:var(--text);margin-bottom:8px}
-.bc p{font-size:.78rem;color:var(--muted2);line-height:1.7}
-.bc-num{
-  position:absolute;bottom:12px;right:18px;
-  font-family:var(--font-main);font-weight: 800;font-size:3.5rem;letter-spacing:.04em;
-  color:rgba(68,119,148,.05);line-height:1;user-select:none;
-}
+.bc h3{font-size:1.2rem;font-weight:700;margin-bottom:10px;letter-spacing:-.02em}
+.bc p{color:var(--muted);font-weight:300;font-size:.85rem;line-height:1.7}
 
-@media(max-width:860px){.bento{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.bento{grid-template-columns:1fr}.bc.wide{grid-column:span 1}}
-
-.how{
-  padding:110px clamp(20px,7vw,100px);
-  background:var(--s1);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+.products{padding:140px clamp(20px,7vw,100px)}
+.ptabs{display:flex;justify-content:center;gap:2px;margin-bottom:60px;
+background:var(--surface);border:1px solid var(--border);border-radius:10px;
+padding:4px;width:fit-content;margin-left:auto;margin-right:auto;
 }
-.how-hd{margin-bottom:64px}
-
-.steps-row{
-  display:flex;align-items:flex-start;gap:0;
-  max-width:860px;
-}
-.step-item{flex:1;padding:0 24px 0 0;position:relative}
-.step-item:not(:last-child)::after{
-  content:'';position:absolute;top:22px;right:0;
-  width:calc(100% - 60px);height:1px;
-  background:var(--border);
-  left:52px;
-}
-.snb{
-  width:44px;height:44px;
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-main);font-size:.72rem;letter-spacing:.1em;color:var(--muted2);
-  margin-bottom:18px;background:var(--bg);
-  position:relative;z-index:1;
-  transition:border-color .3s,color .3s;
-}
-.step-item:hover .snb{border-color:var(--muted);color:var(--text)}
-.step-item h4{font-family:var(--font-main);font-weight: 700;font-size:1.3rem;letter-spacing:.04em;color:var(--text);margin-bottom:6px}
-.step-item p{font-size:.76rem;color:var(--muted2);line-height:1.65;max-width:160px}
-
-@media(max-width:700px){
-  .steps-row{flex-direction:column;gap:32px;max-width:300px}
-  .step-item{padding:0 0 0 24px;border-left:1px solid var(--border)}
-  .step-item:not(:last-child)::after{display:none}
-}
-
-.products{padding:110px clamp(20px,7vw,100px)}
-.products-hd{margin-bottom:40px}
-
-.ptabs{display:flex;gap:1px;margin-bottom:1px;background:var(--border);border:1px solid var(--border);width:fit-content;flex-wrap:wrap}
 .ptab{
-  display:flex;align-items:center;gap:8px;
-  padding:11px 22px;
-  font-family:var(--font-main);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  cursor:pointer;border:none;background:var(--bg);color:var(--muted2);
-  transition:all .2s;
+background:transparent;border:none;
+color:var(--muted);padding:10px 26px;border-radius:7px;
+cursor:pointer;font-weight:600;font-size:.73rem;letter-spacing:.08em;
+text-transform:uppercase;transition:all .25s;font-family:var(--font);
 }
-.ptab:hover{color:var(--text);background:var(--s1)}
-.ptab.active{background:var(--s1);color:var(--text);border-bottom:1px solid var(--accent)}
-.ptab img{width:14px;height:14px;display:block;filter:brightness(1)}
-
-.pp{display:none}.pp.active{display:block}
-
-.cards-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);
-  margin-top:1px;
+.ptab.active{
+background:var(--surface-2);color:var(--text);
+box-shadow:0 1px 3px rgba(0,0,0,.5);
 }
+
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
 
 .product-card{
-  background:var(--bg);padding:22px 20px 26px;
-  cursor:pointer;
-  display:flex;flex-direction:column;gap:10px;
-  position:relative;overflow:hidden;
-  transition:background .2s;
+background:rgba(255,255,255,0.025);
+backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.07);
+padding:32px;border-radius:18px;
+display:flex;flex-direction:column;gap:18px;
+transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out),border-color .4s;
+position:relative;overflow:hidden;cursor:pointer;
 }
-.product-card:hover{background:var(--s1)}
-
 .product-card::before{
-  content:'';position:absolute;inset:0;opacity:0;
-  transition:opacity .3s;
+content:'';position:absolute;inset:0;border-radius:18px;
+background:linear-gradient(135deg,rgba(59,130,246,0.05),rgba(139,92,246,0.05));
+opacity:0;transition:opacity .4s;
 }
-.product-card.tg::before{background:radial-gradient(circle at top right,var(--tg2),transparent 60%)}
-.product-card.wa::before{background:radial-gradient(circle at top right,var(--wa2),transparent 60%)}
-.product-card.dc::before{background:radial-gradient(circle at top right,var(--dc2),transparent 60%)}
-.product-card:hover::before{opacity:1}
-
 .product-card::after{
-  content:'';position:absolute;top:0;left:0;
-  height:1px;width:0;
-  transition:width .35s var(--ease-out);
+content:'';position:absolute;inset:-1px;border-radius:19px;
+background:var(--grad);z-index:-1;opacity:0;transition:opacity .4s;
 }
-.product-card.tg::after{background:var(--tg)}
-.product-card.wa::after{background:var(--wa)}
-.product-card.dc::after{background:var(--dc)}
-.product-card:hover::after{width:100%}
-
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
-.flag{font-size:1.7rem;line-height:1}
-.badge-premium{
-  font-family:var(--font-main);font-size:.53rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 8px;background:rgba(245,197,66,.08);
-  color:var(--gold);border:1px solid rgba(245,197,66,.22);
+.product-card:hover{
+transform:translateY(-8px) scale(1.01);
+box-shadow:0 24px 48px rgba(0,0,0,.6),0 0 0 1px rgba(99,102,241,0.3);
+border-color:transparent;
 }
-.badge-standard{
-  font-family:var(--font-main);font-size:.53rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 8px;background:rgba(255,255,255,.03);
-  color:var(--muted2);border:1px solid var(--border);
-}
+.product-card:hover::before{opacity:1}
+.product-card:hover::after{opacity:.8}
+.product-card:hover .flag{transform:scale(1.15)}
 
-.card-body{position:relative;z-index:1}
-.card-body h3{font-family:var(--font-main);font-weight: 700;font-size:1.4rem;letter-spacing:.04em;color:var(--text);margin-bottom:4px}
-.card-body p{font-size:.73rem;color:var(--muted2);line-height:1.5}
+.flag{font-size:2.4rem;display:block;transition:transform .4s var(--ease-out)}
+.product-card h3{font-size:1.9rem;font-weight:800;letter-spacing:-.03em}
+.product-card p{color:var(--muted);font-weight:300;font-size:.82rem;line-height:1.7;flex:1}
 
-.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;position:relative;z-index:1}
-.price{font-family:var(--font-main);font-weight: 800;font-size:1.5rem;letter-spacing:.04em;color:var(--text)}
-.price span{font-family:var(--font-main);font-size:.6rem;color:var(--muted);letter-spacing:.06em}
+.price{font-size:2rem;font-weight:100;letter-spacing:-.03em}
+.price strong{font-weight:900;font-size:2.4rem}
+.price span{font-size:.75rem;color:var(--muted);font-weight:400}
 
 .buy-btn{
-  padding:7px 16px;
-  font-family:var(--font-main);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
-  border:none;cursor:pointer;
-  transition:filter .2s,transform .15s;
+width:100%;padding:13px;border:none;border-radius:8px;
+font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+cursor:pointer;font-family:var(--font);
+background:var(--grad);color:#fff;
+transition:transform .2s var(--ease-out),box-shadow .2s;
 }
-.buy-btn:hover{filter:brightness(1.15);transform:scale(1.04)}
-.buy-btn.tg{background:var(--tg);color:#fff}
-.buy-btn.wa{background:var(--wa);color:#fff}
-.buy-btn.dc{background:var(--dc);color:#fff}
+.buy-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 24px var(--grad-glow);
+animation:pulse-magnetic 1.2s ease infinite;
+}
 
-.reviews{
-  padding:110px clamp(20px,7vw,100px);
-  background:var(--s1);
-  border-top:1px solid var(--border);
+.platform-badge{
+position:absolute;top:20px;right:20px;
+width:28px;height:28px;border-radius:6px;
+display:flex;align-items:center;justify-content:center;
+font-size:.8rem;
 }
-.reviews-hd{margin-bottom:46px}
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:1px;background:var(--border);border:1px solid var(--border);
-  margin-bottom:24px;
+.badge-tg{background:rgba(34,158,217,0.12);color:var(--tg)}
+.badge-wa{background:rgba(37,211,102,0.12);color:var(--wa)}
+.badge-dc{background:rgba(88,101,242,0.12);color:var(--dc)}
+
+.stats-band{
+padding:80px clamp(20px,7vw,100px);
+border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+background:var(--border);
 }
+.stat-item{
+background:var(--bg);padding:48px 32px;text-align:center;
+}
+.stat-num{
+font-size:3.5rem;font-weight:900;letter-spacing:-.04em;
+color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text;
+}
+.stat-label{font-size:.72rem;color:var(--muted);font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-top:8px}
+
+.reviews{padding:140px clamp(20px,7vw,100px)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:60px}
 .review-card{
-  background:var(--bg);padding:22px 20px;
-  display:flex;flex-direction:column;gap:10px;
+background:rgba(255,255,255,0.02);
+backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+padding:32px;border-radius:14px;
+border:1px solid rgba(255,255,255,0.06);
+transition:border-color .3s,transform .3s var(--ease-out);
 }
-.rc-stars{color:var(--gold);font-size:.75rem;letter-spacing:2px}
-.rc-text{font-size:.79rem;color:var(--muted2);line-height:1.65}
-.rc-date{font-family:var(--font-main);font-size:.62rem;color:var(--muted)}
-.no-rv-msg{
-  font-family:var(--font-main);font-size:.72rem;color:var(--muted);
-  text-align:center;padding:36px;
-  border:1px dashed var(--border);letter-spacing:.06em;
-  margin-bottom:0;
-}
-
-.rv-leave-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:11px 20px;border:1px solid var(--borderh);
-  background:transparent;color:var(--muted2);
-  font-family:var(--font-main);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  cursor:pointer;transition:all .2s;
-}
-.rv-leave-btn:hover{color:var(--text);border-color:var(--muted);background:var(--s2)}
-
-.faq{padding:110px clamp(20px,7vw,100px)}
-.faq-hd{margin-bottom:48px}
-.faq-list{max-width:660px}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:20px 0;background:none;border:none;text-align:left;
-  font-family:var(--font-main);font-size:.88rem;font-weight:600;color:var(--muted2);
-  cursor:pointer;transition:color .2s;
-}
-.faq-q:hover{color:var(--text)}
-.faq-q span{flex:1}
-.faq-ico{
-  font-family:var(--font-main);font-size:.65rem;color:var(--muted);
-  flex-shrink:0;transition:transform .3s var(--ease-out),color .2s;
-}
-.faq-item.open .faq-q{color:var(--text)}
-.faq-item.open .faq-ico{transform:rotate(45deg);color:var(--text)}
-.faq-a{
-  font-size:.82rem;color:var(--muted2);line-height:1.78;
-  max-height:0;overflow:hidden;
-  transition:max-height .38s var(--ease-out),padding-bottom .3s;
-}
-.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
-
-.cta-sec{padding:80px clamp(20px,7vw,100px)}
-.cta-box{
-  border:1px solid var(--borderh);padding:clamp(44px,7vw,80px);
-  text-align:center;position:relative;overflow:hidden;
-}
-.cta-box::before{
-  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
-  width:60%;height:300px;
-  background:radial-gradient(ellipse,rgba(68,119,148,.1) 0%,rgba(18,50,73,.05) 45%,transparent 70%);
-  pointer-events:none;
-}
-.cta-box h2{
-  font-family:var(--font-main);
-  font-weight: 800;
-  font-size:clamp(2.5rem,5vw,4.5rem);
-  letter-spacing:.04em;color:var(--text);margin-bottom:12px;
-  position:relative;
-}
-.cta-box p{font-size:.9rem;color:var(--muted2);margin-bottom:32px;position:relative}
-.cta-btn{
-  display:inline-flex;align-items:center;gap:9px;
-  padding:14px 32px;
-  background:var(--accent);color:#fff;border:1px solid transparent;
-  font-family:var(--font-main);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  text-decoration:none;
-  transition:filter .2s,transform .2s;
-  position:relative;
-}
-.cta-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.review-card:hover{border-color:rgba(255,255,255,0.1);transform:translateY(-4px)}
+.review-stars{color:var(--gold);letter-spacing:2px;font-size:.9rem;margin-bottom:14px}
+.review-text{font-size:.88rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px}
+.review-date{font-size:.65rem;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase}
 
 .footer{
-  padding:38px clamp(20px,7vw,100px);
-  border-top:1px solid var(--border);background:var(--s1);
-  display:flex;align-items:flex-start;justify-content:space-between;
-  flex-wrap:wrap;gap:24px;
+padding:120px clamp(20px,7vw,100px) 60px;
+border-top:1px solid var(--border);
+display:flex;flex-direction:column;align-items:center;text-align:center;gap:40px;
 }
-.footer-logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:8px}
-.footer-logo-img{width:26px;height:26px;object-fit:contain;border-radius:3px;filter:brightness(.75)}
-.footer-logo-name{font-family:var(--font-main);font-weight: 700;font-size:1rem;letter-spacing:.04em;color:var(--muted2)}
-.footer-desc{font-family:var(--font-main);font-size:.62rem;color:var(--muted);line-height:1.7;max-width:240px;letter-spacing:.04em}
-.footer-r{display:flex;flex-direction:column;gap:7px;align-items:flex-end}
-.footer-r a{font-family:var(--font-main);font-size:.65rem;color:var(--muted2);text-decoration:none;letter-spacing:.08em;transition:color .2s}
-.footer-r a:hover{color:var(--text)}
-.footer-copy{
-  width:100%;font-family:var(--font-main);font-size:.6rem;color:var(--muted);
-  border-top:1px solid var(--border);padding-top:18px;
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px;
-  letter-spacing:.06em;
-}
+.footer-headline{font-size:clamp(3rem,8vw,6rem);font-weight:100;letter-spacing:-.04em;line-height:.9}
+.footer-headline strong{font-weight:900}
+.footer-meta{font-size:.68rem;color:var(--muted-2);letter-spacing:.08em}
 
 .modal-backdrop{
-  position:fixed;inset:0;background:rgba(6,18,34,.85);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  z-index:800;display:none;justify-content:center;align-items:center;
+position:fixed;inset:0;background:rgba(0,0,0,0.85);
+backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+z-index:1000;display:none;justify-content:center;align-items:center;
 }
 .modal-backdrop.open{display:flex}
 .modal{
-  background:var(--s1);border:1px solid var(--borderh);
-  padding:32px 28px;max-width:340px;width:92%;
-  text-align:center;animation:fadeUp .25s ease;
-  position:relative;
+background:rgba(5,5,5,0.95);
+border:1px solid rgba(255,255,255,0.08);
+padding:44px;max-width:420px;width:90%;border-radius:20px;text-align:center;
+box-shadow:0 40px 80px rgba(0,0,0,.8);
 }
-.modal-top-line{position:absolute;top:0;left:0;right:0;height:2px}
-.modal h3{font-family:var(--font-main);font-weight: 700;font-size:1.6rem;letter-spacing:.06em;color:var(--text);margin-bottom:6px}
-.modal p{font-size:.78rem;color:var(--muted2);margin-bottom:18px;line-height:1.6}
-.modal-price{font-family:var(--font-main);font-weight: 800;font-size:2.8rem;letter-spacing:.04em;color:var(--text);margin-bottom:22px}
-.modal-actions{display:flex;flex-direction:column;gap:9px}
-.modal-tg-btn{
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  padding:12px;font-family:var(--font-main);font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;text-decoration:none;
-  background:var(--accent);color:#fff;
-  transition:filter .2s;
+.modal h3{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.modal-desc{color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.modal-price{
+font-size:3rem;font-weight:900;letter-spacing:-.04em;
+color:transparent;background:var(--grad);
+-webkit-background-clip:text;background-clip:text;
+margin-bottom:32px;
 }
-.modal-tg-btn:hover{filter:brightness(1.1)}
-.modal-close{
-  background:none;border:1px solid var(--border);
-  color:var(--muted2);padding:11px;cursor:pointer;
-  font-family:var(--font-main);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
-  transition:all .2s;
-}
-.modal-close:hover{background:rgba(255,255,255,.04);color:var(--text)}
-
-.rv-overlay{
-  position:fixed;inset:0;background:rgba(6,18,34,.85);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  z-index:900;display:none;justify-content:center;align-items:center;
-}
-.rv-overlay.open{display:flex}
-.rv-modal{
-  background:var(--s1);border:1px solid var(--borderh);
-  padding:28px 26px;max-width:360px;width:92%;
-  animation:fadeUp .25s ease;
-}
-.rm-title{font-family:var(--font-main);font-weight: 700;font-size:1.6rem;letter-spacing:.06em;color:var(--text);margin-bottom:3px}
-.rm-sub{font-family:var(--font-main);font-size:.62rem;color:var(--muted);margin-bottom:18px;letter-spacing:.06em}
-.rm-stars{display:flex;gap:5px;margin-bottom:12px}
-.rm-star{font-size:1.45rem;cursor:pointer;color:var(--muted);transition:color .15s,transform .15s;user-select:none}
-.rm-star:hover,.rm-star.active{color:var(--gold);transform:scale(1.15)}
-.rm-ta{
-  width:100%;background:rgba(255,255,255,.025);
-  border:1px solid var(--border);color:var(--text);
-  font-family:var(--font-main);font-size:.8rem;padding:10px 12px;
-  resize:none;height:80px;outline:none;
-  transition:border-color .2s;margin-bottom:12px;display:block;
-}
-.rm-ta::placeholder{color:var(--muted)}
-.rm-ta:focus{border-color:var(--borderh)}
-.rm-acts{display:flex;gap:8px}
-.rm-submit{
-  flex:1;padding:10px;border:none;background:var(--text);color:#000;
-  font-family:var(--font-main);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;transition:background .2s;
-}
-.rm-submit:hover{background:#d0d0d0}
-.rm-cancel{
-  padding:10px 14px;border:1px solid var(--border);background:none;
-  color:var(--muted2);font-family:var(--font-main);font-size:.65rem;cursor:pointer;transition:all .2s;
-}
-.rm-cancel:hover{color:var(--text);background:rgba(255,255,255,.04)}
-.rm-succ{text-align:center;font-family:var(--font-main);font-size:.72rem;color:var(--wa);display:none;margin-top:9px;letter-spacing:.06em}
 
 #visit-counter{
-  position:fixed;top:68px;right:14px;z-index:150;
-  display:flex;align-items:center;gap:5px;
-  background:rgba(6,18,34,.88);backdrop-filter:blur(12px);
-  border:1px solid var(--border);
-  padding:6px 12px;color:rgba(255,255,255,.28);
-  font-family:var(--font-main);font-size:.62rem;letter-spacing:.04em;
-  pointer-events:none;user-select:none;
+position:fixed;bottom:24px;right:24px;
+background:rgba(5,5,5,0.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+border:1px solid var(--border);padding:7px 14px;border-radius:100px;
+font-size:.65rem;color:var(--muted-2);z-index:100;letter-spacing:.05em;
+display:flex;align-items:center;gap:6px;
+}
+#visit-counter::before{
+content:'';width:5px;height:5px;border-radius:50%;
+background:var(--accent-mid);flex-shrink:0;
+box-shadow:0 0 6px var(--accent-mid);
 }
 
-@media(max-width:520px){
-  .hero-stats{gap:20px}
-  .products-hd,.benefits-hd,.reviews-hd,.faq-hd,.how-hd{margin-bottom:32px}
+textarea{
+width:100%;background:rgba(255,255,255,0.03);
+border:1px solid var(--border);color:var(--text);
+padding:16px;border-radius:10px;margin-bottom:20px;height:110px;
+font-family:var(--font);font-size:.85rem;resize:none;
+transition:border-color .25s;outline:none;
+}
+textarea:focus{border-color:rgba(99,102,241,0.4)}
+
+.divider{
+width:100%;height:1px;
+background:linear-gradient(90deg,transparent,var(--border),transparent);
+margin:0;
+}
+
+@media(max-width:900px){
+.bento{grid-template-columns:1fr;background:none;border-radius:12px}
+.bc.wide{grid-column:span 1}
+.stats-band{grid-template-columns:repeat(2,1fr)}
+.nav-links{display:none}
+}
+@media(max-width:560px){
+.stats-band{grid-template-columns:1fr}
+.hero-actions{flex-direction:column;align-items:center}
 }
 </style>
 </head>
 <body>
 
-<div id="loading"><div class="load-logo">EX</div><div class="load-bar"><div class="load-fill"></div></div></div>
+<div id="loading">
+<div class="load-logo">EX</div>
+<div class="load-bar"><div class="load-fill"></div></div>
+</div>
 
 <div id="particles-js"></div>
 
 <div id="mw">
 
-<header class="navbar">
-  <a href="/" class="nav-logo">
-    <img src="logo.png" alt="EX" class="nav-logo-img">
-    <span class="nav-logo-name">EmanueleXyz</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#benefits">Benefits</a></li>
-    <li><a href="#how">Process</a></li>
-    <li><a href="#products">Pricing</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-  <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="nav-cta">
-    <div class="nav-dot"></div> Order now
-  </a>
+<header class="navbar" id="navbar">
+<a href="/" class="nav-logo">
+<img src="logo.png" alt="EX" class="nav-logo-img">
+<span class="nav-logo-name">EmanueleXyz</span>
+</a>
+<ul class="nav-links">
+<li><a href="#benefits">Features</a></li>
+<li><a href="#products">Numbers</a></li>
+<li><a href="#reviews">Trust</a></li>
+</ul>
+<a href="https://t.me/stark020009" target="_blank" class="nav-cta">
+<i class="fa-brands fa-telegram" style="font-size:.8rem"></i> Connect
+</a>
 </header>
 
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">
-      <div class="eb-dot"></div>
-      Verified seller &middot; @stark020009
-    </div>
-    <h1>VERIFY<br>ANYWHERE,<br><em>PAY LESS.</em></h1>
-    <p class="hero-sub">Virtual phone numbers for Telegram, WhatsApp and Discord. Instant delivery via Telegram. No subscription, no trace.</p>
-    <div class="hero-actions">
-      <a href="#products" class="btn-p"><span>Browse Numbers</span> <i class="fa-solid fa-arrow-right" style="font-size:.7rem"></i></a>
-      <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="btn-s"><i class="fa-brands fa-telegram"></i> Contact seller</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hstat"><strong>3</strong><span>Platforms</span></div>
-      <div class="hstat-divider"></div>
-      <div class="hstat"><strong>5+</strong><span>Countries</span></div>
-      <div class="hstat-divider"></div>
-      <div class="hstat"><strong>€3</strong><span>From</span></div>
-      <div class="hstat-divider"></div>
-      <div class="hstat"><strong>Instant</strong><span>Delivery</span></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-visual">
-      <div class="hvc tg">
-        <div class="hvc-label">Telegram · USA 🇺🇸</div>
-        <div class="hvc-price">€5.00</div>
-        <div class="hvc-plat"><div class="hvc-d" style="background:var(--tg)"></div>Premium</div>
-        <div class="hvc-tag">One-time use</div>
-      </div>
-      <div class="hvc wa">
-        <div class="hvc-label">WhatsApp · Kenya 🇰🇪</div>
-        <div class="hvc-price">€3.00</div>
-        <div class="hvc-plat"><div class="hvc-d" style="background:var(--wa)"></div>Standard</div>
-        <div class="hvc-tag">One-time use</div>
-      </div>
-      <div class="hvc dc">
-        <div class="hvc-label">Discord · USA 🇺🇸</div>
-        <div class="hvc-price">€3.00</div>
-        <div class="hvc-plat"><div class="hvc-d" style="background:var(--dc)"></div>Standard</div>
-        <div class="hvc-tag">One-time use</div>
-      </div>
-    </div>
-  </div>
+<div class="hero-eyebrow">ELITE VOIP INFRASTRUCTURE</div>
+<h1>
+<strong>INSTANT</strong><br>
+<em>IDENTITY.</em>
+</h1>
+<p class="hero-sub">Premium disposable numbers for Telegram, WhatsApp and Discord. Encrypted, zero-trace, activated in seconds.</p>
+<div class="hero-actions">
+<a href="#products" class="btn-grad">Browse Numbers</a>
+<a href="https://t.me/stark020009" target="_blank" class="btn-ghost">Talk to Support</a>
+</div>
+<div class="hero-scroll-hint">
+<span>Scroll</span>
+<div class="scroll-line"></div>
+</div>
 </section>
 
-<div class="trust-bar">
-  <span class="trust-lbl">Works with</span>
-  <div class="trust-div"></div>
-  <div class="trust-items">
-    <div class="trust-item"><img src="https://cdn.simpleicons.org/telegram/447794" width="14" height="14" alt="TG">Telegram</div>
-    <div class="trust-item"><img src="https://cdn.simpleicons.org/whatsapp/2D5B75" width="14" height="14" alt="WA">WhatsApp</div>
-    <div class="trust-item"><img src="https://cdn.simpleicons.org/discord/123249" width="14" height="14" alt="DC">Discord</div>
-    <div class="trust-item"><i class="fa-solid fa-shield-halved" style="color:var(--wa);font-size:.72rem"></i>Single-use only</div>
-    <div class="trust-item"><i class="fa-solid fa-bolt" style="color:var(--gold);font-size:.72rem"></i>Instant delivery</div>
-  </div>
+<div class="divider"></div>
+
+<div class="stats-band sec-reveal">
+<div class="stat-item">
+<div class="stat-num">5+</div>
+<div class="stat-label">Countries</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">3</div>
+<div class="stat-label">Platforms</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">&lt;5s</div>
+<div class="stat-label">Delivery</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">0</div>
+<div class="stat-label">Logs Stored</div>
+</div>
 </div>
 
+<div class="divider"></div>
+
 <section class="benefits" id="benefits">
-  <div class="benefits-hd sec-reveal">
-    <div class="sec-tag">Why choose us</div>
-    <h2 class="sec-title">Everything you need,<br>nothing you don't.</h2>
-  </div>
-  <div class="bento sec-reveal">
-    <div class="bc wide"><div class="bc-icon" style="color:var(--tg)"><i class="fa-solid fa-bolt"></i></div><h3>Instant delivery</h3><p>Your virtual number arrives within minutes via Telegram — no waiting, no queues, no forms.</p><div class="bc-num">01</div></div>
-    <div class="bc"><div class="bc-icon" style="color:var(--wa)"><i class="fa-solid fa-shield-halved"></i></div><h3>No data retained</h3><p>Single-use numbers only. Once verified, gone. Your privacy stays intact.</p><div class="bc-num">02</div></div>
-    <div class="bc"><div class="bc-icon" style="color:var(--gold)"><i class="fa-solid fa-star"></i></div><h3>Premium numbers</h3><p>Top-carrier US numbers with high success rates for the most demanding platforms.</p><div class="bc-num">03</div></div>
-    <div class="bc"><div class="bc-icon" style="color:var(--wa)"><i class="fa-solid fa-earth-americas"></i></div><h3>5+ Countries</h3><p>USA, Indonesia, Kenya, Colombia, Egypt — pick the flag that fits your use case.</p><div class="bc-num">04</div></div>
-    <div class="bc"><div class="bc-icon" style="color:var(--tg)"><i class="fa-solid fa-tag"></i></div><h3>Starting at €3</h3><p>No monthly fees, no commitments. Pay only for what you use.</p><div class="bc-num">05</div></div>
-    <div class="bc wide"><div class="bc-icon" style="color:var(--muted2)"><i class="fa-brands fa-telegram"></i></div><h3>Direct Telegram support</h3><p>Real human support, fast responses, verified seller badge. Message @stark020009 anytime.</p><div class="bc-num">06</div></div>
-  </div>
+<div class="sec-reveal" style="margin-bottom:60px">
+<span class="section-label">Infrastructure</span>
+<h2 class="section-title"><strong>ENGINEERED</strong><br>FOR SPEED</h2>
+</div>
+<div class="bento sec-reveal">
+<div class="bc wide">
+<div class="bc-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+<h3>Micro-Second Delivery</h3>
+<p>Our automation layer ensures your OTP arrives the moment it is dispatched. Zero latency, zero manual steps.</p>
+</div>
+<div class="bc">
+<div class="bc-icon"><i class="fa-solid fa-shield-virus"></i></div>
+<h3>Zero-Trace Policy</h3>
+<p>Once verified, the number is burned. No logs retained.</p>
+</div>
+<div class="bc">
+<div class="bc-icon"><i class="fa-solid fa-microchip"></i></div>
+<h3>Tier-1 SIMs</h3>
+<p>Only premium carriers to bypass any platform filter.</p>
+</div>
+<div class="bc wide">
+<div class="bc-icon"><i class="fa-solid fa-globe"></i></div>
+<h3>Global Inventory</h3>
+<p>Strategic coverage across 5+ regions: USA, Indonesia, Kenya and more. New territories added monthly.</p>
+</div>
+</div>
 </section>
 
-<section class="how" id="how">
-  <div class="how-hd sec-reveal">
-    <div class="sec-tag">Process</div>
-    <h2 class="sec-title">Up and running<br>in 4 steps.</h2>
-  </div>
-  <div class="steps-row sec-reveal">
-    <div class="step-item"><div class="snb">01</div><h4>Choose</h4><p>Pick platform and country. Pay once, use once.</p></div>
-    <div class="step-item"><div class="snb">02</div><h4>Open Telegram</h4><p>Hit Buy — a pre-filled message opens in your chat.</p></div>
-    <div class="step-item"><div class="snb">03</div><h4>Receive OTP</h4><p>Number and code delivered instantly by the seller.</p></div>
-    <div class="step-item"><div class="snb">04</div><h4>Done ✓</h4><p>Account verified. Number disposed. No trace left.</p></div>
-  </div>
-</section>
+<div class="divider"></div>
 
 <section class="products" id="products">
-  <div class="products-hd sec-reveal">
-    <div class="sec-tag">Pricing</div>
-    <h2 class="sec-title">Pick your platform.</h2>
-    <p class="sec-sub">All numbers are single-use virtual SIMs. Select a tab to browse countries and prices.</p>
-  </div>
-  <div class="sec-reveal">
-    <div class="ptabs">
-      <button class="ptab tg active" onclick="switchTab('tg')"><img src="https://cdn.simpleicons.org/telegram/447794" alt="TG">Telegram</button>
-      <button class="ptab wa" onclick="switchTab('wa')"><img src="https://cdn.simpleicons.org/whatsapp/2D5B75" alt="WA">WhatsApp</button>
-      <button class="ptab dc" onclick="switchTab('dc')"><img src="https://cdn.simpleicons.org/discord/123249" alt="DC">Discord</button>
-    </div>
+<div class="sec-reveal" style="margin-bottom:50px">
+<span class="section-label">Numbers</span>
+<h2 class="section-title"><strong>SELECT</strong><br>PLATFORM</h2>
+</div>
 
-    <div class="pp active" id="panel-tg"><div class="cards-grid">
-      <div class="product-card tg" onclick="openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00','tg')"><div class="card-top"><span class="flag">🇺🇸</span><span class="badge-premium">Premium</span></div><div class="card-body"><h3>USA</h3><p>Premium American number. Top carrier, high success rate.</p></div><div class="card-footer"><div class="price">€5 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇺🇸 USA Premium','USA virtual number — faster delivery, premium carrier','€5.00','tg')">Buy</button></div></div>
-      <div class="product-card tg" onclick="openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00','tg')"><div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Indonesia</h3><p>Indonesian number, fast SMS delivery.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇮🇩 Indonesia','Indonesian virtual number for Telegram','€3.00','tg')">Buy</button></div></div>
-      <div class="product-card tg" onclick="openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00','tg')"><div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Kenya</h3><p>Kenyan number, reliable OTP delivery.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇰🇪 Kenya','Kenyan virtual number for Telegram','€3.00','tg')">Buy</button></div></div>
-      <div class="product-card tg" onclick="openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00','tg')"><div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Colombia</h3><p>Colombian number, solid SMS delivery.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇨🇴 Colombia','Colombian virtual number for Telegram','€3.00','tg')">Buy</button></div></div>
-      <div class="product-card tg" onclick="openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00','tg')"><div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Egypt</h3><p>Egyptian number, instant activation.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn tg" onclick="event.stopPropagation();openModal('Telegram 🇪🇬 Egypt','Egyptian virtual number for Telegram','€3.00','tg')">Buy</button></div></div>
-    </div></div>
+<div class="ptabs sec-reveal">
+<button class="ptab active" onclick="switchTab('tg',this)">
+<i class="fa-brands fa-telegram"></i> Telegram
+</button>
+<button class="ptab" onclick="switchTab('wa',this)">
+<i class="fa-brands fa-whatsapp"></i> WhatsApp
+</button>
+<button class="ptab" onclick="switchTab('dc',this)">
+<i class="fa-brands fa-discord"></i> Discord
+</button>
+</div>
 
-    <div class="pp" id="panel-wa"><div class="cards-grid">
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00','wa')"><div class="card-top"><span class="flag">🇺🇸</span><span class="badge-premium">Premium</span></div><div class="card-body"><h3>USA</h3><p>American number, high WhatsApp success rate.</p></div><div class="card-footer"><div class="price">€7 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇺🇸 USA','US number for WhatsApp registration','€7.00','wa')">Buy</button></div></div>
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00','wa')"><div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Indonesia</h3><p>Indonesian number, fast WA verification.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇮🇩 Indonesia','Indonesian number for WhatsApp registration','€3.00','wa')">Buy</button></div></div>
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00','wa')"><div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Kenya</h3><p>Kenyan number, reliable OTP delivery.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇰🇪 Kenya','Kenyan number for WhatsApp registration','€3.00','wa')">Buy</button></div></div>
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00','wa')"><div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Colombia</h3><p>Colombian number, solid success rate.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇨🇴 Colombia','Colombian number for WhatsApp registration','€3.00','wa')">Buy</button></div></div>
-      <div class="product-card wa" onclick="openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00','wa')"><div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Egypt</h3><p>Egyptian number, quick activation.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn wa" onclick="event.stopPropagation();openModal('WhatsApp 🇪🇬 Egypt','Egyptian number for WhatsApp registration','€3.00','wa')">Buy</button></div></div>
-    </div></div>
+<div class="pp active sec-reveal" id="panel-tg">
+<div class="cards-grid">
+<div class="product-card" onclick="openModal('Telegram 🇺🇸 USA','Premium US carrier — highest verification success rate','€5.00','tg')">
+<span class="platform-badge badge-tg"><i class="fa-brands fa-telegram"></i></span>
+<span class="flag">🇺🇸</span>
+<h3>USA</h3>
+<p>Ultra-reliable US number via premium carrier. Highest success rate on the market.</p>
+<div class="price"><strong>€5</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Telegram 🇮🇩 Indonesia','Standard carrier — fast batch activation','€3.00','tg')">
+<span class="platform-badge badge-tg"><i class="fa-brands fa-telegram"></i></span>
+<span class="flag">🇮🇩</span>
+<h3>Indonesia</h3>
+<p>Fast activation, ideal for volume verification operations.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Telegram 🇰🇪 Kenya','Standard carrier — high OTP delivery rate','€3.00','tg')">
+<span class="platform-badge badge-tg"><i class="fa-brands fa-telegram"></i></span>
+<span class="flag">🇰🇪</span>
+<h3>Kenya</h3>
+<p>Stable connection with consistently high OTP delivery rate.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Telegram 🇨🇴 Colombia','Standard carrier — Latin America coverage','€3.00','tg')">
+<span class="platform-badge badge-tg"><i class="fa-brands fa-telegram"></i></span>
+<span class="flag">🇨🇴</span>
+<h3>Colombia</h3>
+<p>Reliable Latin American number with fast OTP response times.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Telegram 🇪🇬 Egypt','Standard carrier — MENA region coverage','€3.00','tg')">
+<span class="platform-badge badge-tg"><i class="fa-brands fa-telegram"></i></span>
+<span class="flag">🇪🇬</span>
+<h3>Egypt</h3>
+<p>Stable MENA-region number with high platform acceptance rate.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+</div>
+</div>
 
-    <div class="pp" id="panel-dc"><div class="cards-grid">
-      <div class="product-card dc" onclick="openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00','dc')"><div class="card-top"><span class="flag">🇺🇸</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>USA</h3><p>American number for Discord phone verify.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇺🇸 USA','US number for Discord phone verification','€3.00','dc')">Buy</button></div></div>
-      <div class="product-card dc" onclick="openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00','dc')"><div class="card-top"><span class="flag">🇮🇩</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Indonesia</h3><p>Indonesian number, verified Discord OTP.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇮🇩 Indonesia','Indonesian number for Discord verification','€3.00','dc')">Buy</button></div></div>
-      <div class="product-card dc" onclick="openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00','dc')"><div class="card-top"><span class="flag">🇰🇪</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Kenya</h3><p>Kenyan number, fast Discord SMS.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇰🇪 Kenya','Kenyan number for Discord verification','€3.00','dc')">Buy</button></div></div>
-      <div class="product-card dc" onclick="openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00','dc')"><div class="card-top"><span class="flag">🇨🇴</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Colombia</h3><p>Colombian number, reliable verification.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇨🇴 Colombia','Colombian number for Discord verification','€3.00','dc')">Buy</button></div></div>
-      <div class="product-card dc" onclick="openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00','dc')"><div class="card-top"><span class="flag">🇪🇬</span><span class="badge-standard">Standard</span></div><div class="card-body"><h3>Egypt</h3><p>Egyptian number, instant code delivery.</p></div><div class="card-footer"><div class="price">€3 <span>/ use</span></div><button class="buy-btn dc" onclick="event.stopPropagation();openModal('Discord 🇪🇬 Egypt','Egyptian number for Discord verification','€3.00','dc')">Buy</button></div></div>
-    </div></div>
-  </div>
+<div class="pp" id="panel-wa" style="display:none">
+<div class="cards-grid">
+<div class="product-card" onclick="openModal('WhatsApp 🇺🇸 USA','Premium US carrier — WhatsApp verified','€7.00','wa')">
+<span class="platform-badge badge-wa"><i class="fa-brands fa-whatsapp"></i></span>
+<span class="flag">🇺🇸</span>
+<h3>USA</h3>
+<p>Premium WhatsApp verification via top-tier US carrier network.</p>
+<div class="price"><strong>€7</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('WhatsApp 🇮🇩 Indonesia','Standard carrier — WhatsApp activation','€4.00','wa')">
+<span class="platform-badge badge-wa"><i class="fa-brands fa-whatsapp"></i></span>
+<span class="flag">🇮🇩</span>
+<h3>Indonesia</h3>
+<p>Reliable Indonesian number for instant WhatsApp registration.</p>
+<div class="price"><strong>€4</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('WhatsApp 🇰🇪 Kenya','Standard carrier — WhatsApp activation','€4.00','wa')">
+<span class="platform-badge badge-wa"><i class="fa-brands fa-whatsapp"></i></span>
+<span class="flag">🇰🇪</span>
+<h3>Kenya</h3>
+<p>High-acceptance Kenyan number with fast OTP turnaround.</p>
+<div class="price"><strong>€4</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('WhatsApp 🇨🇴 Colombia','Standard carrier — Latin America coverage','€4.00','wa')">
+<span class="platform-badge badge-wa"><i class="fa-brands fa-whatsapp"></i></span>
+<span class="flag">🇨🇴</span>
+<h3>Colombia</h3>
+<p>Stable Colombian number for seamless WhatsApp verification.</p>
+<div class="price"><strong>€4</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('WhatsApp 🇪🇬 Egypt','Standard carrier — MENA region coverage','€4.00','wa')">
+<span class="platform-badge badge-wa"><i class="fa-brands fa-whatsapp"></i></span>
+<span class="flag">🇪🇬</span>
+<h3>Egypt</h3>
+<p>MENA-region number with strong WhatsApp platform acceptance.</p>
+<div class="price"><strong>€4</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+</div>
+</div>
+
+<div class="pp" id="panel-dc" style="display:none">
+<div class="cards-grid">
+<div class="product-card" onclick="openModal('Discord 🇺🇸 USA','Standard carrier — phone verify bypass','€3.00','dc')">
+<span class="platform-badge badge-dc"><i class="fa-brands fa-discord"></i></span>
+<span class="flag">🇺🇸</span>
+<h3>USA</h3>
+<p>Instant Discord phone-verification bypass. Works on new and aged accounts.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Discord 🇮🇩 Indonesia','Standard carrier — Discord verification','€3.00','dc')">
+<span class="platform-badge badge-dc"><i class="fa-brands fa-discord"></i></span>
+<span class="flag">🇮🇩</span>
+<h3>Indonesia</h3>
+<p>Fast Indonesian number for Discord phone verification at low cost.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Discord 🇰🇪 Kenya','Standard carrier — Discord verification','€3.00','dc')">
+<span class="platform-badge badge-dc"><i class="fa-brands fa-discord"></i></span>
+<span class="flag">🇰🇪</span>
+<h3>Kenya</h3>
+<p>Reliable Kenyan number with high Discord OTP delivery rate.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Discord 🇨🇴 Colombia','Standard carrier — Discord verification','€3.00','dc')">
+<span class="platform-badge badge-dc"><i class="fa-brands fa-discord"></i></span>
+<span class="flag">🇨🇴</span>
+<h3>Colombia</h3>
+<p>Stable Colombian number for instant Discord phone bypass.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+<div class="product-card" onclick="openModal('Discord 🇪🇬 Egypt','Standard carrier — Discord verification','€3.00','dc')">
+<span class="platform-badge badge-dc"><i class="fa-brands fa-discord"></i></span>
+<span class="flag">🇪🇬</span>
+<h3>Egypt</h3>
+<p>MENA-region number accepted by Discord's verification system.</p>
+<div class="price"><strong>€3</strong><span> /once</span></div>
+<button class="buy-btn">Acquire Number</button>
+</div>
+</div>
+</div>
 </section>
+
+<div class="divider"></div>
 
 <section class="reviews" id="reviews">
-  <div class="reviews-hd sec-reveal">
-    <div class="sec-tag">Social proof</div>
-    <h2 class="sec-title">Loved by customers.</h2>
-    <p class="sec-sub">Real reviews from people who used the service. No filters.</p>
-  </div>
-  <div class="reviews-grid" id="reviews-grid"></div>
-  <button class="rv-leave-btn" onclick="openReviewModal()"><i class="fa-solid fa-pen"></i>&nbsp; Leave a review</button>
+<div class="sec-reveal">
+<span class="section-label">Social Proof</span>
+<h2 class="section-title"><strong>TRUSTED</strong><br>BY USERS</h2>
+</div>
+<div class="reviews-grid sec-reveal" id="reviews-grid"></div>
+<div style="text-align:center;margin-top:48px" class="sec-reveal">
+<button class="btn-ghost" onclick="openReviewModal()" style="cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);padding:12px 28px;border-radius:6px;font-family:var(--font);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .25s">
+Write a Review
+</button>
+</div>
 </section>
 
-<section class="faq" id="faq">
-  <div class="faq-hd sec-reveal">
-    <div class="sec-tag">FAQ</div>
-    <h2 class="sec-title">Common questions.</h2>
-  </div>
-  <div class="faq-list sec-reveal">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What is a VOIP number?</span><i class="fa-solid fa-plus faq-ico"></i></button><div class="faq-a">A VOIP (Voice over IP) number is a virtual phone number not tied to a physical SIM card. It can receive SMS verification codes from platforms like Telegram, WhatsApp, and Discord.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>How is delivery handled?</span><i class="fa-solid fa-plus faq-ico"></i></button><div class="faq-a">After you click Buy, a pre-filled Telegram message opens automatically. Send it to @stark020009 and your number and OTP code will be delivered directly to your chat — usually within a few minutes.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>Are these numbers reusable?</span><i class="fa-solid fa-plus faq-ico"></i></button><div class="faq-a">No — all numbers are single-use only. This is intentional to protect your privacy and ensure each verification is clean and untraceable.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>What payment methods are accepted?</span><i class="fa-solid fa-plus faq-ico"></i></button><div class="faq-a">Payment details are handled directly via Telegram. Contact @stark020009 to discuss available options for your region.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>Is this legal?</span><i class="fa-solid fa-plus faq-ico"></i></button><div class="faq-a">Yes — virtual numbers for account verification are completely legal. Numbers are intended for legitimate account registration and verification purposes only.</div></div>
-  </div>
-</section>
+<div class="divider"></div>
 
-<section class="cta-sec">
-  <div class="cta-box sec-reveal">
-    <h2>READY TO VERIFY?</h2>
-    <p>Browse numbers and place your order on Telegram in seconds.</p>
-    <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="cta-btn"><i class="fa-brands fa-telegram"></i> Order on Telegram</a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div>
-    <a href="/" class="footer-logo-wrap">
-      <img src="logo.png" alt="EX" class="footer-logo-img">
-      <span class="footer-logo-name">EmanueleXyz</span>
-    </a>
-    <p class="footer-desc">Virtual phone numbers for Telegram, WhatsApp &amp; Discord. Single-use, instant delivery, privacy first.</p>
-  </div>
-  <div class="footer-r">
-    <a href="/">← Back to portfolio</a>
-    <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer">@stark020009</a>
-  </div>
-  <div class="footer-copy">
-    <span>© 2026 Emanuele Cervone</span>
-    <span>Numbers are for legitimate account verification only.</span>
-  </div>
+<footer class="footer sec-reveal">
+<div class="footer-headline">
+<strong>READY</strong> TO<br>START?
+</div>
+<a href="https://t.me/stark020009" target="_blank" class="btn-grad" style="font-size:.78rem">
+<i class="fa-brands fa-telegram"></i> &nbsp;Message @stark020009
+</a>
+<p class="footer-meta">© 2026 EmanueleXyz · High-fidelity VOIP infrastructure · MIT</p>
 </footer>
 
 </div>
 
 <div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
-  <div class="modal">
-    <div class="modal-top-line" id="modal-top-line"></div>
-    <h3 id="modal-title">Product</h3>
-    <p id="modal-desc">Description</p>
-    <div class="modal-price" id="modal-price">€0</div>
-    <div class="modal-actions">
-      <a id="modal-tg-link" href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="modal-tg-btn"><i class="fa-brands fa-telegram"></i> Order on Telegram</a>
-      <button class="modal-close" onclick="closeModal()">Cancel</button>
-    </div>
-  </div>
+<div class="modal">
+<h3 id="modal-title"></h3>
+<p class="modal-desc" id="modal-desc"></p>
+<div class="modal-price" id="modal-price"></div>
+<a id="modal-tg-link" href="#" target="_blank" class="btn-grad" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;text-decoration:none">
+<i class="fa-brands fa-telegram"></i> Pay via Telegram
+</a>
+<button onclick="closeModal()" style="background:transparent;color:var(--muted);border:1px solid var(--border);width:100%;padding:12px;border-radius:8px;cursor:pointer;font-family:var(--font);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:all .25s">
+Close
+</button>
+</div>
 </div>
 
-<div class="rv-overlay" id="rv-overlay" onclick="handleRvOv(event)">
-  <div class="rv-modal">
-    <div class="rm-title">Leave a Review</div>
-    <div class="rm-sub">How was your experience?</div>
-    <div class="rm-stars" id="rm-stars">
-      <span class="rm-star" data-v="1">&#9733;</span>
-      <span class="rm-star" data-v="2">&#9733;</span>
-      <span class="rm-star" data-v="3">&#9733;</span>
-      <span class="rm-star" data-v="4">&#9733;</span>
-      <span class="rm-star" data-v="5">&#9733;</span>
-    </div>
-    <textarea class="rm-ta" id="rm-ta" placeholder="Write your review..."></textarea>
-    <div class="rm-acts">
-      <button class="rm-submit" onclick="submitReview()">Submit</button>
-      <button class="rm-cancel" onclick="closeReviewModal()">Cancel</button>
-    </div>
-    <div class="rm-succ" id="rm-succ">✓ Thanks for your review!</div>
-  </div>
+<div class="modal-backdrop" id="rv-overlay">
+<div class="modal">
+<h3 style="margin-bottom:20px">Leave Feedback</h3>
+<div id="rm-stars" style="margin-bottom:20px;font-size:1.6rem;display:flex;gap:6px;justify-content:center">
+<span class="rm-star" data-v="1" style="cursor:pointer;transition:color .2s">★</span>
+<span class="rm-star" data-v="2" style="cursor:pointer;transition:color .2s">★</span>
+<span class="rm-star" data-v="3" style="cursor:pointer;transition:color .2s">★</span>
+<span class="rm-star" data-v="4" style="cursor:pointer;transition:color .2s">★</span>
+<span class="rm-star" data-v="5" style="cursor:pointer;transition:color .2s">★</span>
+</div>
+<textarea id="rm-ta" placeholder="Describe your experience..."></textarea>
+<button class="btn-grad" onclick="submitReview()" style="width:100%;padding:14px;border:none;border-radius:8px;cursor:pointer;font-family:var(--font);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Post Review</button>
+<div id="rm-succ" style="display:none;margin-top:16px;color:var(--accent-mid);font-size:.82rem">Review submitted. Thank you.</div>
+<button onclick="closeReviewModal()" style="background:transparent;color:var(--muted-2);border:none;width:100%;padding:10px;cursor:pointer;font-family:var(--font);font-size:.7rem;margin-top:8px">Cancel</button>
+</div>
 </div>
 
-<div id="visit-counter">
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-  <span id="visit-count">—</span>
-</div>
+<div id="visit-counter">Network Traffic: <span id="visit-count">—</span></div>
 
 <script>
 if(typeof particlesJS!=='undefined'){
-  particlesJS("particles-js",{particles:{number:{value:30,density:{enable:true,value_area:1000}},color:{value:"#447794"},shape:{type:"circle"},opacity:{value:0.2,random:true},size:{value:1.3,random:true},line_linked:{enable:true,distance:155,color:"#447794",opacity:0.1,width:1},move:{enable:true,speed:0.55,random:true}},interactivity:{events:{onhover:{enable:true,mode:"grab"},onclick:{enable:false}},modes:{grab:{distance:160,line_linked:{opacity:.2}}}}});
+particlesJS("particles-js",{
+particles:{
+number:{value:30,density:{enable:true,value_area:900}},
+color:{value:"#6366f1"},
+shape:{type:"circle"},
+opacity:{value:0.08,random:true},
+size:{value:1.5,random:true},
+line_linked:{enable:true,distance:160,color:"#6366f1",opacity:0.04,width:1},
+move:{enable:true,speed:.6,random:true}
+},
+interactivity:{
+detect_on:"canvas",
+events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:false}},
+modes:{repulse:{distance:80,duration:.4}}
+}
+});
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
+window.addEventListener('scroll',function(){
+var nav=document.getElementById('navbar');
+if(window.scrollY>60) nav.classList.add('scrolled');
+else nav.classList.remove('scrolled');
 });
 
-function switchTab(p){
-  document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('active');});
-  document.querySelectorAll('.pp').forEach(function(x){x.classList.remove('active');});
-  var tab=document.querySelector('.ptab.'+p);
-  var panel=document.getElementById('panel-'+p);
-  if(tab)tab.classList.add('active');
-  if(panel)panel.classList.add('active');
+function switchTab(p,el){
+document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('active');});
+document.querySelectorAll('.pp').forEach(function(x){x.style.display='none';});
+el.classList.add('active');
+var panel=document.getElementById('panel-'+p);
+panel.style.display='block';
+panel.style.animation='fadeUp .4s var(--ease-out) both';
 }
-
-var COLORS={tg:'#447794',wa:'#2D5B75',dc:'#123249'};
 
 function openModal(title,desc,price,platform){
-  document.getElementById('modal-title').textContent=title;
-  document.getElementById('modal-desc').textContent=desc;
-  document.getElementById('modal-price').textContent=price;
-  var line=document.getElementById('modal-top-line');
-  if(line)line.style.background=platform?COLORS[platform]||'var(--accent)':'var(--accent)';
-  var msg=encodeURIComponent('Hi! I want to buy: '+title+' ('+price+')');
-  document.getElementById('modal-tg-link').href='https://t.me/stark020009?text='+msg;
-  document.getElementById('modal-backdrop').classList.add('open');
-}
-function closeModal(e){
-  if(!e||e.target===document.getElementById('modal-backdrop'))
-    document.getElementById('modal-backdrop').classList.remove('open');
+document.getElementById('modal-title').textContent=title;
+document.getElementById('modal-desc').textContent=desc;
+document.getElementById('modal-price').textContent=price;
+var msg=encodeURIComponent('VOIP Order: '+title+' ('+price+')');
+document.getElementById('modal-tg-link').href='https://t.me/stark020009?text='+msg;
+document.getElementById('modal-backdrop').classList.add('open');
 }
 
-function toggleFaq(btn){
-  var item=btn.parentElement;
-  var wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
-  if(!wasOpen)item.classList.add('open');
+function closeModal(e){
+if(!e||e.target===document.getElementById('modal-backdrop'))
+document.getElementById('modal-backdrop').classList.remove('open');
 }
 
 var reviewRating=0;
 function openReviewModal(){document.getElementById('rv-overlay').classList.add('open');}
 function closeReviewModal(){document.getElementById('rv-overlay').classList.remove('open');}
-function handleRvOv(e){if(e.target===document.getElementById('rv-overlay'))closeReviewModal();}
 
 document.getElementById('rm-stars').addEventListener('click',function(e){
-  var star=e.target.closest('.rm-star');if(!star)return;
-  reviewRating=parseInt(star.dataset.v);
-  document.querySelectorAll('.rm-star').forEach(function(s){s.classList.toggle('active',parseInt(s.dataset.v)<=reviewRating);});
+var star=e.target.closest('.rm-star');if(!star)return;
+reviewRating=parseInt(star.dataset.v);
+document.querySelectorAll('.rm-star').forEach(function(s){
+s.style.color=parseInt(s.dataset.v)<=reviewRating?'var(--gold)':'rgba(255,255,255,0.15)';
 });
-document.getElementById('rm-stars').addEventListener('mouseover',function(e){
-  var star=e.target.closest('.rm-star');if(!star)return;
-  var v=parseInt(star.dataset.v);
-  document.querySelectorAll('.rm-star').forEach(function(s){s.style.color=parseInt(s.dataset.v)<=v?'#f5c542':'';});
 });
-document.getElementById('rm-stars').addEventListener('mouseleave',function(){
-  document.querySelectorAll('.rm-star').forEach(function(s){s.style.color=parseInt(s.dataset.v)<=reviewRating?'#f5c542':'';});
-});
+
 function submitReview(){
-  var text=document.getElementById('rm-ta').value.trim();
-  if(!reviewRating||!text)return;
-  var reviews=JSON.parse(localStorage.getItem('shop_reviews')||'[]');
-  reviews.unshift({rating:reviewRating,text:text,date:new Date().toLocaleDateString('en-GB')});
-  localStorage.setItem('shop_reviews',JSON.stringify(reviews));
-  document.getElementById('rm-ta').value='';reviewRating=0;
-  document.querySelectorAll('.rm-star').forEach(function(s){s.classList.remove('active');s.style.color='';});
-  var succ=document.getElementById('rm-succ');succ.style.display='block';
-  setTimeout(function(){succ.style.display='none';closeReviewModal();renderReviews();},1800);
+var text=document.getElementById('rm-ta').value.trim();
+if(!reviewRating||!text)return;
+var reviews=JSON.parse(localStorage.getItem('shop_reviews')||'[]');
+reviews.unshift({rating:reviewRating,text:text,date:new Date().toLocaleDateString('en-GB')});
+localStorage.setItem('shop_reviews',JSON.stringify(reviews));
+document.getElementById('rm-succ').style.display='block';
+setTimeout(function(){
+document.getElementById('rv-overlay').classList.remove('open');
+document.getElementById('rm-succ').style.display='none';
+document.getElementById('rm-ta').value='';
+reviewRating=0;
+document.querySelectorAll('.rm-star').forEach(function(s){s.style.color='';});
+renderReviews();
+},1500);
 }
+
 function renderReviews(){
-  var grid=document.getElementById('reviews-grid');if(!grid)return;
-  var reviews=JSON.parse(localStorage.getItem('shop_reviews')||'[]');
-  if(!reviews.length){grid.innerHTML='<div class="no-rv-msg">No reviews yet — be the first!</div>';return;}
-  grid.innerHTML=reviews.map(function(r){
-    return '<div class="review-card"><div class="rc-stars">'+'★'.repeat(r.rating)+'<span style="opacity:.2">'+'★'.repeat(5-r.rating)+'</span></div>'
-      +'<div class="rc-text">'+r.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>'
-      +'<div class="rc-date">'+r.date+'</div></div>';
-  }).join('');
+var grid=document.getElementById('reviews-grid');if(!grid)return;
+var reviews=JSON.parse(localStorage.getItem('shop_reviews')||'[]');
+if(!reviews.length){
+grid.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted-2);padding:60px 0;font-size:.82rem;letter-spacing:.1em">NO REVIEWS YET — BE THE FIRST</div>';
+return;
+}
+grid.innerHTML=reviews.map(function(r){
+return '<div class="review-card">'
++'<div class="review-stars">'+'★'.repeat(r.rating)+'☆'.repeat(5-r.rating)+'</div>'
++'<div class="review-text">"'+r.text+'"</div>'
++'<div class="review-date">'+r.date+'</div>'
++'</div>';
+}).join('');
 }
 renderReviews();
 
 (function(){
-  var KEY='shop',NS='emanueledev',el=document.getElementById('visit-count'),SK='visited_shop';
-  function display(n){var x=parseInt(n,10);if(el)el.textContent=isNaN(x)?'—':x.toLocaleString();}
-  var isNew=!sessionStorage.getItem(SK);if(isNew)sessionStorage.setItem(SK,'1');
-  fetch(isNew?'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/up':'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/get')
-    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
-    .then(function(d){display(d.count);}).catch(function(){display('—');});
+var KEY='shop',NS='emanueledev',el=document.getElementById('visit-count');
+function display(n){if(el)el.textContent=n;}
+var isNew=!sessionStorage.getItem('visited');
+if(isNew)sessionStorage.setItem('visited','1');
+fetch(isNew
+?'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/up'
+:'https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/get')
+.then(function(r){return r.json();}).then(function(d){display(d.count);})
+.catch(function(){});
 })();
 
-(function(){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
-  },{threshold:.1});
-  document.querySelectorAll('.sec-reveal').forEach(function(el){io.observe(el);});
-})();
-
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){
-    document.getElementById('modal-backdrop').classList.remove('open');
-    closeReviewModal();
-  }
+var io=new IntersectionObserver(function(entries){
+entries.forEach(function(e){
+if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
 });
+},{threshold:.08});
+document.querySelectorAll('.sec-reveal').forEach(function(el){io.observe(el);});
 </script>
+
 </body>
 </html>

@@ -11,22 +11,24 @@
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
+<div id="cursor-trail-wrap"></div>
 <div id="grain" aria-hidden="true"></div>
+<div id="scanlines" aria-hidden="true"></div>
+<div id="vignette" aria-hidden="true"></div>
 
 <div id="loading">
   <div class="ld-name"><span>EC</span></div>
-  <div class="ld-bar"><div class="ld-fill"></div></div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>il
   <div class="ld-sub"><span>Portfolio 2026</span></div>
 </div>
 
-<div id="particles-js"></div>
+<canvas id="gravity-canvas"></canvas>
 <div id="site-banner" role="alert"><span id="site-banner-text"></span></div>
 <div id="maint-overlay"><h2>MAINTENANCE</h2><p>Back shortly.</p></div>
 
@@ -226,7 +228,7 @@
   <section id="contact">
     <div class="c-left">
       <h2>CON<br>TACT</h2>
-      <div class="c-info"><div class="c-lbl">E-mail</div><div class="c-val">ema.cer.21@gmail.com</div></div>
+      <div class="c-info"><div class="c-lbl">Email</div><div class="c-val">ema.cer.21@gmail.com</div></div>
       <div class="c-info"><div class="c-lbl">Telegram</div><div class="c-val">@stark020009</div></div>
       <div class="c-links">
         <a href="https://t.me/stark020009" target="_blank" rel="noopener noreferrer" class="c-link tg"><i class="fa-brands fa-telegram"></i><span>Message on Telegram</span></a>
@@ -349,7 +351,7 @@
 <button id="admin-fab" onclick="openAdminPanel()" title="Admin Panel"><i class="fa-solid fa-terminal"></i></button>
 <div class="ap-toast" id="ap-toast"></div>
 
-<script src="script.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
 <script>
 function sadmOut(id,txt){var el=document.getElementById(id);if(!el)return;el.textContent=txt;el.style.display=txt?'block':'none';}
 function sadmGetUsers(){return JSON.parse(localStorage.getItem('site_users')||'{}');}
@@ -369,10 +371,10 @@ function sadmExportSettings(){var json=JSON.stringify(settings,null,2);if(naviga
 function sadmResetSettings(){if(!confirm('Reset all settings?'))return;localStorage.removeItem(SETTINGS_KEY);settings={particles:true,animations:true,secnums:true,fontsize:'normal',visitctr:true,optout:false,notif:false,sound:false,reducemotion:false,highcontrast:false,largecursor:false,debug:false,profilevis:false};saveSettings();applyAll();sadmOut('sadm-settings','Reset.');apToast('Settings reset.','green');}
 function sadmSessionInfo(){var info=[];info.push('User: '+(sessionStorage.getItem('ema_user')||'—'));info.push('Logged: '+(sessionStorage.getItem('ema_logged')?'Yes':'No'));info.push('GH Token: '+(localStorage.getItem('ema_ghtoken')?'Set':'No'));info.push('Users: '+Object.keys(sadmGetUsers()).length);info.push('Screen: '+screen.width+'x'+screen.height);info.push('Online: '+(navigator.onLine?'Yes':'No'));sadmOut('sadm-session',info.join('\n'));}
 function sadmRefreshGithub(){sadmOut('sadm-session','Refreshing...');var c=document.getElementById('projects-container');if(c)c.innerHTML='';fetch('https://api.github.com/users/EmaaXyz/repos?sort=updated&per_page=30').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(repos){if(!c)return;repos.filter(function(r){return!r.fork;}).forEach(function(repo){var card=document.createElement('div');card.className='proj-card';var a=document.createElement('a');a.href=repo.html_url;a.target='_blank';a.rel='noopener noreferrer';var n=document.createElement('div');n.className='proj-name';n.textContent=repo.name;var d=document.createElement('div');d.className='proj-desc';d.textContent=repo.description||'GitHub Project';var ft=document.createElement('div');ft.className='proj-foot';var l=document.createElement('div');l.className='proj-lang';l.textContent=repo.language||'Code';ft.appendChild(l);a.appendChild(n);a.appendChild(d);a.appendChild(ft);card.appendChild(a);c.appendChild(card);});sadmOut('sadm-session','Done.');}).catch(function(){sadmOut('sadm-session','Failed.');});}
-function sadmReinitParticles(){var pjs=document.getElementById('particles-js');if(!pjs)return;pjs.innerHTML='';if(typeof particlesJS!=='undefined'){var count=parseInt(document.getElementById('sadm-p-count').value)||26;var speed=parseFloat(document.getElementById('sadm-p-speed').value)||0.45;particlesJS('particles-js',{particles:{number:{value:count,density:{enable:true,value_area:1000}},color:{value:'#ffffff'},shape:{type:'circle'},opacity:{value:.08,random:true},size:{value:1.1,random:true},line_linked:{enable:true,distance:170,color:'#ffffff',opacity:.035,width:1},move:{enable:true,speed:speed,random:true}},interactivity:{events:{onhover:{enable:true,mode:'grab'}}}});sadmOut('sadm-session','Done. Count:'+count);}}
+function sadmReinitParticles(){sadmOut('sadm-session','Gravity stars reinit not needed — always on canvas.');}
 function sadmTestNotif(){if(!('Notification' in window)){sadmOut('sadm-session','Not supported.');return;}if(Notification.permission==='granted'){new Notification('Admin Test',{body:'From emanueledev',icon:'logo.png'});sadmOut('sadm-session','Sent.');}else if(Notification.permission==='default'){Notification.requestPermission().then(function(p){if(p==='granted'){new Notification('Admin Test',{body:'Enabled!',icon:'logo.png'});sadmOut('sadm-session','Sent.');}else{sadmOut('sadm-session','Denied.');}});}else{sadmOut('sadm-session','Blocked.');}}
-function sadmSetTitle(){var inp=document.getElementById('sadm-title-inp');if(!inp||!inp.value.trim())return;document.title=inp.value.trim();sadmOut('sadm-session','Set: "'+document.title+'"');inp.value='';}
-function sadmNuke(){if(!confirm('NUKE ALL localStorage?'))return;if(!confirm('Last chance.'))return;localStorage.clear();sessionStorage.clear();updateAccountUI(null);closeSettings();apToast('Wiped.','red');}
+function sadmSetTitle(){var inp=document.getElementById('sadm-title-inp');if(!inp||!inp.value.trim())return;document.title=inp.value.trim();sadmOut('sadm-session','Title set.');}
+function sadmNuke(){if(!confirm('WIPE ALL localStorage? This cannot be undone.'))return;localStorage.clear();updateAccountUI(null);closeAdminPanel();apToast('Nuked.','red');}
 </script>
 </body>
 </html>
